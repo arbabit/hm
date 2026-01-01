@@ -717,3 +717,40 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
         font-size: 11px !important;
     }
 }
+/* --- ULTIMATE MOBILE OVERRIDE --- */
+@media screen and (max-width: 768px) {
+    
+    /* Forces the buttons to stack vertically instead of overlapping */
+    .hero-sub .container, 
+    div[style*="display: flex"] {
+        flex-direction: column !important;
+        gap: 20px !important;
+        align-items: center !important;
+    }
+
+    /* Fixes the "Connect With Us" button size and overlap */
+    .btn-connect, .btn-primary, .btn-secondary,
+    a[style*="border-radius"] {
+        width: 85% !important;
+        max-width: 300px !important;
+        text-align: center !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+
+    /* Fixes the oversized numbers into a neat 2x2 grid */
+    .impact-grid, 
+    .section .container[style*="grid-template-columns"] {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 20px !important;
+        padding: 40px 10px !important;
+    }
+
+    /* Sets numbers to a satisfactory, professional size */
+    .stat-number, 
+    h2[style*="font-size"] {
+        font-size: 26px !important;
+        line-height: 1.2 !important;
+    }
+}
