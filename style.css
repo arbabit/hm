@@ -684,3 +684,36 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
         font-size: 11px;
     }
 }
+/* --- MOBILE RESPONSIVE FIXES --- */
+@media (max-width: 768px) {
+    /* Fix Hero Buttons: Stacks them so they don't overlap */
+    .hero-actions {
+        display: flex;
+        flex-direction: column; /* Stacks buttons vertically */
+        gap: 15px;
+        align-items: center;
+        width: 100%;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 80%; /* Makes buttons a comfortable size for thumbs */
+        text-align: center;
+        padding: 12px 20px;
+    }
+
+    /* Fix Impact Numbers: Changes from a messy line to a neat 2x2 grid */
+    .impact-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 20px !important;
+        padding: 30px 10px !important;
+    }
+
+    .stat-number {
+        font-size: 24px !important; /* Smaller, satisfactory size */
+    }
+
+    .stat-label {
+        font-size: 11px !important;
+    }
+}
