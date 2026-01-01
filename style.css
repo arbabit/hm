@@ -495,4 +495,49 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
         flex-wrap: wrap;
     }
 }
+@media (max-width: 768px) {
+    /* Stack the header elements */
+    header {
+        height: auto !important;
+        padding: 10px 0;
+    }
+
+    .nav-container {
+        flex-direction: column !important;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Shrink the logo so it doesn't take half the screen */
+    .logo-img {
+        height: 50px !important; 
+        width: auto;
+    }
+
+    /* Center the navigation links and make them readable */
+    .nav-list {
+        flex-direction: row;
+        gap: 15px;
+        margin: 5px 0;
+        padding: 0;
+    }
+
+    .nav-link {
+        font-size: 14px;
+    }
+
+    /* Adjust the "Connect" button and hide the extra design asset on mobile */
+    .nav-right {
+        gap: 10px;
+    }
+
+    .btn-connect {
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+
+    .design-asset {
+        display: none; /* Decorative assets often clutter small screens */
+    }
+}
 
