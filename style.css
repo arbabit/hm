@@ -117,3 +117,60 @@ header.scrolled .logo-img, header.scrolled .design-asset { height: 50px; }
     .footer-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .watermark-design { width: 250px; opacity: 0.08; right: -50px; }
 }
+/* --- FIXED DESKTOP HEADER --- */
+header {
+    background: var(--white);
+    height: var(--header-h);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Limits width so items don't drift too far */
+    margin: 0 auto;    /* Centers the whole navigation */
+    padding: 0 20px;
+}
+
+/* Prevents the logo and buttons from squishing the links */
+.nav-left, .nav-right {
+    flex: 1; 
+    min-width: 200px; 
+}
+
+.nav-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+/* --- FIXED IMPACT GRID (Desktop) --- */
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Forces 4 clean columns */
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto; /* Centers the numbers */
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.impact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Ensures the big numbers don't touch each other */
+.impact-number {
+    font-size: 2.5rem; /* Slightly smaller for better fit */
+    white-space: nowrap; /* Prevents 15k+ from breaking into two lines */
+}
