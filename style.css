@@ -638,3 +638,49 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
         line-height: 1.4 !important;
     }
 }
+/* --- DESKTOP STYLES --- */
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on PC */
+    gap: 30px;
+    text-align: center;
+    padding: 60px 0;
+}
+
+.impact-number {
+    font-size: 48px;
+    color: #003366; /* Your brand blue */
+    margin-bottom: 5px;
+}
+
+.impact-label {
+    color: #f39c12; /* Your brand gold */
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+/* --- PHONE READY FIX --- */
+@media (max-width: 768px) {
+    /* Fix Hero Buttons Overlap */
+    .hero-sub .btn-container {
+        display: flex;
+        flex-direction: column; /* Stacks "Explore" and "Connect" */
+        gap: 15px;
+        align-items: center;
+    }
+
+    /* Fix Big Numbers Overlap */
+    .impact-grid {
+        grid-template-columns: 1fr 1fr; /* 2x2 grid on phone */
+        gap: 20px;
+        padding: 40px 15px;
+    }
+
+    .impact-number {
+        font-size: 28px; /* Smaller, satisfactory size for phone */
+    }
+
+    .impact-label {
+        font-size: 11px;
+    }
+}
