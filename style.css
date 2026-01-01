@@ -795,3 +795,59 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
         gap: 20px !important;
     }
 }
+/* --- ACHIEVEMENTS SECTION WRAPPER --- */
+.achievements-section {
+    padding: 80px 0;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden; /* Prevents the design from causing horizontal scroll */
+}
+
+.achievement-wrapper {
+    position: relative; /* Essential for positioning the watermark */
+    display: flex;
+    align-items: center;
+    min-height: 500px;
+}
+
+.achievement-content {
+    position: relative;
+    z-index: 2; /* Keeps text on top of the image */
+    width: 100%;
+    max-width: 650px; /* Limits text width to keep the right side clear */
+}
+
+/* THE TRANSPARENT SIDE DESIGN */
+.watermark-design {
+    position: absolute;
+    right: -50px; /* Positions it on the far right */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px; /* Size of the design asset */
+    opacity: 0.15; /* "Little transparency" - adjust between 0.05 and 0.20 */
+    z-index: 1; /* Sits behind the text */
+    pointer-events: none; /* Allows users to click/highlight text through the image */
+}
+
+.watermark-design img {
+    width: 100%;
+    height: auto;
+}
+
+/* --- MOBILE FIX --- */
+@media (max-width: 768px) {
+    .achievement-content {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .watermark-design {
+        width: 300px;
+        right: -80px;
+        opacity: 0.08; /* Make it even lighter on phones to avoid clutter */
+    }
+    
+    .achievement-list li {
+        text-align: left;
+    }
+}
