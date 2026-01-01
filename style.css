@@ -754,3 +754,44 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
         line-height: 1.2 !important;
     }
 }
+/* --- MOBILE RESPONSIVE OVERRIDES --- */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Fix Hero Buttons: Stacks them vertically */
+    .hero-btns {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+        align-items: center !important;
+    }
+
+    .btn-main, .btn-outline {
+        width: 90% !important;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    /* 2. Fix Impact Numbers: 2x2 Grid instead of one big line */
+    .impact-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 20px !important;
+        padding: 40px 15px !important;
+    }
+
+    .impact-number {
+        font-size: 28px !important; /* Satisfactory, smaller size */
+        margin-bottom: 5px;
+    }
+
+    .impact-label {
+        font-size: 11px !important;
+    }
+
+    /* 3. Fix Process Cards (Verification/Approval) */
+    .process-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+}
