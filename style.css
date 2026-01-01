@@ -364,3 +364,57 @@ header.scrolled .design-asset { height: 55px; }
 
 nsform: rotate(45deg); /* Rotates the L-shape into a tick */
 }
+/* ACHIEVEMENTS SECTION WRAPPER */
+.achievements-section {
+    padding: 80px 0;
+    background: #f9f9f9;
+    overflow: hidden; /* Prevents the design from causing horizontal scroll */
+}
+
+.achievement-wrapper {
+    position: relative; /* Essential for positioning the watermark */
+    display: flex;
+    align-items: center;
+}
+
+.achievement-content {
+    position: relative;
+    z-index: 2; /* Keeps text on top */
+    width: 100%;
+    max-width: 700px; /* Limits text width to keep the right side clear */
+}
+
+.achievement-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 2.2;
+}
+
+/* THE TRANSPARENT WATERMARK DESIGN */
+.watermark-design {
+    position: absolute;
+    right: -20px; /* Positions it on the far right */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 450px; /* Size of the design asset */
+    opacity: 0.12; /* "Little transparency" - adjust this between 0.05 and 0.20 */
+    z-index: 1; /* Sits behind the text */
+    pointer-events: none; /* Allows users to click through the image */
+}
+
+.watermark-design img {
+    width: 100%;
+    height: auto;
+}
+
+/* Mobile Fix: Hide or shrink watermark on small screens */
+@media (max-width: 768px) {
+    .watermark-design {
+        width: 250px;
+        right: -50px;
+        opacity: 0.08;
+    }
+}
+
