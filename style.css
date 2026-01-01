@@ -851,3 +851,47 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
         text-align: left;
     }
 }
+/* --- CUSTOM TICK STYLES --- */
+.achievement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: flex-start; /* Keeps tick at the top of the line */
+    gap: 15px;
+}
+
+.tick-icon {
+    min-width: 24px;
+    height: 24px;
+    background-color: var(--blue); /* Your brand blue */
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px; /* Aligns with the first line of text */
+}
+
+/* Creating the actual tick mark using CSS */
+.tick-icon::after {
+    content: '';
+    width: 6px;
+    height: 10px;
+    border: solid var(--gold); /* Your brand gold */
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 4px;
+}
+
+.achievement-item p {
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.6;
+    margin: 0;
+}
