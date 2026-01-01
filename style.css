@@ -895,29 +895,36 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
     line-height: 1.6;
     margin: 0;
 }
-/* --- REGIONAL IMPACT TABLE REFINEMENT --- */
-.impact-table {
-    width: 100%;
-    margin: 30px auto;
-    border-collapse: collapse;
-    text-align: center; /* Centers the text inside all cells */
+/* --- REGIONAL IMPACT TABLE: FINAL ALIGNMENT --- */
+.impact-table, 
+table.impact-table {
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 40px auto !important; /* Centers the whole table box on page */
+    border-collapse: collapse !important;
+    text-align: center !important; /* Centers text in all cells */
 }
 
 .impact-table th {
-    background-color: var(--blue);
-    color: white;
-    padding: 15px;
-    text-align: center; /* Specifically ensures headers are centered */
+    background: var(--blue) !important;
+    color: #ffffff !important;
+    padding: 18px !important;
+    text-align: center !important; /* Centers header text */
+    font-weight: 700 !important;
+    border: none !important;
 }
 
 .impact-table td {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    vertical-align: middle; /* Centers text vertically if lines wrap */
+    padding: 20px !important;
+    text-align: center !important; /* Centers row text */
+    border-bottom: 1px solid #eee !important;
+    color: #444 !important;
+    vertical-align: middle !important;
 }
 
-/* Optional: Gives the 'Region' column a slightly bolder look */
+/* Make the Region column slightly wider and bolder */
 .impact-table td:first-child {
-    font-weight: 700;
-    color: var(--blue);
+    min-width: 180px !important;
+    font-weight: 700 !important;
+    color: var(--blue) !important;
 }
