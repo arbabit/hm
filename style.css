@@ -895,3 +895,29 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
     line-height: 1.6;
     margin: 0;
 }
+/* --- REGIONAL IMPACT TABLE REFINEMENT --- */
+.impact-table {
+    width: 100%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    text-align: center; /* Centers the text inside all cells */
+}
+
+.impact-table th {
+    background-color: var(--blue);
+    color: white;
+    padding: 15px;
+    text-align: center; /* Specifically ensures headers are centered */
+}
+
+.impact-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle; /* Centers text vertically if lines wrap */
+}
+
+/* Optional: Gives the 'Region' column a slightly bolder look */
+.impact-table td:first-child {
+    font-weight: 700;
+    color: var(--blue);
+}
