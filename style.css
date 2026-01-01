@@ -540,4 +540,35 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
         display: none; /* Decorative assets often clutter small screens */
     }
 }
+/* --- THE MOBILE FIX --- */
+@media (max-width: 768px) {
+    /* 1. Fix the Header Overlap */
+    header {
+        position: relative; /* Stops it from floating over other content */
+        height: auto !important;
+    }
+
+    .nav-container {
+        flex-direction: column !important; /* Stacks everything vertically */
+        padding: 15px 0;
+    }
+
+    .logo-img {
+        height: 50px !important; /* Makes logo smaller so it fits */
+        margin-bottom: 10px;
+    }
+
+    .nav-list {
+        flex-direction: row; /* Keeps links in a line, but centered */
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    /* 2. Fix the Impact Numbers (15k+, 500+, etc.) */
+    /* This forces the numbers to stack or shrink so they don't go off screen */
+    .hero-sub h1 {
+        font-size: 24px !important;
+    }
+}
 
