@@ -571,4 +571,44 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
         font-size: 24px !important;
     }
 }
+/* --- IMPACT NUMBERS MOBILE OPTIMIZATION --- */
+@media (max-width: 600px) {
+    /* Targets the container holding the numbers */
+    .impact-stats, .stats-grid, [style*="display: flex"] { 
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; /* Creates two columns */
+        gap: 20px !important;
+        padding: 20px !important;
+        text-align: center;
+    }
 
+    /* Shrinks the 15k+, 500+ text */
+    .impact-stats h2, .stat-number, h1[style*="15k"] {
+        font-size: 24px !important; /* Reduced from the 'big' size */
+        margin-bottom: 5px !important;
+    }
+
+    /* Shrinks the labels like 'Meals Provided' */
+    .impact-stats p, .stat-label {
+        font-size: 12px !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+}
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 10px !important;
+    }
+    
+    .logo-img {
+        height: 40px !important; /* Smaller logo for mobile */
+    }
+
+    .nav-list {
+        gap: 10px !important;
+    }
+
+    .nav-link {
+        font-size: 12px !important; /* Smaller menu links */
+    }
+}
