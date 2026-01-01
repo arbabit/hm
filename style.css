@@ -817,3 +817,39 @@ table.impact-table {
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
+@media (max-width: 768px) {
+    /* Shrinks the header height to keep more content visible */
+    header, #mainHeader {
+        height: 80px !important;
+        padding: 5px 0 !important;
+    }
+
+    /* Centers the logo and makes it smaller */
+    .logo-img {
+        height: 40px !important;
+        margin-bottom: 5px;
+    }
+
+    /* Hides the top-right button on mobile to stop overlapping */
+    .nav-right {
+        display: none !important;
+    }
+
+    /* Centers the navigation links in a single, neat line */
+    .nav-container {
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+
+    .nav-list {
+        gap: 15px !important;
+        margin: 0 !important;
+    }
+
+    .nav-link {
+        font-size: 13px !important;
+    }
+}
+.process-grid {
+    margin-top: 80px !important; /* Moves the Verification/Approval boxes down */
+}
