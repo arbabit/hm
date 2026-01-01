@@ -417,4 +417,82 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
         opacity: 0.08;
     }
 }
+/* --- MOBILE RESPONSIVENESS (Phone Ready) --- */
+
+/* 1. Header & Navigation Fix */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column; /* Stacks logo and nav links */
+        padding: 10px;
+    }
+
+    .nav-list {
+        margin: 15px 0;
+        gap: 15px; /* Spacing between links on phone */
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn-connect {
+        font-size: 0.8rem;
+        padding: 8px 15px;
+    }
+
+    .design-asset {
+        display: none; /* Hide decorative asset on small screens to save space */
+    }
+}
+
+/* 2. Grid & Flexbox Fix (Our Vision & Programmes) */
+@media (max-width: 992px) {
+    .grid-2, 
+    .container[style*="display:grid"] {
+        grid-template-columns: 1fr !important; /* Forces 2 columns into 1 */
+        text-align: center;
+    }
+
+    .commitment-image {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .side-design {
+        max-width: 250px; /* Shrinks the design so it fits the phone screen */
+    }
+}
+
+/* 3. Impact Table Fix */
+@media (max-width: 600px) {
+    .impact-table {
+        display: block;
+        overflow-x: auto; /* Allows table to swipe left/right if too wide */
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 1.8rem; /* Smaller headings for small screens */
+    }
+}
+
+/* 4. Footer Fix */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr !important; /* Stacks footer columns */
+        text-align: center;
+    }
+
+    .footer-brand, .footer-links, .footer-info {
+        margin-bottom: 30px;
+    }
+
+    .gov-labels, .gov-pills {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
 
