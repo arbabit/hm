@@ -612,3 +612,29 @@ nsform: rotate(45deg); /* Rotates the L-shape into a tick */
         font-size: 12px !important; /* Smaller menu links */
     }
 }
+/* --- FINAL MOBILE OVERRIDE --- */
+@media (max-width: 768px) {
+    /* Targets the specific container for your 15k+, 500+, etc. */
+    .section .container[style*="grid-template-columns"] {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; /* Forces 2x2 grid */
+        gap: 15px !important;
+        padding: 20px 10px !important;
+    }
+
+    /* Shrinks the large numbers significantly */
+    .section .container h2, 
+    .section .container [style*="font-size"] {
+        font-size: 22px !important; /* Much smaller and phone-ready */
+        margin-bottom: 5px !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Shrinks the orange labels below the numbers */
+    .section .container p, 
+    .section .container div[style*="color: orange"] {
+        font-size: 11px !important;
+        letter-spacing: 0.5px !important;
+        line-height: 1.4 !important;
+    }
+}
