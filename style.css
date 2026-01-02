@@ -122,13 +122,13 @@ header.scrolled,
 
 /* Fix for the Diamond Asset Overlap on Desktop */
 .side-design, .watermark-design {
-    position: absolute;
-    right: 0;
-    top: 130px; /* Pushes it below the header area */
+    position: absolute !important;
+    right: 0 !important;
+    top: 130px !important; /* Locks it below the header height */
     max-width: 280px !important;
-    z-index: -1; /* Critical: Behind links/buttons */
-    pointer-events: none; /* Allows clicking through it */
-    opacity: 0.7;
+    z-index: -1 !important; /* CRITICAL: Pushes it BEHIND the text and buttons */
+    pointer-events: none !important; /* CRITICAL: Allows clicks to pass through to buttons */
+    opacity: 0.6; /* Softens the look so it doesn't distract */
 }
 
 /* Shrinking Logo */
@@ -796,6 +796,7 @@ table.impact-table {
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
+
 
 
 
