@@ -612,7 +612,7 @@ table.impact-table {
     }
 
     .side-design {
-        max-width: 250px;
+        max-width: 25px;
     }
 }
 
@@ -786,4 +786,5 @@ table.impact-table {
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
+
 
