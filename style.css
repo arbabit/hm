@@ -1,3 +1,4 @@
+
 /* MASTER STYLESHEET: Haroon Mahmood Welfare Trust */
 :root {
     --gold: #f7a623;
@@ -36,7 +37,8 @@ body {
     text-align: center;
 }
 
-/* 2. HEADER: UNIFIED & RESPONSIVE */
+/* 2. HEADER: 1-2-1 Centered Ratio */
+header, 
 #mainHeader {
     background: var(--white);
     height: var(--header-h);
@@ -50,10 +52,33 @@ body {
     transition: var(--transition);
 }
 
-/* Scrolled State */
-#mainHeader.scrolled {
+#mainHeader {
+    padding: 25px 0;
+    background: transparent;
+}
+
+header.scrolled, 
+#mainHeader.scrolled, 
+.main-header.scrolled {
     height: var(--header-shrink);
     background: rgba(255, 255, 255, 0.98);
+}
+
+.main-header {
+    height: 100px;
+    transition: all 0.4s ease;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.main-header.scrolled {
+    height: 70px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#mainHeader.scrolled {
+    padding: 10px 0;
     box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
 }
 
@@ -67,47 +92,60 @@ body {
     padding: 0 40px;
 }
 
-.nav-left, .nav-right { flex: 1; display: flex; align-items: center; }
-.nav-center { flex: 2; display: flex; justify-content: center; }
-.nav-right { justify-content: flex-end; gap: 20px; }
+.nav-left, 
+.nav-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
 
-.logo-img { height: 75px; transition: var(--transition); }
-#mainHeader.scrolled .logo-img { height: 50px; }
+.nav-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
 
-.nav-list { display: flex; gap: 35px; list-style: none; }
-.nav-link { text-decoration: none; color: var(--blue); font-weight: 600; transition: 0.3s; }
-.nav-link:hover, .nav-link.active { color: var(--gold); }
+.nav-right {
+    justify-content: flex-end;
+    gap: 20px;
+}
 
-/* --- MOBILE FIX --- */
-@media (max-width: 768px) {
-    #mainHeader {
-        height: auto !important; /* Expands to fit stacked elements */
-        padding: 15px 0 !important;
-    }
+.logo-img, 
+.design-asset {
+    height: 75px;
+    transition: var(--transition);
+}
 
-    .nav-container {
-        flex-direction: column !important; /* Stacks Logo, Links, and Button */
-        gap: 15px !important;
-        padding: 0 20px !important;
-    }
+header.scrolled .logo-img, 
+header.scrolled .design-asset, 
+.main-header.scrolled .logo {
+    height: 55px;
+}
 
-    .nav-left, .nav-center, .nav-right {
-        flex: none !important;
-        width: 100% !important;
-        justify-content: center !important;
-    }
+.main-header.scrolled .logo {
+    height: 50px;
+}
 
-    .logo-img { height: 45px !important; }
+#mainHeader.scrolled img {
+    height: 45px;
+}
 
-    .nav-list { gap: 15px !important; }
+.nav-list {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
 
-    /* Forces the Connect button to be visible on phones */
-    .nav-right .btn-connect {
-        display: block !important;
-        width: 85% !important;
-        text-align: center;
-        padding: 10px !important;
-    }
+.nav-link {
+    text-decoration: none;
+    color: var(--blue);
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-link:hover, 
+.nav-link.active {
+    color: var(--gold);
 }
 
 /* 3. BANNERS & HERO */
@@ -422,13 +460,13 @@ table.impact-table {
 }
 
 /* 7. UNIFIED MASTER FOOTER */
-.main-footer { 
-    background: #083a56; /* Deep Navy Blue */
-    color: #ffffff; 
-    padding: 80px 0 20px; 
-    margin-top: 50px; 
-    border-top: 4px solid #f7a623; /* Gold accent */
-    clear: both; 
+.main-footer {
+    background: #2c2c2c;
+    color: #ffffff;
+    padding: 80px 0 20px;
+    margin-top: 50px;
+    border-top: 4px solid #D4AF37;
+    clear: both;
 }
 
 .footer-content {
@@ -468,12 +506,11 @@ table.impact-table {
     margin-bottom: 5px;
 }
 
-.footer-bottom { 
-    background: rgba(0,0,0,0.2); /* Slightly darker strip at the very bottom */
-    padding: 20px 0;
-    text-align: center; 
-    font-size: 0.9rem; 
-    opacity: 0.8; 
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    font-size: 0.9rem;
+    opacity: 0.6;
 }
 
 /* 8. LISTS & ACHIEVEMENTS */
@@ -817,73 +854,3 @@ table.impact-table {
 .process-grid {
     margin-top: 80px !important; /* Moves the Verification/Approval boxes down */
 }
-/* --- SITEMAP REFINEMENT --- */
-.footer-links ul, .footer-grid ul {
-    list-style: none !important; /* Removes the dots shown in image_a60202.png */
-    padding: 0 !important;
-    margin: 15px 0 0 0 !important;
-}
-
-.footer-links li, .footer-grid li {
-    margin-bottom: 12px !important;
-}
-
-.footer-links a, .footer-grid a {
-    color: #ffffff !important; /* Changes blue links to white for readability */
-    text-decoration: none !important;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: color 0.3s ease;
-}
-
-.footer-links a:hover, .footer-grid a:hover {
-    color: var(--gold) !important; /* Highlights gold on hover */
-    text-decoration: underline !important;
-}
-
-/* Mobile alignment for Sitemap */
-@media (max-width: 768px) {
-    .footer-links, .footer-grid div:nth-child(2) {
-        text-align: center !important;
-    }
-}
-/* --- VISION PAGE UNIFICATION --- */
-.vision-mission-section, .about-section {
-    padding: 100px 0 !important;
-}
-
-/* Unifies the headers (Our Mission, Our Vision) */
-.vision-mission-section h3, .about-section h3 {
-    font-size: 1.8rem !important;
-    color: var(--gold) !important;
-    margin-bottom: 25px !important;
-    font-weight: 700;
-}
-
-/* Standardizes body text and bullet points */
-.vision-mission-section p, .vision-mission-section li {
-    font-size: 1.05rem !important;
-    color: #444 !important;
-    line-height: 1.8 !important;
-}
-
-/* Fixes alignment for the Vision Grid */
-.vision-grid {
-    display: flex !important;
-    align-items: center !important;
-    gap: 60px !important;
-    margin-top: 40px !important;
-}
-
-/* Ensures text and image columns are balanced on PC */
-.vision-content, .vision-image {
-    flex: 1 !important;
-}
-
-@media (max-width: 768px) {
-    .vision-grid {
-        flex-direction: column !important; /* Stacks image/text on mobile */
-        text-align: center !important;
-    }
-}
-
