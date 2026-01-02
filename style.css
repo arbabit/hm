@@ -629,182 +629,101 @@ table.impact-table {
 }
 
 /* 9. RESPONSIVENESS */
+
+/* Tablet & Smaller Desktop Adjustments */
 @media (max-width: 992px) {
-    .grid-2, 
-    .container[style*="display:grid"] {
+    .grid-2 {
         grid-template-columns: 1fr !important;
         text-align: center;
     }
 
-    .commitment-image {
-        margin-top: 30px;
-        display: flex;
-        justify-content: center;
-    }
-
+    /* Small adjustment to keep design asset from growing too large */
     .side-design {
-        max-width: 250px;
+        max-width: 200px !important;
+        margin-top: 20px;
     }
 }
 
+/* Mobile Fixes (Critical for Header & Overlaps) */
 @media (max-width: 768px) {
-    header,
-    #mainHeader {
-        height: auto !important;
-        padding: 10px 0 !important;
+    /* 1. Prevent Header from covering content */
+    body {
+        padding-top: 180px !important; 
     }
 
+    header, #mainHeader {
+        height: auto !important;
+        padding: 15px 0 !important;
+        background: var(--white) !important;
+    }
+
+    /* 2. Stack Mobile Menu */
     .nav-container {
         flex-direction: column !important;
-        padding: 10px;
-        align-items: center;
-        gap: 10px;
+        gap: 15px !important;
+        padding: 10px !important;
     }
 
     .nav-list {
-        margin: 15px 0;
-        gap: 15px;
-        flex-direction: row;
-        justify-content: center;
+        margin: 5px 0 !important;
+        gap: 15px !important;
     }
 
     .nav-right {
-        width: 100%;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .logo-img {
-        height: 50px !important;
-        width: auto;
-        margin-bottom: 10px;
-    }
-
-    .nav-link {
-        font-size: 14px;
-    }
-
-    .btn-connect {
-        font-size: 0.8rem;
-        padding: 8px 15px;
-    }
-
-    .design-asset {
-        display: none !important;
-    }
-
-    .hero-sub .btn-container,
-    .hero-btns,
-    .hero-sub .container, 
-    div[style*="display: flex"] {
+        width: 100% !important;
+        justify-content: center !important;
         display: flex !important;
-        flex-direction: column !important;
-        gap: 15px !important;
-        align-items: center !important;
     }
 
-    .btn-main, 
-    .btn-outline,
-    .btn-connect, 
-    .btn-primary, 
-    .btn-secondary,
-    a[style*="border-radius"] {
-        width: 90% !important;
-        max-width: 300px !important;
+    /* 3. Button Sizing */
+    .btn-connect, .btn-main, .btn-outline {
+        width: 85% !important;
+        max-width: 320px !important;
         text-align: center !important;
+        display: block !important;
         margin: 0 auto !important;
     }
 
-    .impact-grid,
-    .section .container[style*="grid-template-columns"] {
+    /* 4. Fix Section Overlaps (How We Work) */
+    .section {
+        padding: 60px 0 !important;
+    }
+
+    .section.bg-light {
+        padding-top: 40px !important; /* Pulls "How We Work" into view */
+    }
+
+    /* 5. Fix the Diamond Design Overlap (Critical) */
+    .side-design, .watermark-design {
+        max-width: 120px !important;
+        opacity: 0.1 !important; /* Makes it very subtle so text is readable */
+        position: absolute;
+        right: 0;
+        z-index: -1; /* Pushes it behind all text and buttons */
+        pointer-events: none; /* Allows clicking through it */
+    }
+
+    /* 6. Impact Grid */
+    .impact-grid {
         grid-template-columns: 1fr 1fr !important;
         gap: 20px !important;
-        padding: 40px 15px !important;
-    }
-
-    .impact-number,
-    .stat-number,
-    h2[style*="font-size"] {
-        font-size: 28px !important;
-    }
-
-    .impact-label,
-    .stat-label {
-        font-size: 11px !important;
-    }
-
-    .process-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 20px !important;
-    }
-
-    .watermark-design {
-        width: 250px;
-        right: -50px;
-        opacity: 0.08;
-    }
-
-    .achievement-content {
-        max-width: 100%;
-        text-align: center;
-    }
-
-    .achievement-list li {
-        text-align: left;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr !important;
-        text-align: center;
-    }
-
-    .footer-brand, 
-    .footer-links, 
-    .footer-info {
-        margin-bottom: 30px;
-    }
-
-    .gov-labels, 
-    .gov-pills {
-        justify-content: center;
-        flex-wrap: wrap;
+        padding: 30px 15px !important;
     }
 }
 
+/* Small Phone Adjustments */
 @media (max-width: 600px) {
-    .impact-table {
-        display: block;
-        overflow-x: auto;
-        font-size: 14px;
-    }
-
     .section-title {
-        font-size: 1.8rem;
+        font-size: 1.8rem !important;
     }
 
-    .impact-stats, 
-    .stats-grid, 
-    [style*="display: flex"] { 
+    .impact-stats {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 20px !important;
-        padding: 20px !important;
-        text-align: center;
     }
 
-    .impact-stats h2, 
-    .stat-number, 
-    h1[style*="15k"] {
+    .impact-number {
         font-size: 24px !important;
-        margin-bottom: 5px !important;
-    }
-
-    .impact-stats p, 
-    .stat-label {
-        font-size: 12px !important;
-        text-transform: uppercase;
-        letter-spacing: 1px;
     }
 }
 
@@ -817,3 +736,4 @@ table.impact-table {
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
+
