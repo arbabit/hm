@@ -36,8 +36,7 @@ body {
     text-align: center;
 }
 
-/* 2. HEADER: 1-2-1 Centered Ratio */
-header, 
+/* 2. HEADER: UNIFIED & RESPONSIVE */
 #mainHeader {
     background: var(--white);
     height: var(--header-h);
@@ -51,33 +50,10 @@ header,
     transition: var(--transition);
 }
 
-#mainHeader {
-    padding: 25px 0;
-    background: transparent;
-}
-
-header.scrolled, 
-#mainHeader.scrolled, 
-.main-header.scrolled {
+/* Scrolled State */
+#mainHeader.scrolled {
     height: var(--header-shrink);
     background: rgba(255, 255, 255, 0.98);
-}
-
-.main-header {
-    height: 100px;
-    transition: all 0.4s ease;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-.main-header.scrolled {
-    height: 70px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-#mainHeader.scrolled {
-    padding: 10px 0;
     box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
 }
 
@@ -91,60 +67,47 @@ header.scrolled,
     padding: 0 40px;
 }
 
-.nav-left, 
-.nav-right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
+.nav-left, .nav-right { flex: 1; display: flex; align-items: center; }
+.nav-center { flex: 2; display: flex; justify-content: center; }
+.nav-right { justify-content: flex-end; gap: 20px; }
 
-.nav-center {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-}
+.logo-img { height: 75px; transition: var(--transition); }
+#mainHeader.scrolled .logo-img { height: 50px; }
 
-.nav-right {
-    justify-content: flex-end;
-    gap: 20px;
-}
+.nav-list { display: flex; gap: 35px; list-style: none; }
+.nav-link { text-decoration: none; color: var(--blue); font-weight: 600; transition: 0.3s; }
+.nav-link:hover, .nav-link.active { color: var(--gold); }
 
-.logo-img, 
-.design-asset {
-    height: 75px;
-    transition: var(--transition);
-}
+/* --- MOBILE FIX --- */
+@media (max-width: 768px) {
+    #mainHeader {
+        height: auto !important; /* Expands to fit stacked elements */
+        padding: 15px 0 !important;
+    }
 
-header.scrolled .logo-img, 
-header.scrolled .design-asset, 
-.main-header.scrolled .logo {
-    height: 55px;
-}
+    .nav-container {
+        flex-direction: column !important; /* Stacks Logo, Links, and Button */
+        gap: 15px !important;
+        padding: 0 20px !important;
+    }
 
-.main-header.scrolled .logo {
-    height: 50px;
-}
+    .nav-left, .nav-center, .nav-right {
+        flex: none !important;
+        width: 100% !important;
+        justify-content: center !important;
+    }
 
-#mainHeader.scrolled img {
-    height: 45px;
-}
+    .logo-img { height: 45px !important; }
 
-.nav-list {
-    display: flex;
-    gap: 35px;
-    list-style: none;
-}
+    .nav-list { gap: 15px !important; }
 
-.nav-link {
-    text-decoration: none;
-    color: var(--blue);
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.nav-link:hover, 
-.nav-link.active {
-    color: var(--gold);
+    /* Forces the Connect button to be visible on phones */
+    .nav-right .btn-connect {
+        display: block !important;
+        width: 85% !important;
+        text-align: center;
+        padding: 10px !important;
+    }
 }
 
 /* 3. BANNERS & HERO */
@@ -923,4 +886,5 @@ table.impact-table {
         text-align: center !important;
     }
 }
+
 
