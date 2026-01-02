@@ -37,11 +37,10 @@ body {
 }
 
 /* 2. HEADER: UNIFIED 1-2-1 RATIO */
-/* 2. HEADER: UNIFIED 1-2-1 Centered Ratio */
 header, 
 #mainHeader {
-    background: var(--white) !important; /* Force visibility over hero */
-    height: 110px; /* Base height */
+    background: var(--white) !important;
+    height: 110px;
     position: fixed;
     top: 0;
     width: 100%;
@@ -49,14 +48,13 @@ header,
     box-shadow: 0 2px 20px rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
-    transition: all 0.4s ease-in-out; /* Smooth transition for shrink */
-    padding: 0; 
+    transition: all 0.4s ease-in-out;
+    padding: 0;
 }
 
-/* SCROLLED STATE: Triggers via JavaScript */
 header.scrolled, 
 #mainHeader.scrolled {
-    height: 75px; /* Professional shrink height */
+    height: 75px;
     background: rgba(255, 255, 255, 0.98) !important;
     box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
 }
@@ -71,7 +69,6 @@ header.scrolled,
     padding: 0 40px;
 }
 
-/* 1-2-1 Flex Layout Logic */
 .nav-left, 
 .nav-right {
     flex: 1;
@@ -90,18 +87,16 @@ header.scrolled,
     gap: 20px;
 }
 
-/* Logo & Design Asset Scaling */
 .logo-img {
-    height: 75px; /* Base logo size */
+    height: 75px;
     width: auto;
     transition: all 0.4s ease;
 }
 
 #mainHeader.scrolled .logo-img {
-    height: 50px; /* Scaled down logo on scroll */
+    height: 50px;
 }
 
-/* Navigation Links */
 .nav-list {
     display: flex;
     gap: 35px;
@@ -110,7 +105,7 @@ header.scrolled,
 
 .nav-link {
     text-decoration: none;
-    color: var(--blue) !important; /* High contrast blue */
+    color: var(--blue) !important;
     font-weight: 700;
     transition: 0.3s;
 }
@@ -121,41 +116,17 @@ header.scrolled,
 }
 
 /* Fix for the Diamond Asset Overlap on Desktop */
-.side-design, .watermark-design {
+.side-design, 
+.watermark-design {
     position: absolute !important;
     right: 0 !important;
-    top: 130px !important; /* Locks it below the header height */
+    top: 130px !important;
     max-width: 280px !important;
-    z-index: -1 !important; /* CRITICAL: Pushes it BEHIND the text and buttons */
-    pointer-events: none !important; /* CRITICAL: Allows clicks to pass through to buttons */
-    opacity: 0.6; /* Softens the look so it doesn't distract */
+    z-index: -1 !important;
+    pointer-events: none !important;
+    opacity: 0.6;
 }
 
-/* Shrinking Logo */
-.logo-img {
-    height: 75px;
-    width: auto;
-    transition: all 0.4s ease;
-}
-
-#mainHeader.scrolled .logo-img {
-    height: 50px; /* Shrinks the logo on scroll */
-}
-
-.nav-list {
-    display: flex;
-    gap: 35px;
-    list-style: none;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: var(--blue);
-    font-weight: 700;
-    transition: 0.3s;
-}
-
-.nav-link:hover, .nav-link.active { color: var(--gold); }
 /* 3. BANNERS & HERO */
 .hero, 
 .hero-sub {
@@ -380,42 +351,23 @@ header.scrolled,
 }
 
 /* 6. TABLES & FORMS */
-.impact-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-top: 30px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.impact-table th {
-    background: var(--blue);
-    color: #fff;
-    padding: 20px;
-    text-align: left;
-}
-
-.impact-table td {
-    padding: 20px;
-    border-bottom: 1px solid #eee;
-}
-
-/* REGIONAL IMPACT TABLE: FINAL ALIGNMENT */
 .impact-table, 
 table.impact-table {
     width: 100% !important;
     max-width: 1000px !important;
-    margin: 40px auto !important;
+    margin: 40px auto 30px !important;
     border-collapse: collapse !important;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     text-align: center !important;
 }
 
 .impact-table th {
     background: var(--blue) !important;
     color: #ffffff !important;
-    padding: 18px !important;
+    padding: 18px 20px !important;
     text-align: center !important;
     font-weight: 700 !important;
     border: none !important;
@@ -538,10 +490,6 @@ table.impact-table {
     color: #444;
 }
 
-.achievement-list {
-    margin: 20px 0;
-}
-
 .achievement-list li {
     padding-left: 40px;
     margin-bottom: 18px;
@@ -549,7 +497,6 @@ table.impact-table {
     line-height: 1.5;
 }
 
-/* ACHIEVEMENTS SECTION WRAPPER */
 .achievements-section {
     padding: 80px 0;
     background: #f9f9f9;
@@ -571,12 +518,14 @@ table.impact-table {
 }
 
 .achievement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
     margin-top: 20px;
     font-size: 17px;
     line-height: 2.2;
 }
 
-/* THE TRANSPARENT WATERMARK DESIGN */
 .watermark-design {
     position: absolute;
     right: -20px;
@@ -591,14 +540,6 @@ table.impact-table {
 .watermark-design img {
     width: 100%;
     height: auto;
-}
-
-/* CUSTOM TICK STYLES */
-.achievement-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    margin-top: 30px;
 }
 
 .achievement-item {
@@ -657,7 +598,6 @@ table.impact-table {
 }
 
 @media (max-width: 768px) {
-    /* 1. HEADER FIX: Solid background and proper height */
     header, #mainHeader {
         height: auto !important;
         padding: 15px 0 !important;
@@ -668,7 +608,6 @@ table.impact-table {
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    /* 2. BODY PADDING: Prevents header from covering Hero content */
     body {
         padding-top: 180px !important;
     }
@@ -693,14 +632,12 @@ table.impact-table {
         font-weight: 700;
     }
 
-    /* 3. BUTTON FIX: REPAIRED CONNECT WITH US BUTTON */
     .nav-right {
         width: 100%;
         justify-content: center;
         margin-top: 5px;
     }
 
-    /* Header Connect Button */
     .btn-connect {
         width: 90% !important;
         text-align: center;
@@ -708,17 +645,16 @@ table.impact-table {
         font-size: 0.9rem;
     }
 
-    /* Hero Section Buttons: Prevents Distortion */
     .hero-btns {
         display: flex !important;
-        flex-direction: column !important; /* Stack vertically to stop squeezing */
+        flex-direction: column !important;
         gap: 15px !important;
         align-items: center !important;
         width: 100% !important;
     }
 
     .btn-main, .btn-outline {
-        width: 85% !important; /* Uniform width on mobile */
+        width: 85% !important;
         max-width: 320px !important;
         text-align: center !important;
         display: block !important;
@@ -726,7 +662,6 @@ table.impact-table {
         box-sizing: border-box !important;
     }
 
-    /* 4. CONTENT GRIDS: Re-aligned for mobile */
     .impact-grid {
         grid-template-columns: 1fr 1fr !important;
         gap: 20px !important;
@@ -740,7 +675,6 @@ table.impact-table {
         padding: 0 20px;
     }
 
-    /* 5. DESIGN ASSET: Keeps it from overlapping links */
     .design-asset, .watermark-design {
         display: none !important;
     }
@@ -796,7 +730,3 @@ table.impact-table {
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
-
-
-
-
