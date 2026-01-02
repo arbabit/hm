@@ -854,4 +854,34 @@ table.impact-table {
 .process-grid {
     margin-top: 80px !important; /* Moves the Verification/Approval boxes down */
 }
+/* --- SITEMAP REFINEMENT --- */
+.footer-links ul, .footer-grid ul {
+    list-style: none !important; /* Removes the dots shown in image_a60202.png */
+    padding: 0 !important;
+    margin: 15px 0 0 0 !important;
+}
+
+.footer-links li, .footer-grid li {
+    margin-bottom: 12px !important;
+}
+
+.footer-links a, .footer-grid a {
+    color: #ffffff !important; /* Changes blue links to white for readability */
+    text-decoration: none !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover, .footer-grid a:hover {
+    color: var(--gold) !important; /* Highlights gold on hover */
+    text-decoration: underline !important;
+}
+
+/* Mobile alignment for Sitemap */
+@media (max-width: 768px) {
+    .footer-links, .footer-grid div:nth-child(2) {
+        text-align: center !important;
+    }
+}
 
