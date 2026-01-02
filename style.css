@@ -36,11 +36,10 @@ body {
     text-align: center;
 }
 
-/* 2. HEADER: 1-2-1 Centered Ratio */
-header, 
+/* 2. HEADER: UNIFIED 1-2-1 RATIO */
 #mainHeader {
     background: var(--white);
-    height: var(--header-h);
+    height: 110px; /* Base height */
     position: fixed;
     top: 0;
     width: 100%;
@@ -48,36 +47,14 @@ header,
     box-shadow: 0 2px 20px rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
-    transition: var(--transition);
+    transition: all 0.4s ease; /* Smooth transition for height */
+    padding: 0; 
 }
 
-#mainHeader {
-    padding: 25px 0;
-    background: transparent;
-}
-
-header.scrolled, 
-#mainHeader.scrolled, 
-.main-header.scrolled {
-    height: var(--header-shrink);
-    background: rgba(255, 255, 255, 0.98);
-}
-
-.main-header {
-    height: 100px;
-    transition: all 0.4s ease;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-.main-header.scrolled {
-    height: 70px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
+/* SCROLLED STATE */
 #mainHeader.scrolled {
-    padding: 10px 0;
+    height: 75px; /* Shrinks the header height */
+    background: rgba(255, 255, 255, 0.98);
     box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
 }
 
@@ -91,42 +68,19 @@ header.scrolled,
     padding: 0 40px;
 }
 
-.nav-left, 
-.nav-right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
+.nav-left, .nav-right { flex: 1; display: flex; align-items: center; }
+.nav-center { flex: 2; display: flex; justify-content: center; }
+.nav-right { justify-content: flex-end; gap: 20px; }
 
-.nav-center {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-}
-
-.nav-right {
-    justify-content: flex-end;
-    gap: 20px;
-}
-
-.logo-img, 
-.design-asset {
+/* Shrinking Logo */
+.logo-img {
     height: 75px;
-    transition: var(--transition);
+    width: auto;
+    transition: all 0.4s ease;
 }
 
-header.scrolled .logo-img, 
-header.scrolled .design-asset, 
-.main-header.scrolled .logo {
-    height: 55px;
-}
-
-.main-header.scrolled .logo {
-    height: 50px;
-}
-
-#mainHeader.scrolled img {
-    height: 45px;
+#mainHeader.scrolled .logo-img {
+    height: 50px; /* Shrinks the logo on scroll */
 }
 
 .nav-list {
@@ -138,15 +92,11 @@ header.scrolled .design-asset,
 .nav-link {
     text-decoration: none;
     color: var(--blue);
-    font-weight: 600;
+    font-weight: 700;
     transition: 0.3s;
 }
 
-.nav-link:hover, 
-.nav-link.active {
-    color: var(--gold);
-}
-
+.nav-link:hover, .nav-link.active { color: var(--gold); }
 /* 3. BANNERS & HERO */
 .hero, 
 .hero-sub {
@@ -652,7 +602,7 @@ table.impact-table {
     header, #mainHeader {
         height: auto !important;
         padding: 15px 0 !important;
-        background: #ffffff !important; /* Ensures visibility before scroll */
+        background: #ffffff !important; 
         position: fixed !important;
         top: 0;
         width: 100%;
@@ -680,22 +630,41 @@ table.impact-table {
 
     .nav-link {
         font-size: 14px;
-        color: #0c618e !important; /* High contrast blue for sitemaps */
+        color: #0c618e !important; 
         font-weight: 700;
     }
 
-    /* 3. BUTTON FIX: Centered and full-width */
+    /* 3. BUTTON FIX: REPAIRED CONNECT WITH US BUTTON */
     .nav-right {
         width: 100%;
         justify-content: center;
         margin-top: 5px;
     }
 
+    /* Header Connect Button */
     .btn-connect {
         width: 90% !important;
         text-align: center;
         padding: 10px 0 !important;
         font-size: 0.9rem;
+    }
+
+    /* Hero Section Buttons: Prevents Distortion */
+    .hero-btns {
+        display: flex !important;
+        flex-direction: column !important; /* Stack vertically to stop squeezing */
+        gap: 15px !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    .btn-main, .btn-outline {
+        width: 85% !important; /* Uniform width on mobile */
+        max-width: 320px !important;
+        text-align: center !important;
+        display: block !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
     }
 
     /* 4. CONTENT GRIDS: Re-aligned for mobile */
@@ -768,4 +737,5 @@ table.impact-table {
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
+
 
