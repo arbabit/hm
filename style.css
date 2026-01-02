@@ -884,4 +884,43 @@ table.impact-table {
         text-align: center !important;
     }
 }
+/* --- VISION PAGE UNIFICATION --- */
+.vision-mission-section, .about-section {
+    padding: 100px 0 !important;
+}
+
+/* Unifies the headers (Our Mission, Our Vision) */
+.vision-mission-section h3, .about-section h3 {
+    font-size: 1.8rem !important;
+    color: var(--gold) !important;
+    margin-bottom: 25px !important;
+    font-weight: 700;
+}
+
+/* Standardizes body text and bullet points */
+.vision-mission-section p, .vision-mission-section li {
+    font-size: 1.05rem !important;
+    color: #444 !important;
+    line-height: 1.8 !important;
+}
+
+/* Fixes alignment for the Vision Grid */
+.vision-grid {
+    display: flex !important;
+    align-items: center !important;
+    gap: 60px !important;
+    margin-top: 40px !important;
+}
+
+/* Ensures text and image columns are balanced on PC */
+.vision-content, .vision-image {
+    flex: 1 !important;
+}
+
+@media (max-width: 768px) {
+    .vision-grid {
+        flex-direction: column !important; /* Stacks image/text on mobile */
+        text-align: center !important;
+    }
+}
 
