@@ -630,14 +630,24 @@ table.impact-table {
 
 /* 9. RESPONSIVENESS */
 
+/* --- NEW: Desktop/Tablet Fix for Overlapping Diamond --- */
+@media (min-width: 769px) {
+    .side-design, .watermark-design {
+        position: absolute !important;
+        right: 0 !important;
+        top: 120px !important; /* Moves it below the header area */
+        max-width: 250px !important; /* Keeps it small as requested */
+        z-index: -1 !important; /* Pushes it BEHIND sitemap links */
+        pointer-events: none !important; /* Allows clicking through the image */
+    }
+}
+
 /* Tablet & Smaller Desktop Adjustments */
 @media (max-width: 992px) {
     .grid-2 {
         grid-template-columns: 1fr !important;
         text-align: center;
     }
-
-    /* Small adjustment to keep design asset from growing too large */
     .side-design {
         max-width: 200px !important;
         margin-top: 20px;
@@ -646,7 +656,6 @@ table.impact-table {
 
 /* Mobile Fixes (Critical for Header & Overlaps) */
 @media (max-width: 768px) {
-    /* 1. Prevent Header from covering content */
     body {
         padding-top: 180px !important; 
     }
@@ -657,7 +666,6 @@ table.impact-table {
         background: var(--white) !important;
     }
 
-    /* 2. Stack Mobile Menu */
     .nav-container {
         flex-direction: column !important;
         gap: 15px !important;
@@ -675,7 +683,6 @@ table.impact-table {
         display: flex !important;
     }
 
-    /* 3. Button Sizing */
     .btn-connect, .btn-main, .btn-outline {
         width: 85% !important;
         max-width: 320px !important;
@@ -684,26 +691,20 @@ table.impact-table {
         margin: 0 auto !important;
     }
 
-    /* 4. Fix Section Overlaps (How We Work) */
-    .section {
-        padding: 60px 0 !important;
-    }
-
     .section.bg-light {
-        padding-top: 40px !important; /* Pulls "How We Work" into view */
+        padding-top: 60px !important; /* Fixes 'How We Work' title overlap */
     }
 
-    /* 5. Fix the Diamond Design Overlap (Critical) */
+    /* Fix the Diamond Design Overlap for Mobile */
     .side-design, .watermark-design {
         max-width: 120px !important;
-        opacity: 0.1 !important; /* Makes it very subtle so text is readable */
+        opacity: 0.1 !important; 
         position: absolute;
         right: 0;
-        z-index: -1; /* Pushes it behind all text and buttons */
-        pointer-events: none; /* Allows clicking through it */
+        z-index: -1; 
+        pointer-events: none; 
     }
 
-    /* 6. Impact Grid */
     .impact-grid {
         grid-template-columns: 1fr 1fr !important;
         gap: 20px !important;
@@ -711,20 +712,9 @@ table.impact-table {
     }
 }
 
-/* Small Phone Adjustments */
 @media (max-width: 600px) {
-    .section-title {
-        font-size: 1.8rem !important;
-    }
-
-    .impact-stats {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-    }
-
-    .impact-number {
-        font-size: 24px !important;
-    }
+    .section-title { font-size: 1.8rem !important; }
+    .impact-number { font-size: 24px !important; }
 }
 
 /* SPECIFIC FIXES */
@@ -736,4 +726,5 @@ table.impact-table {
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
+
 
