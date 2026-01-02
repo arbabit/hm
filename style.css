@@ -36,8 +36,7 @@ body {
     text-align: center;
 }
 
-/* 2. HEADER: 1-2-1 Centered Ratio */
-header, 
+/* 2. HEADER: UNIFIED & RESPONSIVE */
 #mainHeader {
     background: var(--white);
     height: var(--header-h);
@@ -51,33 +50,9 @@ header,
     transition: var(--transition);
 }
 
-#mainHeader {
-    padding: 25px 0;
-    background: transparent;
-}
-
-header.scrolled, 
-#mainHeader.scrolled, 
-.main-header.scrolled {
+#mainHeader.scrolled {
     height: var(--header-shrink);
     background: rgba(255, 255, 255, 0.98);
-}
-
-.main-header {
-    height: 100px;
-    transition: all 0.4s ease;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-.main-header.scrolled {
-    height: 70px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-#mainHeader.scrolled {
-    padding: 10px 0;
     box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
 }
 
@@ -91,61 +66,16 @@ header.scrolled,
     padding: 0 40px;
 }
 
-.nav-left, 
-.nav-right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
+.nav-left, .nav-right { flex: 1; display: flex; align-items: center; }
+.nav-center { flex: 2; display: flex; justify-content: center; }
+.nav-right { justify-content: flex-end; gap: 20px; }
 
-.nav-center {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-}
+.logo-img { height: 75px; width: auto; transition: var(--transition); }
+#mainHeader.scrolled .logo-img { height: 50px; }
 
-.nav-right {
-    justify-content: flex-end;
-    gap: 20px;
-}
-
-.logo-img, 
-.design-asset {
-    height: 75px;
-    transition: var(--transition);
-}
-
-header.scrolled .logo-img, 
-header.scrolled .design-asset, 
-.main-header.scrolled .logo {
-    height: 55px;
-}
-
-.main-header.scrolled .logo {
-    height: 50px;
-}
-
-#mainHeader.scrolled img {
-    height: 45px;
-}
-
-.nav-list {
-    display: flex;
-    gap: 35px;
-    list-style: none;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: var(--blue);
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.nav-link:hover, 
-.nav-link.active {
-    color: var(--gold);
-}
+.nav-list { display: flex; gap: 35px; list-style: none; }
+.nav-link { text-decoration: none; color: var(--blue); font-weight: 600; transition: 0.3s; }
+.nav-link:hover, .nav-link.active { color: var(--gold); }
 
 /* 3. BANNERS & HERO */
 .hero, 
@@ -460,11 +390,11 @@ table.impact-table {
 
 /* 7. UNIFIED MASTER FOOTER */
 .main-footer {
-    background: #2c2c2c;
-    color: #ffffff;
+    background: #083a56 !important; /* Branded Deep Navy */
+    color: #ffffff !important;
     padding: 80px 0 20px;
     margin-top: 50px;
-    border-top: 4px solid #D4AF37;
+    border-top: 4px solid var(--gold);
     clear: both;
 }
 
@@ -476,40 +406,30 @@ table.impact-table {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.footer-logo {
-    height: 60px;
-    filter: brightness(0) invert(1);
-    margin-bottom: 20px;
+.footer-links ul {
+    list-style: none !important;
+    padding: 0;
 }
 
-.footer-tagline {
-    margin-top: 15px;
-    font-style: italic;
-    color: #f1c40f;
-    border-left: 2px solid #f1c40f;
-    padding-left: 15px;
+.footer-links a {
+    color: #ffffff !important;
+    text-decoration: none;
     font-size: 0.95rem;
+    transition: 0.3s;
 }
+
+.footer-links a:hover { color: var(--gold) !important; }
 
 .gov-labels span {
-    background: rgba(241, 196, 15, 0.1);
-    color: #f1c40f;
+    background: rgba(247, 166, 35, 0.1);
+    color: var(--gold);
     display: inline-block;
     padding: 6px 18px;
-    line-height: 1.2;
-    white-space: nowrap;
     border-radius: 50px;
     font-size: 0.8rem;
     font-weight: bold;
-    border: 1px solid #f1c40f;
-    margin-bottom: 5px;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    font-size: 0.9rem;
-    opacity: 0.6;
+    border: 1px solid var(--gold);
+    margin-right: 5px;
 }
 
 /* 8. LISTS & ACHIEVEMENTS */
@@ -648,127 +568,69 @@ table.impact-table {
 }
 
 @media (max-width: 768px) {
-    header,
-    #mainHeader {
+    /* 1. Pull "How We Work" up and tighten vertical gaps */
+    .section.bg-light {
+        padding-top: 40px !important; 
+    }
+    
+    .section-title {
+        margin-bottom: 10px !important;
+    }
+
+    /* 2. Header: Stack Logo, Links, and Button vertically */
+    header, #mainHeader {
         height: auto !important;
-        padding: 10px 0 !important;
+        padding: 15px 0 !important;
     }
 
     .nav-container {
         flex-direction: column !important;
-        padding: 10px;
-        align-items: center;
-        gap: 10px;
+        gap: 15px !important;
+        padding: 10px !important;
     }
 
     .nav-list {
-        margin: 15px 0;
-        gap: 15px;
-        flex-direction: row;
-        justify-content: center;
+        margin: 5px 0 !important;
+        gap: 15px !important;
     }
 
     .nav-right {
-        width: 100%;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .logo-img {
-        height: 50px !important;
-        width: auto;
-        margin-bottom: 10px;
-    }
-
-    .nav-link {
-        font-size: 14px;
-    }
-
-    .btn-connect {
-        font-size: 0.8rem;
-        padding: 8px 15px;
-    }
-
-    .design-asset {
-        display: none !important;
-    }
-
-    .hero-sub .btn-container,
-    .hero-btns,
-    .hero-sub .container, 
-    div[style*="display: flex"] {
+        width: 100% !important;
+        justify-content: center !important;
         display: flex !important;
-        flex-direction: column !important;
-        gap: 15px !important;
-        align-items: center !important;
     }
 
-    .btn-main, 
-    .btn-outline,
-    .btn-connect, 
-    .btn-primary, 
-    .btn-secondary,
-    a[style*="border-radius"] {
-        width: 90% !important;
-        max-width: 300px !important;
+    /* 3. Button: Full-width and visible for mobile thumbs */
+    .btn-connect, .btn-main, .btn-outline {
+        width: 85% !important;
+        max-width: 320px !important;
         text-align: center !important;
+        padding: 12px 0 !important;
+        display: block !important;
         margin: 0 auto !important;
     }
 
-    .impact-grid,
-    .section .container[style*="grid-template-columns"] {
+    /* 4. Content Grids: 2 columns for stats, 1 column for process */
+    .impact-grid {
         grid-template-columns: 1fr 1fr !important;
         gap: 20px !important;
-        padding: 40px 15px !important;
-    }
-
-    .impact-number,
-    .stat-number,
-    h2[style*="font-size"] {
-        font-size: 28px !important;
-    }
-
-    .impact-label,
-    .stat-label {
-        font-size: 11px !important;
     }
 
     .process-grid {
         display: flex !important;
         flex-direction: column !important;
-        gap: 20px !important;
+        gap: 0 !important; /* Ensures cards touch for vertical flow */
     }
 
-    .watermark-design {
-        width: 250px;
-        right: -50px;
-        opacity: 0.08;
-    }
-
-    .achievement-content {
-        max-width: 100%;
-        text-align: center;
-    }
-
-    .achievement-list li {
-        text-align: left;
-    }
-
+    /* 5. Footer: Center all elements */
     .footer-content {
         grid-template-columns: 1fr !important;
         text-align: center;
+        gap: 40px !important;
     }
 
-    .footer-brand, 
-    .footer-links, 
-    .footer-info {
-        margin-bottom: 30px;
-    }
-
-    .gov-labels, 
-    .gov-pills {
-        justify-content: center;
-        flex-wrap: wrap;
+    .gov-labels {
+        justify-content: center !important;
     }
 }
 
@@ -817,3 +679,4 @@ table.impact-table {
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
+
