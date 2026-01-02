@@ -1,4 +1,4 @@
-9/* MASTER STYLESHEET: Haroon Mahmood Welfare Trust */
+/* MASTER STYLESHEET: Haroon Mahmood Welfare Trust */
 :root {
     --gold: #f7a623;
     --blue: #0c618e;
@@ -629,92 +629,183 @@ table.impact-table {
 }
 
 /* 9. RESPONSIVENESS */
-
-/* --- NEW: Desktop/Tablet Fix for Overlapping Diamond --- */
-@media (min-width: 769px) {
-    .side-design, .watermark-design {
-        position: absolute !important;
-        right: 0 !important;
-        top: 120px !important; /* Moves it below the header area */
-        max-width: 250px !important; /* Keeps it small as requested */
-        z-index: -1 !important; /* Pushes it BEHIND sitemap links */
-        pointer-events: none !important; /* Allows clicking through the image */
-    }
-}
-
-/* Tablet & Smaller Desktop Adjustments */
 @media (max-width: 992px) {
-    .grid-2 {
+    .grid-2, 
+    .container[style*="display:grid"] {
         grid-template-columns: 1fr !important;
         text-align: center;
     }
+
+    .commitment-image {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    }
+
     .side-design {
-        max-width: 200px !important;
-        margin-top: 20px;
+        max-width: 250px;
     }
 }
 
-/* Mobile Fixes (Critical for Header & Overlaps) */
 @media (max-width: 768px) {
-    body {
-        padding-top: 180px !important; 
-    }
-
-    header, #mainHeader {
+    header,
+    #mainHeader {
         height: auto !important;
-        padding: 15px 0 !important;
-        background: var(--white) !important;
+        padding: 10px 0 !important;
     }
 
     .nav-container {
         flex-direction: column !important;
-        gap: 15px !important;
-        padding: 10px !important;
+        padding: 10px;
+        align-items: center;
+        gap: 10px;
     }
 
     .nav-list {
-        margin: 5px 0 !important;
-        gap: 15px !important;
+        margin: 15px 0;
+        gap: 15px;
+        flex-direction: row;
+        justify-content: center;
     }
 
     .nav-right {
-        width: 100% !important;
-        justify-content: center !important;
-        display: flex !important;
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
     }
 
-    .btn-connect, .btn-main, .btn-outline {
-        width: 85% !important;
-        max-width: 320px !important;
+    .logo-img {
+        height: 50px !important;
+        width: auto;
+        margin-bottom: 10px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+    }
+
+    .btn-connect {
+        font-size: 0.8rem;
+        padding: 8px 15px;
+    }
+
+    .design-asset {
+        display: none !important;
+    }
+
+    .hero-sub .btn-container,
+    .hero-btns,
+    .hero-sub .container, 
+    div[style*="display: flex"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+        align-items: center !important;
+    }
+
+    .btn-main, 
+    .btn-outline,
+    .btn-connect, 
+    .btn-primary, 
+    .btn-secondary,
+    a[style*="border-radius"] {
+        width: 90% !important;
+        max-width: 300px !important;
         text-align: center !important;
-        display: block !important;
         margin: 0 auto !important;
     }
 
-    .section.bg-light {
-        padding-top: 60px !important; /* Fixes 'How We Work' title overlap */
-    }
-
-    /* Fix the Diamond Design Overlap for Mobile */
-    .side-design, .watermark-design {
-        max-width: 120px !important;
-        opacity: 0.1 !important; 
-        position: absolute;
-        right: 0;
-        z-index: -1; 
-        pointer-events: none; 
-    }
-
-    .impact-grid {
+    .impact-grid,
+    .section .container[style*="grid-template-columns"] {
         grid-template-columns: 1fr 1fr !important;
         gap: 20px !important;
-        padding: 30px 15px !important;
+        padding: 40px 15px !important;
+    }
+
+    .impact-number,
+    .stat-number,
+    h2[style*="font-size"] {
+        font-size: 28px !important;
+    }
+
+    .impact-label,
+    .stat-label {
+        font-size: 11px !important;
+    }
+
+    .process-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+
+    .watermark-design {
+        width: 250px;
+        right: -50px;
+        opacity: 0.08;
+    }
+
+    .achievement-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .achievement-list li {
+        text-align: left;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+    }
+
+    .footer-brand, 
+    .footer-links, 
+    .footer-info {
+        margin-bottom: 30px;
+    }
+
+    .gov-labels, 
+    .gov-pills {
+        justify-content: center;
+        flex-wrap: wrap;
     }
 }
 
 @media (max-width: 600px) {
-    .section-title { font-size: 1.8rem !important; }
-    .impact-number { font-size: 24px !important; }
+    .impact-table {
+        display: block;
+        overflow-x: auto;
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .impact-stats, 
+    .stats-grid, 
+    [style*="display: flex"] { 
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 20px !important;
+        padding: 20px !important;
+        text-align: center;
+    }
+
+    .impact-stats h2, 
+    .stat-number, 
+    h1[style*="15k"] {
+        font-size: 24px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .impact-stats p, 
+    .stat-label {
+        font-size: 12px !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 }
 
 /* SPECIFIC FIXES */
@@ -726,5 +817,3 @@ table.impact-table {
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
-
-
