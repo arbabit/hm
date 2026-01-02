@@ -36,11 +36,11 @@ body {
     text-align: center;
 }
 
-/* 2. HEADER: UNIFIED 1-2-1 RATIO */
+/* 2. HEADER: 1-2-1 Centered Ratio */
 header, 
 #mainHeader {
-    background: var(--white) !important;
-    height: 110px;
+    background: var(--white);
+    height: var(--header-h);
     position: fixed;
     top: 0;
     width: 100%;
@@ -48,14 +48,36 @@ header,
     box-shadow: 0 2px 20px rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
-    transition: all 0.4s ease-in-out;
-    padding: 0;
+    transition: var(--transition);
+}
+
+#mainHeader {
+    padding: 25px 0;
+    background: transparent;
 }
 
 header.scrolled, 
+#mainHeader.scrolled, 
+.main-header.scrolled {
+    height: var(--header-shrink);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.main-header {
+    height: 100px;
+    transition: all 0.4s ease;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.main-header.scrolled {
+    height: 70px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
 #mainHeader.scrolled {
-    height: 75px;
-    background: rgba(255, 255, 255, 0.98) !important;
+    padding: 10px 0;
     box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
 }
 
@@ -87,14 +109,24 @@ header.scrolled,
     gap: 20px;
 }
 
-.logo-img {
+.logo-img, 
+.design-asset {
     height: 75px;
-    width: auto;
-    transition: all 0.4s ease;
+    transition: var(--transition);
 }
 
-#mainHeader.scrolled .logo-img {
+header.scrolled .logo-img, 
+header.scrolled .design-asset, 
+.main-header.scrolled .logo {
+    height: 55px;
+}
+
+.main-header.scrolled .logo {
     height: 50px;
+}
+
+#mainHeader.scrolled img {
+    height: 45px;
 }
 
 .nav-list {
@@ -105,26 +137,14 @@ header.scrolled,
 
 .nav-link {
     text-decoration: none;
-    color: var(--blue) !important;
-    font-weight: 700;
+    color: var(--blue);
+    font-weight: 600;
     transition: 0.3s;
 }
 
 .nav-link:hover, 
 .nav-link.active {
     color: var(--gold);
-}
-
-/* Fix for the Diamond Asset Overlap on Desktop */
-.side-design, 
-.watermark-design {
-    position: absolute !important;
-    right: 0 !important;
-    top: 130px !important;
-    max-width: 280px !important;
-    z-index: -1 !important;
-    pointer-events: none !important;
-    opacity: 0.6;
 }
 
 /* 3. BANNERS & HERO */
@@ -351,23 +371,42 @@ header.scrolled,
 }
 
 /* 6. TABLES & FORMS */
+.impact-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.impact-table th {
+    background: var(--blue);
+    color: #fff;
+    padding: 20px;
+    text-align: left;
+}
+
+.impact-table td {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+/* REGIONAL IMPACT TABLE: FINAL ALIGNMENT */
 .impact-table, 
 table.impact-table {
     width: 100% !important;
     max-width: 1000px !important;
-    margin: 40px auto 30px !important;
+    margin: 40px auto !important;
     border-collapse: collapse !important;
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     text-align: center !important;
 }
 
 .impact-table th {
     background: var(--blue) !important;
     color: #ffffff !important;
-    padding: 18px 20px !important;
+    padding: 18px !important;
     text-align: center !important;
     font-weight: 700 !important;
     border: none !important;
@@ -490,6 +529,10 @@ table.impact-table {
     color: #444;
 }
 
+.achievement-list {
+    margin: 20px 0;
+}
+
 .achievement-list li {
     padding-left: 40px;
     margin-bottom: 18px;
@@ -497,6 +540,7 @@ table.impact-table {
     line-height: 1.5;
 }
 
+/* ACHIEVEMENTS SECTION WRAPPER */
 .achievements-section {
     padding: 80px 0;
     background: #f9f9f9;
@@ -518,14 +562,12 @@ table.impact-table {
 }
 
 .achievement-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
     margin-top: 20px;
     font-size: 17px;
     line-height: 2.2;
 }
 
+/* THE TRANSPARENT WATERMARK DESIGN */
 .watermark-design {
     position: absolute;
     right: -20px;
@@ -540,6 +582,14 @@ table.impact-table {
 .watermark-design img {
     width: 100%;
     height: auto;
+}
+
+/* CUSTOM TICK STYLES */
+.achievement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 30px;
 }
 
 .achievement-item {
@@ -598,90 +648,127 @@ table.impact-table {
 }
 
 @media (max-width: 768px) {
-    header, #mainHeader {
+    header,
+    #mainHeader {
         height: auto !important;
-        padding: 15px 0 !important;
-        background: #ffffff !important; 
-        position: fixed !important;
-        top: 0;
-        width: 100%;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    body {
-        padding-top: 180px !important;
+        padding: 10px 0 !important;
     }
 
     .nav-container {
         flex-direction: column !important;
-        padding: 0 15px;
+        padding: 10px;
         align-items: center;
         gap: 10px;
     }
 
     .nav-list {
-        margin: 5px 0 !important;
+        margin: 15px 0;
         gap: 15px;
         flex-direction: row;
         justify-content: center;
     }
 
-    .nav-link {
-        font-size: 14px;
-        color: #0c618e !important; 
-        font-weight: 700;
-    }
-
     .nav-right {
         width: 100%;
         justify-content: center;
-        margin-top: 5px;
+        gap: 15px;
+    }
+
+    .logo-img {
+        height: 50px !important;
+        width: auto;
+        margin-bottom: 10px;
+    }
+
+    .nav-link {
+        font-size: 14px;
     }
 
     .btn-connect {
-        width: 90% !important;
-        text-align: center;
-        padding: 10px 0 !important;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        padding: 8px 15px;
     }
 
-    .hero-btns {
+    .design-asset {
+        display: none !important;
+    }
+
+    .hero-sub .btn-container,
+    .hero-btns,
+    .hero-sub .container, 
+    div[style*="display: flex"] {
         display: flex !important;
         flex-direction: column !important;
         gap: 15px !important;
         align-items: center !important;
-        width: 100% !important;
     }
 
-    .btn-main, .btn-outline {
-        width: 85% !important;
-        max-width: 320px !important;
+    .btn-main, 
+    .btn-outline,
+    .btn-connect, 
+    .btn-primary, 
+    .btn-secondary,
+    a[style*="border-radius"] {
+        width: 90% !important;
+        max-width: 300px !important;
         text-align: center !important;
-        display: block !important;
         margin: 0 auto !important;
-        box-sizing: border-box !important;
     }
 
-    .impact-grid {
+    .impact-grid,
+    .section .container[style*="grid-template-columns"] {
         grid-template-columns: 1fr 1fr !important;
         gap: 20px !important;
-        padding: 30px 15px !important;
+        padding: 40px 15px !important;
+    }
+
+    .impact-number,
+    .stat-number,
+    h2[style*="font-size"] {
+        font-size: 28px !important;
+    }
+
+    .impact-label,
+    .stat-label {
+        font-size: 11px !important;
     }
 
     .process-grid {
         display: flex !important;
         flex-direction: column !important;
-        gap: 15px !important;
-        padding: 0 20px;
+        gap: 20px !important;
     }
 
-    .design-asset, .watermark-design {
-        display: none !important;
+    .watermark-design {
+        width: 250px;
+        right: -50px;
+        opacity: 0.08;
+    }
+
+    .achievement-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .achievement-list li {
+        text-align: left;
     }
 
     .footer-content {
         grid-template-columns: 1fr !important;
         text-align: center;
+    }
+
+    .footer-brand, 
+    .footer-links, 
+    .footer-info {
+        margin-bottom: 30px;
+    }
+
+    .gov-labels, 
+    .gov-pills {
+        justify-content: center;
+        flex-wrap: wrap;
     }
 }
 
