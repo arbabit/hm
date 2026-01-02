@@ -648,127 +648,78 @@ table.impact-table {
 }
 
 @media (max-width: 768px) {
-    header,
-    #mainHeader {
+    /* 1. HEADER FIX: Solid background and proper height */
+    header, #mainHeader {
         height: auto !important;
-        padding: 10px 0 !important;
+        padding: 15px 0 !important;
+        background: #ffffff !important; /* Ensures visibility before scroll */
+        position: fixed !important;
+        top: 0;
+        width: 100%;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    /* 2. BODY PADDING: Prevents header from covering Hero content */
+    body {
+        padding-top: 180px !important;
     }
 
     .nav-container {
         flex-direction: column !important;
-        padding: 10px;
+        padding: 0 15px;
         align-items: center;
         gap: 10px;
     }
 
     .nav-list {
-        margin: 15px 0;
+        margin: 5px 0 !important;
         gap: 15px;
         flex-direction: row;
         justify-content: center;
     }
 
+    .nav-link {
+        font-size: 14px;
+        color: #0c618e !important; /* High contrast blue for sitemaps */
+        font-weight: 700;
+    }
+
+    /* 3. BUTTON FIX: Centered and full-width */
     .nav-right {
         width: 100%;
         justify-content: center;
-        gap: 15px;
-    }
-
-    .logo-img {
-        height: 50px !important;
-        width: auto;
-        margin-bottom: 10px;
-    }
-
-    .nav-link {
-        font-size: 14px;
+        margin-top: 5px;
     }
 
     .btn-connect {
-        font-size: 0.8rem;
-        padding: 8px 15px;
-    }
-
-    .design-asset {
-        display: none !important;
-    }
-
-    .hero-sub .btn-container,
-    .hero-btns,
-    .hero-sub .container, 
-    div[style*="display: flex"] {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 15px !important;
-        align-items: center !important;
-    }
-
-    .btn-main, 
-    .btn-outline,
-    .btn-connect, 
-    .btn-primary, 
-    .btn-secondary,
-    a[style*="border-radius"] {
         width: 90% !important;
-        max-width: 300px !important;
-        text-align: center !important;
-        margin: 0 auto !important;
+        text-align: center;
+        padding: 10px 0 !important;
+        font-size: 0.9rem;
     }
 
-    .impact-grid,
-    .section .container[style*="grid-template-columns"] {
+    /* 4. CONTENT GRIDS: Re-aligned for mobile */
+    .impact-grid {
         grid-template-columns: 1fr 1fr !important;
         gap: 20px !important;
-        padding: 40px 15px !important;
-    }
-
-    .impact-number,
-    .stat-number,
-    h2[style*="font-size"] {
-        font-size: 28px !important;
-    }
-
-    .impact-label,
-    .stat-label {
-        font-size: 11px !important;
+        padding: 30px 15px !important;
     }
 
     .process-grid {
         display: flex !important;
         flex-direction: column !important;
-        gap: 20px !important;
+        gap: 15px !important;
+        padding: 0 20px;
     }
 
-    .watermark-design {
-        width: 250px;
-        right: -50px;
-        opacity: 0.08;
-    }
-
-    .achievement-content {
-        max-width: 100%;
-        text-align: center;
-    }
-
-    .achievement-list li {
-        text-align: left;
+    /* 5. DESIGN ASSET: Keeps it from overlapping links */
+    .design-asset, .watermark-design {
+        display: none !important;
     }
 
     .footer-content {
         grid-template-columns: 1fr !important;
         text-align: center;
-    }
-
-    .footer-brand, 
-    .footer-links, 
-    .footer-info {
-        margin-bottom: 30px;
-    }
-
-    .gov-labels, 
-    .gov-pills {
-        justify-content: center;
-        flex-wrap: wrap;
     }
 }
 
@@ -817,3 +768,4 @@ table.impact-table {
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
+
