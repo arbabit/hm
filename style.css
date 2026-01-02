@@ -736,4 +736,53 @@ table.impact-table {
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
+/* --- UNIFIED MOBILE REPAIR --- */
+@media (max-width: 768px) {
+    /* 1. Clear space for the taller mobile header */
+    body {
+        padding-top: 200px !important; 
+    }
+
+    /* 2. Force header visibility and clean stacking */
+    header, #mainHeader {
+        background: #ffffff !important;
+        height: auto !important;
+        padding: 15px 0 !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    }
+
+    .nav-container {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    .nav-list {
+        margin: 5px 0 !important;
+        gap: 15px !important;
+        flex-direction: row !important;
+    }
+
+    /* 3. Fix distorted Hero Buttons */
+    .hero-btns {
+        display: flex !important;
+        flex-direction: column !important; /* Stacks buttons to stop squeezing */
+        gap: 15px !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin-top: 25px !important;
+    }
+
+    .btn-main, .btn-outline {
+        width: 85% !important; /* Uniform width */
+        max-width: 320px !important;
+        text-align: center !important;
+        padding: 12px 20px !important;
+        box-sizing: border-box !important; /* Prevents border distortion */
+    }
+
+    /* 4. Ensure decorative assets are hidden on mobile */
+    .side-design, .watermark-design, .design-asset {
+        display: none !important;
+    }
+}
 
