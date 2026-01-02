@@ -459,13 +459,13 @@ table.impact-table {
 }
 
 /* 7. UNIFIED MASTER FOOTER */
-.main-footer {
-    background: #2c2c2c;
-    color: #ffffff;
-    padding: 80px 0 20px;
-    margin-top: 50px;
-    border-top: 4px solid #D4AF37;
-    clear: both;
+.main-footer { 
+    background: #083a56; /* Deep Navy Blue */
+    color: #ffffff; 
+    padding: 80px 0 20px; 
+    margin-top: 50px; 
+    border-top: 4px solid #f7a623; /* Gold accent */
+    clear: both; 
 }
 
 .footer-content {
@@ -505,11 +505,12 @@ table.impact-table {
     margin-bottom: 5px;
 }
 
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    font-size: 0.9rem;
-    opacity: 0.6;
+.footer-bottom { 
+    background: rgba(0,0,0,0.2); /* Slightly darker strip at the very bottom */
+    padding: 20px 0;
+    text-align: center; 
+    font-size: 0.9rem; 
+    opacity: 0.8; 
 }
 
 /* 8. LISTS & ACHIEVEMENTS */
@@ -853,3 +854,4 @@ table.impact-table {
 .process-grid {
     margin-top: 80px !important; /* Moves the Verification/Approval boxes down */
 }
+
