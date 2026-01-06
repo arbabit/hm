@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
         
         initMobileMenu();
         initScrollEffect();
-        // Wait for layout to settle
+        // Wait for everything to stop moving before counting
         setTimeout(initCounters, 800); 
     });
-});
+});;
 
 function initCounters() {
     const counters = document.querySelectorAll('.impact-number');
@@ -50,6 +50,7 @@ function initMobileMenu() {
         });
     }
 }
+
 
 
 
