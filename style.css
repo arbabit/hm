@@ -52,11 +52,6 @@ header,
     transition: var(--transition);
 }
 
-#mainHeader {
-    padding: 25px 0;
-    background: transparent;
-}
-
 header.scrolled, 
 #mainHeader.scrolled, 
 .main-header.scrolled {
@@ -857,4 +852,5 @@ table.impact-table {
 .process-grid {
     margin-top: 80px !important; /* Moves the Verification/Approval boxes down */
 }
+
 
