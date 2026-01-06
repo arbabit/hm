@@ -801,3 +801,19 @@ table.impact-table {
     }
 }
 
+@media (max-width: 768px) {
+    /* Forces buttons to stack with 20px of space between them */
+    .hero-btns {
+        display: flex !important;
+        flex-direction: column !important; 
+        gap: 20px !important; 
+        align-items: center !important;
+        margin-top: 30px !important;
+    }
+
+    .btn-main, .btn-outline {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 !important;
+    }
+}
