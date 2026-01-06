@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. START ANIMATED COUNTERS
     // We wrap this in a slight delay to ensure the DOM is ready
-    setTimeout(initCounters, 100);
+   setTimeout(initCounters, 500); // Increase to 500ms to ensure the browser is ready
 });
 
 // SCROLL EFFECT (Sticky Header)
@@ -84,3 +84,4 @@ function initMobileMenu() {
         });
     }
 }
+
