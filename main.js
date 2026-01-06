@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. SYNCED LOAD: Wait for Header & Footer to finish before starting logic
+    // 1. CONSOLIDATED LOAD: Fetch both files simultaneously
     const fetchHeader = fetch("./header.html").then(res => res.ok ? res.text() : Promise.reject('Header Missing'));
     const fetchFooter = fetch("./footer.html").then(res => res.ok ? res.text() : Promise.reject('Footer Missing'));
 
     Promise.all([fetchHeader, fetchFooter])
         .then(([headerData, footerData]) => {
             // Inject Header
-            const headerElem = document.getElementById("mainHeader") || document.getElementById("site-header");
+            const headerElem = document.getElementById("mainHeader");
             if (headerElem) {
                 headerElem.innerHTML = headerData;
                 initMobileMenu();
@@ -14,20 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             // Inject Footer
-            const footerElem = document.getElementById("main-footer") || document.getElementById("site-footer");
+            const footerElem = document.getElementById("main-footer");
             if (footerElem) {
                 footerElem.innerHTML = footerData;
                 console.log("SUCCESS: Footer loaded.");
             }
 
-            // 2. TRIGGER COUNTERS AFTER LAYOUT IS STABLE
-            // This 300ms delay stops the "flicker to zero"
-            setTimeout(initCounters, 300);
+            // 2. TRIGGER COUNTERS: 500ms delay prevents the "reset to zero" glitch
+            setTimeout(initCounters, 500);
         })
-        .catch(err => console.error("Architectural Load Error:", err));
+        .catch(err => console.error("Critical Load Error:", err));
 });
 
-// SCROLL EFFECT (Sticky Header)
 function initScrollEffect() {
     window.onscroll = () => {
         const header = document.getElementById('mainHeader');
@@ -38,41 +36,34 @@ function initScrollEffect() {
     };
 }
 
-// COUNTER ANIMATION LOGIC
 function initCounters() {
     const counters = document.querySelectorAll('.impact-number');
-    
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const counter = entry.target;
-                const targetValue = +counter.getAttribute('data-target');
+                const target = +counter.getAttribute('data-target');
                 const speed = 200;
                 
                 const updateCount = () => {
-                    // Extract numeric value only
                     const current = +counter.innerText.replace(/[+,k]/g, '');
-                    const inc = targetValue / speed;
-
-                    if (current < targetValue) {
+                    const inc = target / speed;
+                    if (current < target) {
                         const val = Math.ceil(current + inc);
-                        // Formatting
                         counter.innerText = val >= 1000 ? (val/1000).toFixed(0) + 'k+' : val + '+';
                         setTimeout(updateCount, 15);
                     } else {
-                        counter.innerText = targetValue >= 1000 ? (targetValue/1000).toFixed(0) + 'k+' : targetValue + '+';
+                        counter.innerText = target >= 1000 ? (target/1000).toFixed(0) + 'k+' : target + '+';
                     }
                 };
                 updateCount();
                 obs.unobserve(counter);
             }
         });
-    }, { threshold: 0.1 }); // Low threshold so it triggers as soon as visible
-
+    }, { threshold: 0.1 });
     counters.forEach(c => observer.observe(c));
 }
 
-// MOBILE MENU
 function initMobileMenu() {
     const mobileMenu = document.getElementById("mobile-menu");
     const navLinks = document.getElementById("nav-links");
