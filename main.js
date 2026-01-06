@@ -1,13 +1,13 @@
 // LOAD HEADER & FOOTER
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("partials/header.html")
+  fetch("header.html")
     .then(res => res.text())
     .then(data => {
       document.getElementById("site-header").innerHTML = data;
       initMobileMenu();
     });
 
-  fetch("partials/footer.html")
+  fetch("footer.html")
     .then(res => res.text())
     .then(data => {
       document.getElementById("site-footer").innerHTML = data;
@@ -26,3 +26,4 @@ function initMobileMenu() {
       navLinks.style.display === "flex" ? "none" : "flex";
   });
 }
+
