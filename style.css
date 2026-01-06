@@ -817,3 +817,36 @@ table.impact-table {
         margin: 0 !important;
     }
 }
+/* FINAL HEADER & FOOTER REPAIR BLOCK */
+
+/* Fixes the vertical list leak at the top */
+#mainHeader .nav-list {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 25px !important;
+    list-style: none !important;
+    padding: 0 !important;
+}
+
+/* Fixes the footer text stacking */
+.footer-content {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 40px !important;
+    text-align: left !important;
+}
+
+@media (max-width: 768px) {
+    /* Hide desktop nav on mobile to prevent the 'vertical leak' */
+    #mainHeader .nav-list {
+        display: none !important; 
+    }
+    
+    .footer-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+}
