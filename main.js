@@ -33,27 +33,27 @@ function initCounters() {
             if (entry.isIntersecting) {
                 const counter = entry.target;
                 const targetValue = parseInt(counter.getAttribute('data-target'));
-                if (isNaN(targetValue)) return; // Safety check
+                if (isNaN(targetValue)) return; 
 
                 const speed = 200;
-                let current = 0; // Start at 0 numerically
+                let currentPos = 0; // Use a clean variable for math
 
                 const updateCount = () => {
                     const inc = targetValue / speed;
 
-                    if (current < targetValue) {
-                        current += inc;
-                        // Prevent overshooting the target
-                        const displayVal = Math.min(Math.ceil(current), targetValue);
+                    if (currentPos < targetValue) {
+                        currentPos += inc;
+                        // Never let it go past the target
+                        const displayVal = Math.min(Math.ceil(currentPos), targetValue);
                         
-                        // Apply formatting
+                        // Formatting
                         counter.innerText = displayVal >= 1000 ? 
                             (displayVal / 1000).toFixed(0) + 'k+' : 
                             displayVal + '+';
                         
                         setTimeout(updateCount, 15);
                     } else {
-                        // FINAL STOP: Ensure exact target formatting
+                        // Hard Stop at the exact target
                         counter.innerText = targetValue >= 1000 ? 
                             (targetValue / 1000).toFixed(0) + 'k+' : 
                             targetValue + '+';
@@ -61,7 +61,7 @@ function initCounters() {
                 };
 
                 updateCount();
-                observer.unobserve(counter); // Stop observing once animation starts
+                observer.unobserve(counter); // STOP the observer so it doesn't reset
             }
         });
     }, { threshold: 0.1 });
@@ -78,5 +78,6 @@ function initMobileMenu() {
         });
     }
 }
+
 
 
