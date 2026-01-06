@@ -1,35 +1,34 @@
-// MASTER LOADER: HEADER, FOOTER, & ANIMATIONS
 document.addEventListener("DOMContentLoaded", () => {
     // 1. LOAD HEADER
     fetch("header.html")
-        .then(res => res.text())
+        .then(res => res.ok ? res.text() : Promise.reject('Header File Missing'))
         .then(data => {
             const headerElem = document.getElementById("mainHeader") || document.getElementById("site-header");
             if (headerElem) {
                 headerElem.innerHTML = data;
                 initMobileMenu();
-                initScrollEffect(); // Re-initialize scroll listener after load
+            }
+        }).catch(err => console.error(err));
+
+    // 2. LOAD FOOTER (The Critical Path Fix)
+    fetch("footer.html")
+        .then(res => {
+            if (!res.ok) {
+                console.error("ERROR: footer.html was not found in your folder!");
+                return;
+            }
+            return res.text();
+        })
+        .then(data => {
+            const footerElem = document.getElementById("main-footer") || document.getElementById("site-footer");
+            if (footerElem) {
+                footerElem.innerHTML = data;
+                console.log("SUCCESS: Footer loaded into the DOM.");
             }
         });
 
-    // 2. LOAD FOOTER (Reinforced Architect Version)
-fetch("footer.html")
-    .then(res => {
-        if (!res.ok) throw new Error("footer.html not found in root directory");
-        return res.text();
-    })
-    .then(data => {
-        // Targets 'main-footer' (your index.html ID) or 'site-footer'
-        const footerElem = document.getElementById("main-footer") || document.getElementById("site-footer");
-        if (footerElem) {
-            footerElem.innerHTML = data;
-            console.log("Footer loaded successfully");
-        } else {
-            console.error("Architect Alert: No footer element found in index.html");
-        }
-    })
-    .catch(err => console.error(err));
-    
+    initCounters();
+});
     // 3. START ANIMATED COUNTERS
     initCounters();
 });
@@ -87,4 +86,5 @@ function initMobileMenu() {
         });
     }
 }
+
 
