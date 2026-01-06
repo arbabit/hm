@@ -32,28 +32,29 @@ function initCounters() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const counter = entry.target;
+                // Parse the target as a clean number
                 const targetValue = parseInt(counter.getAttribute('data-target'));
                 if (isNaN(targetValue)) return; 
 
                 const speed = 200;
-                let currentPos = 0; // Use a clean variable for math
+                let currentVal = 0; // The numeric tracking variable
 
                 const updateCount = () => {
                     const inc = targetValue / speed;
 
-                    if (currentPos < targetValue) {
-                        currentPos += inc;
-                        // Never let it go past the target
-                        const displayVal = Math.min(Math.ceil(currentPos), targetValue);
+                    if (currentVal < targetValue) {
+                        currentVal += inc;
+                        // Never allow it to overshoot the target
+                        const displayNum = Math.min(Math.ceil(currentVal), targetValue);
                         
-                        // Formatting
-                        counter.innerText = displayVal >= 1000 ? 
-                            (displayVal / 1000).toFixed(0) + 'k+' : 
-                            displayVal + '+';
+                        // Apply formatting only for the display
+                        counter.innerText = displayNum >= 1000 ? 
+                            (displayNum / 1000).toFixed(0) + 'k+' : 
+                            displayNum + '+';
                         
                         setTimeout(updateCount, 15);
                     } else {
-                        // Hard Stop at the exact target
+                        // Hard Stop at the exact target value
                         counter.innerText = targetValue >= 1000 ? 
                             (targetValue / 1000).toFixed(0) + 'k+' : 
                             targetValue + '+';
@@ -61,7 +62,8 @@ function initCounters() {
                 };
 
                 updateCount();
-                observer.unobserve(counter); // STOP the observer so it doesn't reset
+                // Stop observing so layout shifts don't restart it
+                observer.unobserve(counter); 
             }
         });
     }, { threshold: 0.1 });
@@ -78,6 +80,7 @@ function initMobileMenu() {
         });
     }
 }
+
 
 
 
