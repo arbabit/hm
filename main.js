@@ -15,29 +15,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initCounters() {
     const counters = document.querySelectorAll('.impact-number');
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-target'));
-                let current = 0; // Pure numeric tracking
+                const targetValue = parseInt(counter.getAttribute('data-target'));
+                if (isNaN(targetValue)) return; 
 
-                const update = () => {
-                    const inc = target / 200;
-                    if (current < target) {
-                        current += inc;
-                        const val = Math.min(Math.ceil(current), target);
-                        counter.innerText = val >= 1000 ? (val/1000).toFixed(0) + 'k+' : val + '+';
-                        setTimeout(update, 15);
+                const speed = 200;
+                let currentVal = 0; // Pure numeric tracking
+
+                const updateCount = () => {
+                    const inc = targetValue / speed;
+
+                    if (currentVal < targetValue) {
+                        currentVal += inc;
+                        // Hard stop to prevent overshooting
+                        const displayNum = Math.min(Math.ceil(currentVal), targetValue);
+                        
+                        // Apply formatting for the display
+                        counter.innerText = displayNum >= 1000 ? 
+                            (displayNum / 1000).toFixed(0) + 'k+' : 
+                            displayNum + '+';
+                        
+                        setTimeout(updateCount, 15);
                     } else {
-                        counter.innerText = target >= 1000 ? (target/1000).toFixed(0) + 'k+' : target + '+';
+                        // Final snap to target
+                        counter.innerText = targetValue >= 1000 ? 
+                            (targetValue / 1000).toFixed(0) + 'k+' : 
+                            targetValue + '+';
                     }
                 };
-                update();
-                observer.unobserve(counter); // Stop loop
+
+                updateCount();
+                observer.unobserve(counter); // Stop observing so it doesn't reset
             }
         });
     }, { threshold: 0.1 });
+
     counters.forEach(c => observer.observe(c));
 }
 
@@ -50,6 +66,7 @@ function initMobileMenu() {
         });
     }
 }
+
 
 
 
