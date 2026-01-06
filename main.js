@@ -1,29 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. CONSOLIDATED LOAD: Fetch both files simultaneously
+    // 1. SYNCED LOAD: Wait for Header & Footer before starting animations
     const fetchHeader = fetch("./header.html").then(res => res.ok ? res.text() : Promise.reject('Header Missing'));
     const fetchFooter = fetch("./footer.html").then(res => res.ok ? res.text() : Promise.reject('Footer Missing'));
 
     Promise.all([fetchHeader, fetchFooter])
         .then(([headerData, footerData]) => {
-            // Inject Header
-            const headerElem = document.getElementById("mainHeader");
-            if (headerElem) {
-                headerElem.innerHTML = headerData;
-                initMobileMenu();
-                initScrollEffect();
-            }
+            document.getElementById("mainHeader").innerHTML = headerData;
+            document.getElementById("main-footer").innerHTML = footerData;
 
-            // Inject Footer
-            const footerElem = document.getElementById("main-footer");
-            if (footerElem) {
-                footerElem.innerHTML = footerData;
-                console.log("SUCCESS: Footer loaded.");
-            }
+            // Re-initialize dynamic elements
+            initMobileMenu();
+            initScrollEffect();
 
-            // 2. TRIGGER COUNTERS: 500ms delay prevents the "reset to zero" glitch
-            setTimeout(initCounters, 500);
+            // 2. TRIGGER COUNTERS AFTER STABILIZATION
+            // Increased delay to 800ms to ensure the browser has finished painting injected HTML
+            setTimeout(initCounters, 800);
         })
-        .catch(err => console.error("Critical Load Error:", err));
+        .catch(err => console.error("Load Error:", err));
 });
 
 function initScrollEffect() {
@@ -74,3 +67,4 @@ function initMobileMenu() {
         });
     }
 }
+
