@@ -1,33 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. LOAD HEADER
-    fetch("./header.html") // Use ./ for GitHub relative paths
-        .then(res => res.ok ? res.text() : Promise.reject('Header File Missing'))
-        .then(data => {
+    // 1. SYNCED LOAD: Wait for Header & Footer to finish before starting logic
+    const fetchHeader = fetch("./header.html").then(res => res.ok ? res.text() : Promise.reject('Header Missing'));
+    const fetchFooter = fetch("./footer.html").then(res => res.ok ? res.text() : Promise.reject('Footer Missing'));
+
+    Promise.all([fetchHeader, fetchFooter])
+        .then(([headerData, footerData]) => {
+            // Inject Header
             const headerElem = document.getElementById("mainHeader") || document.getElementById("site-header");
             if (headerElem) {
-                headerElem.innerHTML = data;
+                headerElem.innerHTML = headerData;
                 initMobileMenu();
-                initScrollEffect(); // Start scroll effect AFTER header loads
+                initScrollEffect();
             }
-        }).catch(err => console.error(err));
 
-    // 2. LOAD FOOTER
-    fetch("./footer.html") // Use ./ for GitHub relative paths
-        .then(res => {
-            if (!res.ok) throw new Error("footer.html not found");
-            return res.text();
-        })
-        .then(data => {
+            // Inject Footer
             const footerElem = document.getElementById("main-footer") || document.getElementById("site-footer");
             if (footerElem) {
-                footerElem.innerHTML = data;
+                footerElem.innerHTML = footerData;
                 console.log("SUCCESS: Footer loaded.");
             }
-        }).catch(err => console.error(err));
 
-    // 3. START ANIMATED COUNTERS
-    // We wrap this in a slight delay to ensure the DOM is ready
-   setTimeout(initCounters, 500); // Increase to 500ms to ensure the browser is ready
+            // 2. TRIGGER COUNTERS AFTER LAYOUT IS STABLE
+            // This 300ms delay stops the "flicker to zero"
+            setTimeout(initCounters, 300);
+        })
+        .catch(err => console.error("Architectural Load Error:", err));
 });
 
 // SCROLL EFFECT (Sticky Header)
@@ -49,26 +46,28 @@ function initCounters() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const counter = entry.target;
-                const target = +counter.getAttribute('data-target');
+                const targetValue = +counter.getAttribute('data-target');
                 const speed = 200;
                 
                 const updateCount = () => {
+                    // Extract numeric value only
                     const current = +counter.innerText.replace(/[+,k]/g, '');
-                    const inc = target / speed;
+                    const inc = targetValue / speed;
 
-                    if (current < target) {
+                    if (current < targetValue) {
                         const val = Math.ceil(current + inc);
+                        // Formatting
                         counter.innerText = val >= 1000 ? (val/1000).toFixed(0) + 'k+' : val + '+';
                         setTimeout(updateCount, 15);
                     } else {
-                        counter.innerText = target >= 1000 ? (target/1000).toFixed(0) + 'k+' : target + '+';
+                        counter.innerText = targetValue >= 1000 ? (targetValue/1000).toFixed(0) + 'k+' : targetValue + '+';
                     }
                 };
                 updateCount();
                 obs.unobserve(counter);
             }
         });
-    }, { threshold: 0.2 }); // Trigger earlier for better UX
+    }, { threshold: 0.1 }); // Low threshold so it triggers as soon as visible
 
     counters.forEach(c => observer.observe(c));
 }
@@ -84,4 +83,3 @@ function initMobileMenu() {
         });
     }
 }
-
