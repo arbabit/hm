@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. SYNCED LOAD: Wait for Header & Footer before starting animations
     const fetchHeader = fetch("./header.html").then(res => res.ok ? res.text() : Promise.reject('Header Missing'));
     const fetchFooter = fetch("./footer.html").then(res => res.ok ? res.text() : Promise.reject('Footer Missing'));
 
     Promise.all([fetchHeader, fetchFooter])
         .then(([headerData, footerData]) => {
-            // Inject content
             document.getElementById("mainHeader").innerHTML = headerData;
             document.getElementById("main-footer").innerHTML = footerData;
 
-            // Initialize components
             initMobileMenu();
             initScrollEffect();
 
-            // Stabilize layout then start counters
-            setTimeout(initCounters, 800); 
+            // 2. TRIGGER COUNTERS AFTER STABILIZATION
+            // 800ms delay ensures the browser has finished painting injected HTML
+            setTimeout(initCounters, 800);
         })
         .catch(err => console.error("Load Error:", err));
-});
+});;
 
 function initScrollEffect() {
     window.onscroll = () => {
@@ -28,28 +28,50 @@ function initScrollEffect() {
 
 function initCounters() {
     const counters = document.querySelectorAll('.impact-number');
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const counter = entry.target;
-                const target = +counter.getAttribute('data-target');
+                const targetValue = +counter.getAttribute('data-target');
                 const speed = 200;
-                
+                let hasStarted = false;
+
                 const updateCount = () => {
-                    const current = +counter.innerText.replace(/[+,k]/g, '');
-                    const inc = target / speed;
-                    if (current < target) {
-                        const val = Math.ceil(current + inc);
-                        counter.innerText = val >= 1000 ? (val/1000).toFixed(0) + 'k+' : val + '+';
+                    // Extract current number, ignoring symbols
+                    const currentStr = counter.innerText.replace(/[+,k]/g, '');
+                    const current = parseFloat(currentStr) || 0;
+                    const inc = targetValue / speed;
+
+                    if (current < targetValue) {
+                        const nextVal = Math.ceil(current + inc);
+                        // Prevent overshooting the target
+                        const finalVal = nextVal > targetValue ? targetValue : nextVal;
+                        
+                        // Apply formatting during animation
+                        counter.innerText = finalVal >= 1000 ? 
+                            (finalVal / 1000).toFixed(0) + 'k+' : 
+                            finalVal + '+';
+                        
                         setTimeout(updateCount, 15);
                     } else {
-                        counter.innerText = target >= 1000 ? (target/1000).toFixed(0) + 'k+' : target + '+';
+                        // FINAL STOP: Ensure exact target is set and stop loop
+                        counter.innerText = targetValue >= 1000 ? 
+                            (targetValue / 1000).toFixed(0) + 'k+' : 
+                            targetValue + '+';
                     }
                 };
-                updateCount();
+
+                if (!hasStarted) {
+                    updateCount();
+                    hasStarted = true;
+                    // Stop observing this element so it doesn't restart
+                    observer.unobserve(counter);
+                }
             }
         });
     }, { threshold: 0.1 });
+
     counters.forEach(c => observer.observe(c));
 }
 
@@ -62,3 +84,4 @@ function initMobileMenu() {
         });
     }
 }
+
