@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Fetch Header and Footer simultaneously
     const fetchHeader = fetch("./header.html").then(res => res.ok ? res.text() : Promise.reject('Header Missing'));
     const fetchFooter = fetch("./footer.html").then(res => res.ok ? res.text() : Promise.reject('Footer Missing'));
 
     Promise.all([fetchHeader, fetchFooter])
         .then(([headerData, footerData]) => {
-            // Inject Header
+            // 2. Inject Header
             const headerElem = document.getElementById("mainHeader");
             if (headerElem) {
                 headerElem.innerHTML = headerData;
@@ -12,13 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 initScrollEffect(); 
             }
 
-            // Inject Footer
+            // 3. Inject Footer
             const footerElem = document.getElementById("main-footer");
             if (footerElem) {
                 footerElem.innerHTML = footerData;
             }
         })
-        .catch(err => console.error("Load Error:", err));
+        .catch(err => console.error("Component Load Error:", err));
 });
 
 function initScrollEffect() {
