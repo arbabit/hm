@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. SYNCED LOAD: Wait for Header & Footer before starting animations
+    // Sync the loading of both files
     const fetchHeader = fetch("./header.html").then(res => res.ok ? res.text() : Promise.reject('Header Missing'));
     const fetchFooter = fetch("./footer.html").then(res => res.ok ? res.text() : Promise.reject('Footer Missing'));
 
     Promise.all([fetchHeader, fetchFooter])
         .then(([headerData, footerData]) => {
+            // Inject and verify
             document.getElementById("mainHeader").innerHTML = headerData;
             document.getElementById("main-footer").innerHTML = footerData;
 
             initMobileMenu();
             initScrollEffect();
 
-            // 2. TRIGGER COUNTERS AFTER STABILIZATION
-            // 800ms delay ensures the browser has finished painting injected HTML
+            // Wait for layout to settle before starting numbers
             setTimeout(initCounters, 800);
         })
-        .catch(err => console.error("Load Error:", err));
-});;
+        .catch(err => console.error("Injection Error:", err));
+});
 
 function initScrollEffect() {
     window.onscroll = () => {
@@ -80,6 +80,7 @@ function initMobileMenu() {
         });
     }
 }
+
 
 
 
