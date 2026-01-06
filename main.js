@@ -12,14 +12,24 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-    // 2. LOAD FOOTER (Fixed ID to match index.html)
-    fetch("footer.html")
-        .then(res => res.text())
-        .then(data => {
-            const footerElem = document.getElementById("main-footer") || document.getElementById("site-footer");
-            if (footerElem) footerElem.innerHTML = data;
-        });
-
+    // 2. LOAD FOOTER (Reinforced Architect Version)
+fetch("footer.html")
+    .then(res => {
+        if (!res.ok) throw new Error("footer.html not found in root directory");
+        return res.text();
+    })
+    .then(data => {
+        // Targets 'main-footer' (your index.html ID) or 'site-footer'
+        const footerElem = document.getElementById("main-footer") || document.getElementById("site-footer");
+        if (footerElem) {
+            footerElem.innerHTML = data;
+            console.log("Footer loaded successfully");
+        } else {
+            console.error("Architect Alert: No footer element found in index.html");
+        }
+    })
+    .catch(err => console.error(err));
+    
     // 3. START ANIMATED COUNTERS
     initCounters();
 });
@@ -77,3 +87,4 @@ function initMobileMenu() {
         });
     }
 }
+
