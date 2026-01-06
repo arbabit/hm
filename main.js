@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Load shared components simultaneously
     const fetchHeader = fetch("./header.html").then(res => res.ok ? res.text() : Promise.reject('Header Missing'));
     const fetchFooter = fetch("./footer.html").then(res => res.ok ? res.text() : Promise.reject('Footer Missing'));
 
@@ -9,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const headerElem = document.getElementById("mainHeader");
             if (headerElem) {
                 headerElem.innerHTML = headerData;
-                initMobileMenu(); // Setup the hamburger menu
-                initScrollEffect(); // Setup the sticky effect
+                initMobileMenu(); 
+                initScrollEffect(); 
             }
 
             // Inject Footer
@@ -19,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 footerElem.innerHTML = footerData;
             }
         })
-        .catch(err => console.error("Component Load Error:", err));
+        .catch(err => console.error("Load Error:", err));
 });
 
 function initScrollEffect() {
