@@ -850,3 +850,29 @@ table.impact-table {
         text-align: center !important;
     }
 }
+/* FINAL REPAIR BLOCK */
+
+/* 1. Fixes the vertical navigation leak */
+#mainHeader .nav-list {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 30px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 2. Fixes button overlap on mobile */
+@media (max-width: 768px) {
+    .hero-btns {
+        display: flex !important;
+        flex-direction: column !important; 
+        gap: 20px !important; /* This stops the collision */
+        align-items: center !important;
+        margin-top: 30px !important;
+    }
+
+    #mainHeader .nav-list {
+        display: none !important; /* Hide unstyled list on mobile */
+    }
+}
