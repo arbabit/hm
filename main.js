@@ -25,7 +25,6 @@ function initScrollEffect() {
         else if (header) header.classList.remove('scrolled');
     };
 }
-
 function initCounters() {
     const counters = document.querySelectorAll('.impact-number');
     
@@ -33,41 +32,36 @@ function initCounters() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const counter = entry.target;
-                const targetValue = +counter.getAttribute('data-target');
+                const targetValue = parseInt(counter.getAttribute('data-target'));
+                if (isNaN(targetValue)) return; // Safety check
+
                 const speed = 200;
-                let hasStarted = false;
+                let current = 0; // Start at 0 numerically
 
                 const updateCount = () => {
-                    // Extract current number, ignoring symbols
-                    const currentStr = counter.innerText.replace(/[+,k]/g, '');
-                    const current = parseFloat(currentStr) || 0;
                     const inc = targetValue / speed;
 
                     if (current < targetValue) {
-                        const nextVal = Math.ceil(current + inc);
+                        current += inc;
                         // Prevent overshooting the target
-                        const finalVal = nextVal > targetValue ? targetValue : nextVal;
+                        const displayVal = Math.min(Math.ceil(current), targetValue);
                         
-                        // Apply formatting during animation
-                        counter.innerText = finalVal >= 1000 ? 
-                            (finalVal / 1000).toFixed(0) + 'k+' : 
-                            finalVal + '+';
+                        // Apply formatting
+                        counter.innerText = displayVal >= 1000 ? 
+                            (displayVal / 1000).toFixed(0) + 'k+' : 
+                            displayVal + '+';
                         
                         setTimeout(updateCount, 15);
                     } else {
-                        // FINAL STOP: Ensure exact target is set and stop loop
+                        // FINAL STOP: Ensure exact target formatting
                         counter.innerText = targetValue >= 1000 ? 
                             (targetValue / 1000).toFixed(0) + 'k+' : 
                             targetValue + '+';
                     }
                 };
 
-                if (!hasStarted) {
-                    updateCount();
-                    hasStarted = true;
-                    // Stop observing this element so it doesn't restart
-                    observer.unobserve(counter);
-                }
+                updateCount();
+                observer.unobserve(counter); // Stop observing once animation starts
             }
         });
     }, { threshold: 0.1 });
@@ -84,4 +78,5 @@ function initMobileMenu() {
         });
     }
 }
+
 
