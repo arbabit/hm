@@ -773,4 +773,31 @@ table.impact-table {
 /* GLOBAL STATE FIXES */
 .nav-link.active { color: var(--gold); }
 
+@media (max-width: 768px) {
+    /* 1. Fixes button overlap */
+    .hero-btns {
+        display: flex !important;
+        flex-direction: column !important; 
+        gap: 20px !important; 
+        align-items: center !important;
+        margin-top: 30px !important;
+    }
+
+    .btn-main, .btn-outline {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 !important;
+    }
+
+    /* 2. Fixes vertical navigation list leak */
+    .nav-list {
+        display: none !important;
+    }
+
+    /* 3. Centers the 3rd impact item */
+    .impact-item:nth-child(3) {
+        grid-column: span 2 !important;
+        text-align: center !important;
+    }
+}
 
