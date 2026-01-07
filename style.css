@@ -151,7 +151,7 @@ header.scrolled .design-asset,
 /* 3. BANNERS & HERO */
 .hero, 
 .hero-sub {
-    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url(design2.png');
+    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url('design2.png');
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -1189,4 +1189,5 @@ table.impact-table {
         grid-template-columns: 1fr; /* Stack on mobile */
     }
 }
+
 
