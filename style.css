@@ -151,7 +151,7 @@ header.scrolled .design-asset,
 /* 3. BANNERS & HERO */
 .hero, 
 .hero-sub {
-    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url('../design2.jpeg');
+    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url('hm/design2.jpeg');
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -951,6 +951,7 @@ table.impact-table {
     line-height: 1.4;
     margin: 0;
 }
+
 
 
 
