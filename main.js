@@ -31,6 +31,7 @@ function initMobileMenu() {
   });
 }
 
+<<<<<<< HEAD
 // Toggle the "active" class on nav links based on current page filename
 function setActiveNavLink() {
   const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
@@ -80,3 +81,5 @@ function initGallery() {
 // Update your existing main.js to call initGallery() after components load
 // Inside your Promise.all().then() block:
 // initGallery();
+=======
+>>>>>>> 3e1eae56a35581a76e8ad63b4988936ce6e8ee91
