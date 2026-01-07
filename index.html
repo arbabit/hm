@@ -21,41 +21,8 @@
 
 
 
-    <header id="mainHeader">
 
-        <div class="nav-container">
-
-            <div class="nav-left">
-
-                <a href="index.html"><img src="logo.png" class="logo-img" alt="Haroon Mahmood Welfare Trust Logo"></a>
-
-            </div>
-
-            <div class="nav-center">
-
-                <ul class="nav-list">
-
-                    <li><a href="index.html" class="nav-link active">Home</a></li>
-
-                    <li><a href="about.html" class="nav-link">Our Vision</a></li>
-
-                    <li><a href="programmes.html" class="nav-link">Our Programmes</a></li>
-
-                </ul>
-
-            </div>
-
-            <div class="nav-right">
-
-                <a href="contact-s.html" class="btn-connect">Connect With Us</a>
-
-                <img src="design.png" class="design-asset" alt="Decorative Asset">
-
-            </div>
-
-        </div>
-
-    </header>
+    <header id="mainHeader"></header>
 
 
 
@@ -110,35 +77,25 @@
 
             <div class="process-grid">
 
-                <div class="process-card">
+    <div class="process-flex-container">
+    <div class="process-card">
+        <span class="step-badge"></span>
+        <h3>Verification</h3>
+        <p>Thorough field verification of every beneficiary to ensure aid reaches the most deserving.</p>
+    </div>
 
-                    <span class="step-badge"></span>
+    <div class="process-card">
+        <span class="step-badge"></span>
+        <h3>Approval</h3>
+        <p>Multi-step review process by management and the Shariah Committee for accountability.</p>
+    </div>
 
-                    <h3>Verification</h3>
-
-                    <p>Thorough field verification of every beneficiary to ensure aid reaches the most deserving.</p>
-
-                </div>
-
-                <div class="process-card">
-
-                    <span class="step-badge"></span>
-
-                    <h3>Approval</h3>
-
-                    <p>Multi-step review process by management and the Shariah Committee for accountability.</p>
-
-                </div>
-
-                <div class="process-card">
-
-                    <span class="step-badge"></span>
-
-                    <h3>Direct Impact</h3>
-
-                    <p>Funds are disbursed directly through formal banking channels for 100% transparency.</p>
-
-                </div>
+    <div class="process-card">
+        <span class="step-badge"></span>
+        <h3>Direct Impact</h3>
+        <p>Funds are disbursed directly through formal banking channels for 100% transparency.</p>
+    </div>
+</div>
 
             </div>
 
@@ -148,52 +105,39 @@
 
 
 
-<footer class="main-footer">
-    <div class="container footer-content">
-        <div class="footer-brand">
-            <img src="logo.png" alt="HMWT Logo" class="footer-logo">
-            <p class="footer-tagline">Serving Humanity with Compassion, Integrity, and Transparency since 2024.</p>
-        </div>
 
-        <div class="footer-links">
-            <h4>Sitemap</h4>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">Our Vision</a></li>
-                <li><a href="programmes.html">Our Programmes</a></li>
-            </ul>
-        </div>
+    <div id="mainFooter"></div>
 
-        <div class="footer-info">
-            <h4>Funding Philosophy</h4>
-            <p>Independently funded to preserve integrity, transparency, and mission focus.</p>
-            <div class="gov-labels">
-                <span>Audited</span>
-                <span>Documented</span>
-                <span>Shariah Compliant</span>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2025 Haroon Mahmood Welfare Trust. Professionally Self-Funded.</p>
-    </div>
-</footer>
+
 
 
 
     <script>
+        // Dynamically load header.html into #mainHeader
+        // and footer.html into #mainFooter
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('mainHeader').outerHTML = data;
+                });
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('mainFooter').outerHTML = data;
+                });
+        });
 
         window.onscroll = function() {
-
             const header = document.getElementById('mainHeader');
-
-            if (window.pageYOffset > 50) header.classList.add('scrolled');
-
-            else header.classList.remove('scrolled');
-
+            if (header) {
+                if (window.pageYOffset > 50) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
+            }
         };
-
     </script>
+
+        <script src="main.js"></script>
 
 </body>
 

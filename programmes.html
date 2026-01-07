@@ -13,22 +13,38 @@
     <div class="nav-container">
         <div class="nav-left">
             <a href="index.html"><img src="logo.png" class="logo-img" alt="HMWT Logo"></a>
-        </div>
-        <div class="nav-center">
-            <ul class="nav-list">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link">Our Vision</a></li>
-                <li><a href="programmes.html" class="nav-link active">Our Programmes</a></li>
-            </ul>
-        </div>
+            </div>
+
+            <div class="nav-center">
+
+                <ul class="nav-list">
+
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+
+                    <li><a href="about.html" class="nav-link">Our Vision</a></li>
+
+                    <li><a href="programmes.html" class="nav-link">Our Programmes</a></li>
+
+                    <li><a href="gallery.html" class="nav-link">Our Gallery</a></li>
+
+                    <li><a href="contact-s.html" class="nav-link">Contact Us</a></li>
+
+                </ul>
+
+            </div>
         <div class="nav-right">
-            <a href="contact-s.html" class="btn-connect">Connect With Us</a>
+            <!--<a href="contact-s.html" class="btn-connect">Contact Us</a>-->
             <img src="design.png" class="design-asset" alt="Decorative Asset">
         </div>
     </div>
 </header>
 </section>
-
+<section class="hero-sub">
+        <div class="container">
+            <h1>Our <span class="gold-text">Impact</span> & initiatives</h1>
+            <p>Dedicated programs designed to foster sustainable growth, health, and education across underprivileged communities.</p>
+        </div>
+    </section>
 <!-- Key Achievements -->
 <section class="achievements-section">
     <div class="container achievement-wrapper">
@@ -145,6 +161,11 @@
             <p>Localized livelihood support and micro-business grants in the Haripur region.</p>
             <div class="ben-badge">25 Small Businesses</div>
         </div>
+        <div class="process-card">
+            <h3>Suffra-E-Khair</h3>
+            <p>Localized livelihood support and micro-business grants in the Haripur region.</p>
+            <div class="ben-badge">80+ FAMILIES SUPPORTED</div>
+        </div>
     </div>
 </div>
 <script>
@@ -161,40 +182,34 @@
 </script>
 
 <!-- FOOTER -->
-<footer class="main-footer">
-    <div class="container footer-content">
-        <div class="footer-brand">
-            <img src="logo.png" alt="HMWT Logo" class="footer-logo">
-            <p class="footer-tagline">Serving Humanity with Compassion, Integrity, and Transparency since 2024.</p>
-        </div>
-
-        <div class="footer-links">
-            <h4>Sitemap</h4>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">Our Vision</a></li>
-                <li><a href="programmes.html">Our Programmes</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-info">
-            <h4>Funding Philosophy</h4>
-            <p>Independently funded to preserve integrity, transparency, and mission focus.</p>
-            <div class="gov-labels">
-                <span>Audited</span>
-                <span>Documented</span>
-                <span>Shariah Compliant</span>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2025 Haroon Mahmood Welfare Trust. Professionally Self-Funded.</p>
-    </div>
-</footer>
+    <div id="mainFooter"></div>
 
 
-<!-- JS -->
-<script src="js/main.js"></script>
+    <script>
+        // Dynamically load header.html into #mainHeader
+        // and footer.html into #mainFooter
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('mainHeader').outerHTML = data;
+                });
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('mainFooter').outerHTML = data;
+                });
+        });
+
+        window.onscroll = function() {
+            const header = document.getElementById('mainHeader');
+            if (header) {
+                if (window.pageYOffset > 50) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
+            }
+        };
+    </script>
+    <script src="main.js"></script>
 </body>
 </html>
 

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Gallery | Haroon Mahmood Welfare Trust</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header id="mainHeader">
+
+        <div class="nav-container">
+
+            <div class="nav-left">
+
+                <a href="gallery.html"><img src="logo.png" class="logo-img" alt="Haroon Mahmood Welfare Trust Logo"></a>
+
+            </div>
+
+<div class="nav-center">
+
+                <ul class="nav-list">
+
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+
+                    <li><a href="about.html" class="nav-link">Our Vision</a></li>
+
+                    <li><a href="programmes.html" class="nav-link">Our Programmes</a></li>
+
+                    <li><a href="gallery.html" class="nav-link">Our Gallery</a></li>
+
+                    <li><a href="contact-s.html" class="nav-link">Contact Us</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="nav-right">
+
+                <!--<a href="contact-s.html" class="btn-connect">Contact Us</a>-->
+
+                <img src="design.png" class="design-asset" alt="Decorative Asset">
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main>
+        <section class="hero-sub">
+            <div class="container">
+                <h1>Our <span class="gold-text">Gallery</span></h1>
+                <p>A transparent look into our welfare activities and community impact.</p>
+            </div>
+        </section>
+
+        <script src="main.js"></script>
+        <section class="section">
+            <div class="container">
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">All Activities</button>
+                    <button class="filter-btn" data-filter="education">Education</button>
+                    <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+                    <button class="filter-btn" data-filter="food">Food Distribution</button>
+                </div>
+
+                <div class="gallery-grid" id="galleryGrid">
+                    <div class="gallery-item" data-category="food">
+                        <div class="gallery-card">
+                            <img src="images/gallery/food-1.jpg" alt="Ration distribution to local families" loading="lazy">
+                            <div class="gallery-caption">
+                                <p>Food Distribution – Haripur</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="education">
+                        <div class="gallery-card">
+                            <img src="images/gallery/edu-1.jpg" alt="Children receiving school supplies" loading="lazy">
+                            <div class="gallery-caption">
+                                <p>Support for Rural Schools</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="galleryModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImg">
+        <div id="modalCaption"></div>
+    </div>
+
+
+    <div id="mainFooter"></div>
+
+
+
+    <script>
+        // Dynamically load header.html into #mainHeader
+        // and footer.html into #mainFooter
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('mainHeader').outerHTML = data;
+                });
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('mainFooter').outerHTML = data;
+                });
+        });
+
+        window.onscroll = function() {
+            const header = document.getElementById('mainHeader');
+            if (header) {
+                if (window.pageYOffset > 50) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
+            }
+        };
+    </script>
+</body>
+</html>
