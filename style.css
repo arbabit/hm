@@ -3,9 +3,9 @@
     color: var(--gold) !important;
     font-weight: bold;
     border-bottom: 2px solid var(--gold);
-    background: rgba(247, 166, 35, 0.10);
-    transition: background 0.2s, color 0.2s;
-    border-radius: 4px 4px 0 0;
+    background: none;
+    transition: color 0.2s, border-bottom 0.2s;
+    border-radius: 0;
 }
 
 /* MASTER STYLESHEET: Haroon Mahmood Welfare Trust */
