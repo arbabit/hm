@@ -21,7 +21,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    padding-top: var(--header-h);
+    /*padding-top: var(--header-h);*/ /* Space for fixed header */
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
@@ -42,7 +42,7 @@ header,
 #mainHeader {
     background: var(--white);
     height: var(--header-h);
-    position: fixed;
+    position: relative;
     top: 0;
     width: 100%;
     z-index: 1000;
@@ -52,7 +52,7 @@ header,
     transition: var(--transition);
 }
 
-#mainHeader {
+/*#mainHeader {
     padding: 25px 0;
     background: transparent;
 }
@@ -62,7 +62,7 @@ header.scrolled,
 .main-header.scrolled {
     height: var(--header-shrink);
     background: rgba(255, 255, 255, 0.98);
-}
+}*/
 
 .main-header {
     height: 100px;
@@ -72,7 +72,7 @@ header.scrolled,
     z-index: 1000;
 }
 
-.main-header.scrolled {
+/*.main-header.scrolled {
     height: 70px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
@@ -80,7 +80,7 @@ header.scrolled,
 #mainHeader.scrolled {
     padding: 10px 0;
     box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
-}
+}*/
 
 .nav-container {
     display: flex;
@@ -151,7 +151,7 @@ header.scrolled .design-asset,
 /* 3. BANNERS & HERO */
 .hero, 
 .hero-sub {
-    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url('design2.png');
+    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url('../design2.jpeg');
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -951,12 +951,3 @@ table.impact-table {
     line-height: 1.4;
     margin: 0;
 }
-
-
-
-
-
-
-
-
-
