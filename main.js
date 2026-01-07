@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Fetch Header and Footer simultaneously
-    const fetchHeader = fetch("./header.html").then(res => res.ok ? res.text() : Promise.reject('Header Missing'));
-    const fetchFooter = fetch("./footer.html").then(res => res.ok ? res.text() : Promise.reject('Footer Missing'));
+    const fetchHeader = fetch("header.html").then(res => res.ok ? res.text() : Promise.reject('Header Missing'));
+    const fetchFooter = fetch("footer.html").then(res => res.ok ? res.text() : Promise.reject('Footer Missing'));
 
     Promise.all([fetchHeader, fetchFooter])
         .then(([headerData, footerData]) => {
@@ -41,3 +41,4 @@ function initMobileMenu() {
         });
     }
 }
+
