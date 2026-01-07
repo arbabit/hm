@@ -10,6 +10,16 @@
 
 /* MASTER STYLESHEET: Haroon Mahmood Welfare Trust */
 :root {
+    @media (max-width: 768px) {
+        .hero-sub {
+            padding-top: 120px !important;
+        }
+    }
+    /* About page font size boost */
+    .about-section, .text-block, .vision-content {
+        font-size: 1.18rem;
+        line-height: 1.85;
+    }
     --gold: #f7a623;
     --blue: #0c618e;
     --dark-charcoal: #111111;
