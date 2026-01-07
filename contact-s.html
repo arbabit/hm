@@ -19,7 +19,7 @@
 
                 <ul class="nav-list">
 
-                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
 
                     <li><a href="about.html" class="nav-link">Our Vision</a></li>
 
@@ -63,46 +63,16 @@
                 <button type="submit" class="btn-main">Submit Request</button>
             </form>
         </div>
-
         <div class="info-side">
             <div class="process-card">
                 <h3 class="gold-text">Official Channels</h3>
                 <p><strong>Email:</strong> info@hmwt.org</p>
                 <p style="margin-top: 15px;"><strong>Location:</strong> Pakistan</p>
                 <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-                <p style="font-size: 0.9rem; opacity: 0.8;">HMWT is a privately funded initiative.</p>
             </div>
         </div>
     </div> 
 </section>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea rows="5" placeholder="Tell us how we can assist you..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-main">Submit Request</button>
-                </form>
-            </div>
-
-            <div class="info-side">
-                <div class="process-card">
-                    <h3 class="gold-text">Our Verification Process</h3>
-                    <p style="margin-bottom: 15px;">All support requests follow our strict three-step review: **Verification, Approval, and Audit**.</p>
-                    
-                    <ul class="values-list">
-                        <li><strong>Email:</strong> info@hmwt.org</li>
-                        <li><strong>Location:</strong> Pakistan</li>
-                        <li><strong>Timing:</strong> Mon - Fri (9 AM - 5 PM)</li>
-                    </ul>
-                    
-                    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-                    
-                    <p style="font-size: 0.9rem; font-style: italic; opacity: 0.8;">
-                        *Operating as a privately funded initiative to maintain complete independence and provide dedicated support.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <div id="mainFooter"></div>
 
@@ -114,6 +84,8 @@
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('mainHeader').outerHTML = data;
+                    // Run setActiveNavLink after header is loaded
+                    if (typeof setActiveNavLink === 'function') setActiveNavLink();
                 });
             fetch('footer.html')
                 .then(response => response.text())

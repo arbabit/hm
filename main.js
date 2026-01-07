@@ -1,12 +1,13 @@
+
 // LOAD HEADER & FOOTER
 document.addEventListener("DOMContentLoaded", () => {
+  // If using fetch to load header, ensure highlighting after injection
   fetch("partials/header.html")
     .then(res => res.text())
     .then(data => {
       document.getElementById("site-header").innerHTML = data;
       initMobileMenu();
-      // Ensure the correct nav link is highlighted after header injection
-      if (typeof setActiveNavLink === 'function') setActiveNavLink();
+      setActiveNavLink();
     });
 
   fetch("./footer.html")
@@ -15,8 +16,29 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("site-footer").innerHTML = data;
     });
   // For pages that include the header directly (not via fetch), run the active-link logic here too
-  if (typeof setActiveNavLink === 'function') setActiveNavLink();
+  setActiveNavLink();
 });
+
+// Highlight the active nav link based on current page
+function setActiveNavLink() {
+  // Get current file name (e.g., index.html)
+  const path = window.location.pathname;
+  const page = path.substring(path.lastIndexOf("/") + 1) || "index.html";
+  // Select all nav links
+  const navLinks = document.querySelectorAll(".nav-link");
+  navLinks.forEach(link => {
+    // Remove any previous active class
+    link.classList.remove("active");
+    const href = link.getAttribute("href");
+    const text = link.textContent.trim().toLowerCase();
+    // Special handling for Contact Us (contact-s.html or contact.html)
+    if ((page === "contact-s.html" || page === "contact.html") && (href === "contact-s.html" || href === "contact.html" || text === "contact us")) {
+      link.classList.add("active");
+    } else if (href === page) {
+      link.classList.add("active");
+    }
+  });
+}
 
 // MOBILE MENU FUNCTION
 function initMobileMenu() {
@@ -31,55 +53,3 @@ function initMobileMenu() {
   });
 }
 
-<<<<<<< HEAD
-// Toggle the "active" class on nav links based on current page filename
-function setActiveNavLink() {
-  const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
-  document.querySelectorAll('.nav-link').forEach(a => {
-    const href = (a.getAttribute('href') || '').split('?')[0].split('#')[0].toLowerCase();
-    a.classList.toggle('active', href === current || (href === '' && current === 'index.html'));
-  });
-}
-// --- GALLERY FUNCTIONALITY ---
-function initGallery() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const items = document.querySelectorAll('.gallery-item');
-    const modal = document.getElementById('galleryModal');
-    const modalImg = document.getElementById('modalImg');
-    const modalCaption = document.getElementById('modalCaption');
-    const closeBtn = document.querySelector('.modal-close');
-
-    // Filtering Logic
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.getAttribute('data-filter');
-
-            items.forEach(item => {
-                if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
-
-    // Lightbox Logic
-    document.querySelectorAll('.gallery-card').forEach(card => {
-        card.onclick = function() {
-            modal.style.display = "block";
-            modalImg.src = this.querySelector('img').src;
-            modalCaption.innerHTML = this.querySelector('.gallery-caption p').innerHTML;
-        }
-    });
-
-    closeBtn.onclick = () => modal.style.display = "none";
-    window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; }
-}
-// Update your existing main.js to call initGallery() after components load
-// Inside your Promise.all().then() block:
-// initGallery();
-=======
->>>>>>> 3e1eae56a35581a76e8ad63b4988936ce6e8ee91
