@@ -1,3 +1,4 @@
+
 /* MASTER STYLESHEET: Haroon Mahmood Welfare Trust */
 :root {
     --gold: #f7a623;
@@ -8,6 +9,7 @@
     --header-h: 110px;
     --header-shrink: 80px;
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --primary-color: #0c618e;
 }
 
 /* 1. RESET & BASE */
@@ -19,7 +21,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    padding-top: var(--header-h); /* Space for fixed header */
+    padding-top: var(--header-h);
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
@@ -31,8 +33,13 @@ body {
     padding: 0 20px;
 }
 
-/* 2. HEADER & NAVIGATION */
-header, #mainHeader {
+.text-center {
+    text-align: center;
+}
+
+/* 2. HEADER: 1-2-1 Centered Ratio */
+header, 
+#mainHeader {
     background: var(--white);
     height: var(--header-h);
     position: fixed;
@@ -45,9 +52,29 @@ header, #mainHeader {
     transition: var(--transition);
 }
 
-header.scrolled, #mainHeader.scrolled {
+header.scrolled, 
+#mainHeader.scrolled, 
+.main-header.scrolled {
     height: var(--header-shrink);
     background: rgba(255, 255, 255, 0.98);
+}
+
+.main-header {
+    height: 100px;
+    transition: all 0.4s ease;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.main-header.scrolled {
+    height: 70px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#mainHeader.scrolled {
+    padding: 10px 0;
+    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
 }
 
 .nav-container {
@@ -60,12 +87,46 @@ header.scrolled, #mainHeader.scrolled {
     padding: 0 40px;
 }
 
-.nav-center { flex: 2; display: flex; justify-content: center; }
+.nav-left, 
+.nav-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
 
-/* Fixed Horizontal Layout */
+.nav-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-right {
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.logo-img, 
+.design-asset {
+    height: 75px;
+    transition: var(--transition);
+}
+
+header.scrolled .logo-img, 
+header.scrolled .design-asset, 
+.main-header.scrolled .logo {
+    height: 55px;
+}
+
+.main-header.scrolled .logo {
+    height: 50px;
+}
+
+#mainHeader.scrolled img {
+    height: 45px;
+}
+
 .nav-list {
-    display: flex !important;
-    flex-direction: row !important;
+    display: flex;
     gap: 35px;
     list-style: none;
 }
@@ -74,40 +135,63 @@ header.scrolled, #mainHeader.scrolled {
     text-decoration: none;
     color: var(--blue);
     font-weight: 600;
+    transition: 0.3s;
 }
 
-.nav-link:hover, .nav-link.active { color: var(--gold); }
+.nav-link:hover, 
+.nav-link.active {
+    color: var(--gold);
+}
 
-/* 3. HERO SECTION */
-.hero {
-    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url('design.png');
+/* 3. BANNERS & HERO */
+.hero, 
+.hero-sub {
+    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url('../images/design.png');
     background-size: cover;
     background-position: center;
     color: #fff;
     text-align: center;
     padding: 120px 0;
-    min-height: 450px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.hero-btns {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between buttons */
-    margin-top: 30px;
+.hero-sub {
+    padding: 80px 0;
+    min-height: 300px;
 }
 
-/* 4. BUTTONS */
-.btn-main, .btn-connect {
+.gold-text {
+    color: var(--gold);
+}
+
+.blue-text {
+    color: var(--blue);
+}
+
+.hero p {
+    margin-bottom: 40px;
+}
+
+/* 4. BUTTONS & GLOW */
+.btn-connect, 
+.btn-main {
     background: var(--gold);
     color: #fff !important;
     padding: 12px 28px;
     border-radius: 50px;
     font-weight: 700;
     text-decoration: none;
+    transition: var(--transition);
     box-shadow: 0 4px 15px rgba(247, 166, 35, 0.2);
+}
+
+.btn-connect:hover, 
+.btn-main:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(247, 166, 35, 0.6);
 }
 
 .btn-outline {
@@ -118,6 +202,7 @@ header.scrolled, #mainHeader.scrolled {
     border-radius: 50px;
     font-weight: 700;
     text-decoration: none;
+    transition: 0.3s;
 }
 
 .btn-outline:hover {
@@ -125,71 +210,593 @@ header.scrolled, #mainHeader.scrolled {
     color: var(--blue) !important;
 }
 
-/* 5. IMPACT & PROCESS GRID */
-.impact-grid, .process-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+/* 5. CONTENT GRID & CARDS */
+.section {
+    padding: 80px 0;
+    clear: both;
+}
+
+.bg-light {
+    background: var(--bg-light);
+}
+
+.impact-bar {
+    background: #fff;
+    padding: 60px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Update in Section 5 */
+/* Desktop: Perfect 3-column row */
+.impact-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    max-width: 1200px;
+    margin: 0 auto;
     text-align: center;
 }
 
-.impact-number {
-    font-size: 3.5rem;
+.impact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.impact-number,
+.impact-item h3 {
+    font-size: 2.8rem;
     color: var(--blue);
+    margin-bottom: 5px;
     font-weight: 700;
+}
+
+.impact-item p,
+.impact-label {
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.impact-number {
+    font-size: 48px;
+    color: #003366;
+}
+
+.impact-label {
+    color: #f39c12;
+    font-size: 14px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.prog-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    padding: 20px 0;
 }
 
 .process-card {
     background: #fff;
     padding: 40px;
-    border-top: 6px solid var(--gold);
+    border-radius: 0;
+    position: relative;
     box-shadow: 12px 12px 0px rgba(0, 51, 102, 0.05);
+    border-top: 6px solid var(--gold);
+    transition: all 0.4s ease;
+    cursor: pointer;
 }
 
-/* 6. FOOTER */
-.main-footer {
-    background: #2c2c2c;
-    color: #ffffff;
-    padding: 60px 0 20px;
-    border-top: 4px solid var(--gold);
+.process-card:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: 18px 18px 0px var(--gold);
+    border-top-color: var(--primary-color);
 }
 
-.footer-content {
-    display: grid !important;
-    grid-template-columns: 2fr 1fr 1.5fr !important;
-    gap: 40px;
+.process-card h3 {
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* PREMIUM PROGRAM GRID */
+.program-metrics-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.premium-card {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 0;
+    border-left: 5px solid #D4AF37;
+    box-shadow: 10px 10px 30px rgba(0, 51, 102, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.premium-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 15px 15px 40px rgba(212, 175, 55, 0.15);
+    border-left-color: #003366;
+}
+
+.full-width-card {
+    grid-column: span 2;
+    background: #003366;
+    color: white;
+}
+
+.metric-tag {
+    margin-top: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #003366;
+    background: #f8f9fa;
+    padding: 8px 15px;
+    align-self: flex-start;
+    border: 1px solid #eee;
+}
+
+.ben-badge {
+    margin-top: 25px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    background: #f8f9fa;
+    padding: 8px 12px;
+    display: inline-block;
+    border-left: 3px solid var(--gold);
+}
+
+/* 6. TABLES & FORMS */
+.impact-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.impact-table th {
+    background: var(--blue);
+    color: #fff;
+    padding: 20px;
     text-align: left;
 }
 
-/* 7. MOBILE RESPONSIVENESS REPAIR BLOCK */
-@media (max-width: 768px) {
-    body { padding-top: 180px; } /* Prevent header covering hero text */
+.impact-table td {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
 
-    header, #mainHeader { height: auto !important; padding: 15px 0; }
+/* REGIONAL IMPACT TABLE: FINAL ALIGNMENT */
+.impact-table, 
+table.impact-table {
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 40px auto !important;
+    border-collapse: collapse !important;
+    text-align: center !important;
+}
 
-    .nav-container { flex-direction: column; gap: 15px; }
+.impact-table th {
+    background: var(--blue) !important;
+    color: #ffffff !important;
+    padding: 18px !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+    border: none !important;
+}
 
-    /* Fixes vertical list leak by hiding it until toggled */
-    .nav-list { display: none !important; }
+.impact-table td {
+    padding: 20px !important;
+    text-align: center !important;
+    border-bottom: 1px solid #eee !important;
+    color: #444 !important;
+    vertical-align: middle !important;
+}
 
-    /* Fixes Hero Button collision */
-    .hero-btns {
-        flex-direction: column !important;
-        gap: 20px !important;
-        align-items: center;
+.impact-table td:first-child {
+    min-width: 180px !important;
+    font-weight: 700 !important;
+    color: var(--blue) !important;
+}
+
+.hmwt-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--blue);
+}
+
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    width: 100%;
+}
+
+/* 7. UNIFIED MASTER FOOTER */
+.main-footer {
+    background: #2c2c2c;
+    color: #ffffff;
+    padding: 80px 0 20px;
+    margin-top: 50px;
+    border-top: 4px solid #D4AF37;
+    clear: both;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr;
+    gap: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-logo {
+    height: 60px;
+    filter: brightness(0) invert(1);
+    margin-bottom: 20px;
+}
+
+.footer-tagline {
+    margin-top: 15px;
+    font-style: italic;
+    color: #f1c40f;
+    border-left: 2px solid #f1c40f;
+    padding-left: 15px;
+    font-size: 0.95rem;
+}
+
+.gov-labels span {
+    background: rgba(241, 196, 15, 0.1);
+    color: #f1c40f;
+    display: inline-block;
+    padding: 6px 18px;
+    line-height: 1.2;
+    white-space: nowrap;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 1px solid #f1c40f;
+    margin-bottom: 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+/* 8. LISTS & ACHIEVEMENTS */
+.key-achievements-list,
+.achievement-list {
+    list-style: none;
+    padding: 0;
+}
+
+.key-achievements-list li,
+.achievement-list li {
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.achievement-list {
+    margin: 20px 0;
+}
+
+.achievement-list li {
+    padding-left: 40px;
+    margin-bottom: 18px;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* ACHIEVEMENTS SECTION WRAPPER */
+.achievements-section {
+    padding: 80px 0;
+    background: #f9f9f9;
+    overflow: hidden;
+}
+
+.achievement-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 500px;
+}
+
+.achievement-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 700px;
+}
+
+.achievement-list {
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 2.2;
+}
+
+/* THE TRANSPARENT WATERMARK DESIGN */
+.watermark-design {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 450px;
+    opacity: 0.12;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.watermark-design img {
+    width: 100%;
+    height: auto;
+}
+
+/* CUSTOM TICK STYLES */
+.achievement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.tick-icon {
+    min-width: 24px;
+    height: 24px;
+    background-color: var(--blue);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
+}
+
+.tick-icon::after {
+    content: '';
+    width: 6px;
+    height: 10px;
+    border: solid var(--gold);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 4px;
+}
+
+.achievement-item p {
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 9. RESPONSIVENESS - UNIFIED ARCHITECTURAL BLOCK */
+
+/* TABLET & SMALL DESKTOP */
+@media (max-width: 992px) {
+    .grid-2, 
+    .container[style*="display:grid"] {
+        grid-template-columns: 1fr !important;
+        text-align: center;
     }
 
-    .btn-main, .btn-outline { width: 100%; max-width: 280px; }
+    .commitment-image {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    }
 
-    /* Fixes Footer stacking on mobile */
-    .footer-content {
-        grid-template-columns: 1fr !important;
+    .side-design {
+        max-width: 250px;
+    }
+}
+
+/* MOBILE REPAIR (768px) - CONSOLIDATED */
+@media (max-width: 768px) {
+    /* 1. HEADER: Fixed Height & Solid Background */
+    header, #mainHeader {
+        height: auto !important; 
+        min-height: 180px !important; /* Fits Logo + Nav + Button */
+        padding: 15px 0 !important;
+        background: #ffffff !important; /* Prevents transparency */
         display: flex !important;
         flex-direction: column !important;
+        justify-content: center !important;
+        position: fixed !important;
+        top: 0 !important;
+        z-index: 2000 !important;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.1) !important;
+    }
+
+    /* Prevents hero text from hiding under the fixed header */
+    body {
+        padding-top: 180px !important;
+    }
+
+    .nav-container {
+        flex-direction: column !important;
+        padding: 10px;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .nav-list {
+        margin: 10px 0 !important;
+        gap: 15px;
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    /* 2. NAVIGATION: Ensuring "Connect With Us" is visible */
+    .nav-right {
+        width: 100%;
+        display: flex !important;
+        justify-content: center !important;
+        gap: 15px;
+        margin-top: 5px;
+    }
+
+    .logo-img {
+        height: 55px !important;
+        width: auto;
+        margin-bottom: 5px;
+    }
+
+    .nav-link {
+        font-size: 13px !important;
+    }
+
+    /* 3. IMPACT GRID: The 2-over-1 Symmetrical Alignment */
+    .impact-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; /* Row 1: 2 items */
+        gap: 30px 20px !important;
+        padding: 40px 15px !important;
+    }
+
+    /* FORCE 3RD ITEM (1200+ Families) TO CENTER */
+    .impact-item:nth-child(3) {
+        grid-column: span 2 !important; 
         text-align: center !important;
     }
 
-    .impact-grid { grid-template-columns: 1fr 1fr; }
-    .impact-item:last-child { grid-column: span 2; }
-    .process-grid { grid-template-columns: 1fr; }
+    .impact-number {
+        font-size: 32px !important;
+    }
+
+    .impact-label {
+        font-size: 11px !important;
+    }
+
+    /* 4. PROCESS GRID & CARDS */
+    .process-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        margin-top: 40px !important;
+    }
+
+    /* 5. FOOTER: Centered Content & Badges */
+    .footer-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .gov-labels {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 12px !important;
+        margin-top: 25px !important;
+    }
+
+    .design-asset {
+        display: none !important;
+    }
+}
+
+/* SMALL MOBILE (600px) */
+@media (max-width: 600px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero h1 {
+        font-size: 26px !important;
+    }
+
+    .btn-main, .btn-outline {
+        width: 90% !important;
+        max-width: 280px !important;
+    }
+}
+
+/* GLOBAL STATE FIXES */
+.nav-link.active { color: var(--gold); }
+
+@media (max-width: 768px) {
+    /* 1. Fixes button overlap */
+    .hero-btns {
+        display: flex !important;
+        flex-direction: column !important; 
+        gap: 20px !important; 
+        align-items: center !important;
+        margin-top: 30px !important;
+    }
+
+    .btn-main, .btn-outline {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 !important;
+    }
+
+    /* 2. Fixes vertical navigation list leak */
+    .nav-list {
+        display: none !important;
+    }
+
+    /* 3. Centers the 3rd impact item */
+    .impact-item:nth-child(3) {
+        grid-column: span 2 !important;
+        text-align: center !important;
+    }
 }
