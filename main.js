@@ -26,3 +26,4 @@ function initMobileMenu() {
       navLinks.style.display === "flex" ? "none" : "flex";
   });
 }
+
