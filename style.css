@@ -151,7 +151,7 @@ header.scrolled .design-asset,
 /* 3. BANNERS & HERO */
 .hero, 
 .hero-sub {
-    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url('../images/design.png');
+    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url('../design2.jpeg');
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -286,12 +286,25 @@ header.scrolled .design-asset,
 }
 
 .prog-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* This removes the "odd" empty space by centering the last row */
     gap: 40px;
     padding: 20px 0;
 }
 
+/* THE PARENT CONTAINER: Add this class to the div holding the cards */
+.process-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centers cards to avoid "odd" empty spaces */
+    gap: 30px;
+    padding: 40px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* THE CARD STYLE: Updated with your existing code + alignment fixes */
 .process-card {
     background: #fff;
     padding: 40px;
@@ -301,6 +314,13 @@ header.scrolled .design-asset,
     border-top: 6px solid var(--gold);
     transition: all 0.4s ease;
     cursor: pointer;
+    
+    /* Flex sizing ensures 3 cards sit in a row on desktop */
+    flex: 1 1 350px; 
+    max-width: 380px; 
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Keeps text professional within the card */
 }
 
 .process-card:hover {
@@ -738,10 +758,11 @@ table.impact-table {
     }
 
     .process-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 20px !important;
-    }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+    gap: 30px;
+    margin-top: 40px;
+}
 
     .watermark-design {
         width: 250px;
@@ -817,7 +838,7 @@ table.impact-table {
 .hero-sub h1 { font-size: 24px !important; }
 .section .container p, 
 .section .container div[style*="color: orange"] {
-    font-size: 11px !important;
+    /*font-size: 11px !important;*/
     letter-spacing: 0.5px !important;
     line-height: 1.4 !important;
 }
@@ -856,4 +877,77 @@ table.impact-table {
 }
 .process-grid {
     margin-top: 80px !important; /* Moves the Verification/Approval boxes down */
+}
+/* FOOTER LINK COLOR FIX */
+.main-footer a,
+.main-footer a:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.main-footer a:hover {
+    color: #f1c40f; /* gold on hover */
+    text-decoration: underline;
+}
+/* MOBILE FIX: Add to the very bottom of your stylesheet */
+@media (max-width: 768px) {
+    /* 1. Make the container fill the screen width */
+    .process-flex-container, 
+    .prog-cards {
+        display: block !important; /* Stack cards vertically */
+        padding: 0 15px !important;
+        width: 100% !important;
+    }
+
+    /* 2. Fix the card compression */
+    .process-card, 
+    .premium-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 20px !important;
+        /* Reduce high padding that squishes text */
+        padding: 25px 20px !important; 
+        box-sizing: border-box !important;
+    }
+
+    /* 3. Ensure headings and text use the extra space */
+    .process-card h3, 
+    .premium-card h3 {
+        font-size: 1.4rem !important;
+    }
+    
+    .process-card p, 
+    .premium-card p {
+        font-size: 16px !important; /* Makes it readable on small screens */
+        line-height: 1.5 !important;
+    }
+}
+/* Fix for mobile: stack them back into 1 column on small screens */
+@media (max-width: 768px) {
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.footer-contact h4 {
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start; /* Aligns icon with the top of the text for long addresses */
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.contact-item .icon {
+    font-size: 1.2rem;
+    min-width: 25px; /* Ensures all icons take up the same horizontal space */
+}
+
+.contact-item a, .contact-item p {
+    color: #fff;
+    text-decoration: none;
+    line-height: 1.4;
+    margin: 0;
 }
