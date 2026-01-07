@@ -19,7 +19,41 @@
 
 <body>
 
+
+
     <header id="mainHeader">
+
+        <div class="nav-container">
+
+            <div class="nav-left">
+
+                <a href="index.html"><img src="logo.png" class="logo-img" alt="Haroon Mahmood Welfare Trust Logo"></a>
+
+            </div>
+
+            <div class="nav-center">
+
+                <ul class="nav-list">
+
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+
+                    <li><a href="about.html" class="nav-link">Our Vision</a></li>
+
+                    <li><a href="programmes.html" class="nav-link">Our Programmes</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="nav-right">
+
+                <a href="contact-s.html" class="btn-connect">Connect With Us</a>
+
+                <img src="design.png" class="design-asset" alt="Decorative Asset">
+
+            </div>
+
+        </div>
 
     </header>
 
@@ -47,21 +81,23 @@
 
 
 
-<section class="impact-section">
-    <div class="impact-item">
-    <h2 class="impact-number">15k+</h2>
-    <p class="impact-label">Meals Provided</p>
-</div>
-<div class="impact-item">
-    <h2 class="impact-number">500+</h2>
-    <p class="impact-label">Grants Issued</p>
-</div>
-<div class="impact-item">
-    <h2 class="impact-number">1200+</h2>
-    <p class="impact-label">Families Supported</p>
-</div>
+    <section class="impact-section">
+    <div class="container impact-grid">
+        <div class="impact-item">
+            <h2 class="impact-number">15k+</h2>
+            <p class="impact-label">Meals Provided</p>
+        </div>
+        <div class="impact-item">
+            <h2 class="impact-number">500+</h2>
+            <p class="impact-label">Grants Issued</p>
+        </div>
+        <div class="impact-item">
+            <h2 class="impact-number">1200+</h2>
+            <p class="impact-label">Families Supported</p>
+        </div>
     </div>
 </section>
+
 
 
     <section class="section bg-light">
@@ -107,14 +143,48 @@
             </div>
 
         </div>
+        
+    </section>
 
-        </section> 
+    <script>
 
-    <div id="main-footer"></div> 
-    
-    <script src="main.js"></script>
+        window.onscroll = function() {
+
+            const header = document.getElementById('mainHeader');
+
+            if (window.pageYOffset > 50) header.classList.add('scrolled');
+
+            else header.classList.remove('scrolled');
+
+        };
+
+<div id="main-footer"></div>
+
+    <script src="./main.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
