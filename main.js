@@ -1,44 +1,28 @@
+// LOAD HEADER & FOOTER
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Fetch Header and Footer simultaneously
-    const fetchHeader = fetch("header.html").then(res => res.ok ? res.text() : Promise.reject('Header Missing'));
-    const fetchFooter = fetch("footer.html").then(res => res.ok ? res.text() : Promise.reject('Footer Missing'));
+  fetch("partials/header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("site-header").innerHTML = data;
+      initMobileMenu();
+    });
 
-    Promise.all([fetchHeader, fetchFooter])
-        .then(([headerData, footerData]) => {
-            // 2. Inject Header
-            const headerElem = document.getElementById("mainHeader");
-            if (headerElem) {
-                headerElem.innerHTML = headerData;
-                initMobileMenu(); 
-                initScrollEffect(); 
-            }
-
-            // 3. Inject Footer
-            const footerElem = document.getElementById("main-footer");
-            if (footerElem) {
-                footerElem.innerHTML = footerData;
-            }
-        })
-        .catch(err => console.error("Component Load Error:", err));
+  fetch("partials/footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("site-footer").innerHTML = data;
+    });
 });
 
-function initScrollEffect() {
-    window.onscroll = () => {
-        const header = document.getElementById('mainHeader');
-        if (header) {
-            if (window.pageYOffset > 50) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        }
-    };
-}
-
+// MOBILE MENU FUNCTION
 function initMobileMenu() {
-    const mobileMenu = document.getElementById("mobile-menu");
-    const navLinks = document.getElementById("nav-links");
-    if (mobileMenu && navLinks) {
-        mobileMenu.addEventListener("click", () => {
-            navLinks.style.display = navLinks.style.display === "flex" ? "none" : "flex";
-        });
-    }
-}
+  const mobileMenu = document.getElementById("mobile-menu");
+  const navLinks = document.getElementById("nav-links");
 
+  if (!mobileMenu || !navLinks) return;
+
+  mobileMenu.addEventListener("click", () => {
+    navLinks.style.display =
+      navLinks.style.display === "flex" ? "none" : "flex";
+  });
+}
