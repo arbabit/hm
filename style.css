@@ -52,6 +52,11 @@ header,
     transition: var(--transition);
 }
 
+#mainHeader {
+    padding: 25px 0;
+    background: transparent;
+}
+
 header.scrolled, 
 #mainHeader.scrolled, 
 .main-header.scrolled {
@@ -227,13 +232,14 @@ header.scrolled .design-asset,
 }
 
 /* Update in Section 5 */
-/* Desktop: Perfect 3-column row */
 .impact-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) !important; /* Perfect 3-way split */
     text-align: center;
+    gap: 40px;
+    padding: 60px 0;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .impact-item {
@@ -626,9 +632,7 @@ table.impact-table {
     margin: 0;
 }
 
-/* 9. RESPONSIVENESS - UNIFIED ARCHITECTURAL BLOCK */
-
-/* TABLET & SMALL DESKTOP */
+/* 9. RESPONSIVENESS */
 @media (max-width: 992px) {
     .grid-2, 
     .container[style*="display:grid"] {
@@ -647,26 +651,11 @@ table.impact-table {
     }
 }
 
-/* MOBILE REPAIR (768px) - CONSOLIDATED */
 @media (max-width: 768px) {
-    /* 1. HEADER: Fixed Height & Solid Background */
-    header, #mainHeader {
-        height: auto !important; 
-        min-height: 180px !important; /* Fits Logo + Nav + Button */
-        padding: 15px 0 !important;
-        background: #ffffff !important; /* Prevents transparency */
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        position: fixed !important;
-        top: 0 !important;
-        z-index: 2000 !important;
-        box-shadow: 0 2px 15px rgba(0,0,0,0.1) !important;
-    }
-
-    /* Prevents hero text from hiding under the fixed header */
-    body {
-        padding-top: 180px !important;
+    header,
+    #mainHeader {
+        height: auto !important;
+        padding: 10px 0 !important;
     }
 
     .nav-container {
@@ -677,126 +666,194 @@ table.impact-table {
     }
 
     .nav-list {
-        margin: 10px 0 !important;
+        margin: 15px 0;
         gap: 15px;
-        display: flex !important;
         flex-direction: row;
         justify-content: center;
     }
 
-    /* 2. NAVIGATION: Ensuring "Connect With Us" is visible */
     .nav-right {
         width: 100%;
-        display: flex !important;
-        justify-content: center !important;
+        justify-content: center;
         gap: 15px;
-        margin-top: 5px;
     }
 
     .logo-img {
-        height: 55px !important;
+        height: 50px !important;
         width: auto;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
 
     .nav-link {
-        font-size: 13px !important;
+        font-size: 14px;
     }
 
-    /* 3. IMPACT GRID: The 2-over-1 Symmetrical Alignment */
-    .impact-grid {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important; /* Row 1: 2 items */
-        gap: 30px 20px !important;
-        padding: 40px 15px !important;
-    }
-
-    /* FORCE 3RD ITEM (1200+ Families) TO CENTER */
-    .impact-item:nth-child(3) {
-        grid-column: span 2 !important; 
-        text-align: center !important;
-    }
-
-    .impact-number {
-        font-size: 32px !important;
-    }
-
-    .impact-label {
-        font-size: 11px !important;
-    }
-
-    /* 4. PROCESS GRID & CARDS */
-    .process-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 20px !important;
-        margin-top: 40px !important;
-    }
-
-    /* 5. FOOTER: Centered Content & Badges */
-    .footer-content {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-    }
-
-    .gov-labels {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 12px !important;
-        margin-top: 25px !important;
+    .btn-connect {
+        font-size: 0.8rem;
+        padding: 8px 15px;
     }
 
     .design-asset {
         display: none !important;
     }
+
+    .hero-sub .btn-container,
+    .hero-btns,
+    .hero-sub .container, 
+    div[style*="display: flex"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+        align-items: center !important;
+    }
+
+    .btn-main, 
+    .btn-outline,
+    .btn-connect, 
+    .btn-primary, 
+    .btn-secondary,
+    a[style*="border-radius"] {
+        width: 90% !important;
+        max-width: 300px !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+
+    .impact-grid,
+    .section .container[style*="grid-template-columns"] {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 20px !important;
+        padding: 40px 15px !important;
+    }
+
+    .impact-number,
+    .stat-number,
+    h2[style*="font-size"] {
+        font-size: 28px !important;
+    }
+
+    .impact-label,
+    .stat-label {
+        font-size: 11px !important;
+    }
+
+    .process-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+
+    .watermark-design {
+        width: 250px;
+        right: -50px;
+        opacity: 0.08;
+    }
+
+    .achievement-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .achievement-list li {
+        text-align: left;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+    }
+
+    .footer-brand, 
+    .footer-links, 
+    .footer-info {
+        margin-bottom: 30px;
+    }
+
+    .gov-labels, 
+    .gov-pills {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
 
-/* SMALL MOBILE (600px) */
 @media (max-width: 600px) {
+    .impact-table {
+        display: block;
+        overflow-x: auto;
+        font-size: 14px;
+    }
+
     .section-title {
         font-size: 1.8rem;
     }
-    
-    .hero h1 {
-        font-size: 26px !important;
+
+    .impact-stats, 
+    .stats-grid, 
+    [style*="display: flex"] { 
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 20px !important;
+        padding: 20px !important;
+        text-align: center;
     }
 
-    .btn-main, .btn-outline {
-        width: 90% !important;
-        max-width: 280px !important;
+    .impact-stats h2, 
+    .stat-number, 
+    h1[style*="15k"] {
+        font-size: 24px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .impact-stats p, 
+    .stat-label {
+        font-size: 12px !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 }
 
-/* GLOBAL STATE FIXES */
+/* SPECIFIC FIXES */
 .nav-link.active { color: var(--gold); }
-
+.hero-sub h1 { font-size: 24px !important; }
+.section .container p, 
+.section .container div[style*="color: orange"] {
+    font-size: 11px !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.4 !important;
+}
 @media (max-width: 768px) {
-    /* 1. Fixes button overlap */
-    .hero-btns {
-        display: flex !important;
-        flex-direction: column !important; 
-        gap: 20px !important; 
-        align-items: center !important;
-        margin-top: 30px !important;
+    /* Shrinks the header height to keep more content visible */
+    header, #mainHeader {
+        height: 80px !important;
+        padding: 5px 0 !important;
     }
 
-    .btn-main, .btn-outline {
-        width: 100% !important;
-        max-width: 280px !important;
-        margin: 0 !important;
+    /* Centers the logo and makes it smaller */
+    .logo-img {
+        height: 40px !important;
+        margin-bottom: 5px;
     }
 
-    /* 2. Fixes vertical navigation list leak */
-    .nav-list {
+    /* Hides the top-right button on mobile to stop overlapping */
+    .nav-right {
         display: none !important;
     }
 
-    /* 3. Centers the 3rd impact item */
-    .impact-item:nth-child(3) {
-        grid-column: span 2 !important;
-        text-align: center !important;
+    /* Centers the navigation links in a single, neat line */
+    .nav-container {
+        flex-direction: column !important;
+        justify-content: center !important;
     }
+
+    .nav-list {
+        gap: 15px !important;
+        margin: 0 !important;
+    }
+
+    .nav-link {
+        font-size: 13px !important;
+    }
+}
+.process-grid {
+    margin-top: 80px !important; /* Moves the Verification/Approval boxes down */
 }
