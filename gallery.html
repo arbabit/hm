@@ -161,6 +161,18 @@
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('mainHeader').outerHTML = data;
+                    // Run setActiveNavLink after header is injected
+                    if (typeof setActiveNavLink === 'function') {
+                        setActiveNavLink();
+                    } else {
+                        // If main.js is not loaded yet, load it and then run
+                        var script = document.createElement('script');
+                        script.src = 'main.js';
+                        script.onload = function() {
+                            if (typeof setActiveNavLink === 'function') setActiveNavLink();
+                        };
+                        document.body.appendChild(script);
+                    }
                 });
             fetch('footer.html')
                 .then(response => response.text())
