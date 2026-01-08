@@ -44,14 +44,24 @@ function setActiveNavLink() {
 
 // MOBILE MENU FUNCTION
 function initMobileMenu() {
-  const mobileMenu = document.getElementById("mobile-menu");
-  const navLinks = document.getElementById("nav-links");
+  const hamburger = document.querySelector('.hamburger-menu');
+  const navList = document.querySelector('.nav-list');
+  if (!hamburger || !navList) return;
 
-  if (!mobileMenu || !navLinks) return;
+  hamburger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isOpen = navList.classList.toggle('mobile-active');
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
 
-  mobileMenu.addEventListener("click", () => {
-    navLinks.style.display =
-      navLinks.style.display === "flex" ? "none" : "flex";
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!navList.contains(e.target) && !hamburger.contains(e.target)) {
+      if (navList.classList.contains('mobile-active')) {
+        navList.classList.remove('mobile-active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    }
   });
 }
 
