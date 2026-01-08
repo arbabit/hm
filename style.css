@@ -1,11 +1,62 @@
+/* Mission Section Styling */
+.mission-section {
+    background: #f9f9f9;
+    padding: 80px 0;
+    text-align: left;
+    border-radius: 12px;
+    margin: 0 auto 40px auto;
+    max-width: 700px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.mission-title {
+    color: #e89c2d;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.mission-desc {
+    font-size: 1.15rem;
+    color: #333;
+    margin-bottom: 28px;
+    text-align: left;
+}
+.mission-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 650px;
+    text-align: left;
+}
+.mission-list li {
+    background: #fff;
+    margin: 18px 0;
+    padding: 18px 28px;
+    border-radius: 8px;
+    font-size: 1.08rem;
+    color: #222;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    text-align: left;
+    position: relative;
+    padding-left: 38px;
+}
+.mission-list li:before {
+    content: '\2022';
+    color: #e89c2d;
+    font-size: 1.5em;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
 /* Highlight the active nav link */
 .nav-link.active {
-    color: var(--gold) !important;
+    color: var(--gold);
     font-weight: bold;
-    border-bottom: 2px solid var(--gold);
-    background: none;
-    transition: color 0.2s, border-bottom 0.2s;
-    border-radius: 0;
+    transition: color 0.2s;
 }
 
 /* MASTER STYLESHEET: Haroon Mahmood Welfare Trust */
@@ -38,12 +89,25 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
 body {
     font-family: 'Inter', sans-serif;
     /*padding-top: var(--header-h);*/ /* Space for fixed header */
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main, .main-content {
+    flex: 1 0 auto;
+}
+.main-footer {
+    flex-shrink: 0;
 }
 
 .container {
@@ -162,12 +226,22 @@ header.scrolled .design-asset,
     transition: 0.3s;
 }
 
-.nav-link:hover, 
-.nav-link.active {
+.nav-link:hover {
     color: var(--gold);
 }
 
+.nav-link.active {
+    color: #f7a623 !important;
+    font-weight: bold;
+    border-bottom: 2.5px solid #f7a623;
+    background: none;
+    transition: color 0.2s, border-bottom 0.2s;
+    border-radius: 0;
+}
+
 /* 3. BANNERS & HERO */
+
+.hero, 
 
 .hero, 
 .hero-sub {
@@ -176,18 +250,12 @@ header.scrolled .design-asset,
     background-position: center;
     color: #fff;
     text-align: center;
-    padding: 120px 0;
+    padding: calc(var(--header-h) + 40px) 0 120px 0;
     min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
-.hero-sub {
-    padding: 80px 0;
-    min-height: 300px;
-}
-
 .gold-text {
     color: var(--gold);
 }
