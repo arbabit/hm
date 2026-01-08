@@ -32,7 +32,7 @@
 
             <h1>Servicing a <span class="gold-text">Better Tomorrow</span></h1>
 
-            <p>Utilizing our own private resources to ensure that every individual we serve is treated with the highest level of care, professional support, and complete dignity.</p>
+            <p>Serving humanity with compassion, responsibility, and dignity through meaningful, community-focused welfare initiatives.</p>
 
             <div class="hero-btns">
 
@@ -106,6 +106,7 @@
 
 
 
+
     <div id="mainFooter"></div>
 
 
@@ -115,17 +116,11 @@
 
     <script>
         // Dynamically load header.html into #mainHeader
-        // and footer.html into #mainFooter
         document.addEventListener('DOMContentLoaded', function() {
             fetch('header.html')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('mainHeader').outerHTML = data;
-                });
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('mainFooter').outerHTML = data;
                 });
         });
 
