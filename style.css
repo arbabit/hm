@@ -1,3 +1,10 @@
+/* Reserve space for dynamic header/footer to prevent layout shift */
+#mainHeader {
+    min-height: 90px; /* Adjust to match your header's height */
+}
+#mainFooter {
+    /* min-height removed to avoid extra white space on pages with static footer */
+}
 /* Mission Section Styling */
 .mission-section {
     background: #f9f9f9;
@@ -594,7 +601,7 @@ table.impact-table {
     grid-template-columns: 2fr 1fr 1.5fr;
     gap: 60px;
     padding-bottom: 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    /* border-bottom removed to fix white line above copyright */
 }
 
 .footer-logo {
@@ -630,7 +637,7 @@ table.impact-table {
     text-align: center;
     padding-top: 10px;
     font-size: 0.9rem;
-    opacity: 0.6;
+    opacity: 1;
     background: #2c2c2c;
     color: #ccc;
     margin-bottom: 0 !important;
