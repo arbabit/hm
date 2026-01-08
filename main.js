@@ -51,6 +51,7 @@ function initMobileMenu() {
   hamburger.addEventListener('click', function(e) {
     e.stopPropagation();
     const isOpen = navList.classList.toggle('mobile-active');
+    hamburger.classList.toggle('active', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 
@@ -59,6 +60,7 @@ function initMobileMenu() {
     if (!navList.contains(e.target) && !hamburger.contains(e.target)) {
       if (navList.classList.contains('mobile-active')) {
         navList.classList.remove('mobile-active');
+        hamburger.classList.remove('active');
         hamburger.setAttribute('aria-expanded', 'false');
       }
     }

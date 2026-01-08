@@ -13,7 +13,7 @@
 }
 .hamburger-menu span {
     display: block;
-    width: 28px;
+    width: 34px;
     height: 4px;
     background: #f7a623;
     margin: 4px 0;
@@ -31,26 +31,39 @@
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
+    .hamburger-menu.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
     .nav-list {
         display: none !important;
         flex-direction: column;
         background: #fff;
         position: absolute;
         top: 100%;
-        left: 0;
-        width: 100vw;
+        right: 0;
+        left: auto;
+        width: 80vw;
+        max-width: 320px;
         box-shadow: 0 4px 24px rgba(0,0,0,0.08);
         z-index: 2000;
         padding: 16px 0;
         margin: 0;
+        align-items: flex-end;
     }
     .nav-list.mobile-active {
         display: flex !important;
+        align-items: flex-end;
     }
     .nav-link {
         padding: 14px 24px;
         font-size: 1.1rem;
-        text-align: left;
+        text-align: right;
     }
 }
 /* Reserve space for dynamic header/footer to prevent layout shift */
@@ -756,15 +769,15 @@ table.impact-table {
 }
 
 @media (max-width: 480px) {
-    .nav-list { gap: 8px; }
-    .nav-link { font-size: 0.9rem; }
-    .logo-img { height: 44px; }
-}
-
-/* 8. LISTS & ACHIEVEMENTS */
-.key-achievements-list,
-.achievement-list {
-    list-style: none;
+    .hamburger-menu.active span:nth-child(1) {
+        transform: translateY(12px) rotate(45deg);
+    }
+    .hamburger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.active span:nth-child(3) {
+        transform: translateY(-12px) rotate(-45deg);
+    }
     padding: 0;
 }
 
