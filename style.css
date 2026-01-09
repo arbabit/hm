@@ -676,6 +676,8 @@ table.impact-table {
     height: 60px;
     filter: brightness(0) invert(1);
     margin-bottom: 20px;
+    width: 300px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .footer-tagline {
@@ -1352,6 +1354,58 @@ table.impact-table {
 @media (max-width: 768px) {
     .gallery-grid {
         grid-template-columns: 1fr; /* Stack on mobile */
+    }
+}
+
+/* Adjust footer logo and contact information for mobile view */
+@media (max-width: 768px) {
+    .footer-logo {
+        width: 160px; /* Slightly larger size for better visibility */
+        height: auto;
+    }
+
+    .footer-contact {
+        text-align: center;
+        padding: 0 15px; /* Adjust padding for better alignment */
+    }
+
+    .footer-contact .contact-item {
+        display: flex;
+        align-items: center; /* Align icon and text vertically */
+        justify-content: center; /* Center items horizontally */
+        gap: 8px; /* Reduce gap between icon and text */
+        margin-bottom: 10px; /* Add spacing between contact items */
+    }
+
+    .footer-contact p {
+        margin: 0; /* Remove extra margin */
+        word-wrap: break-word; /* Ensure long text wraps properly */
+    }
+}
+
+/* Fine-tune alignment of location icon in footer contact */
+@media (max-width: 768px) {
+    .footer-contact .contact-item {
+        gap: 6px; /* Slightly reduce gap for better alignment */
+    }
+
+    .footer-contact .contact-item .icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem; /* Adjust icon size for better balance */
+    }
+}
+
+/* Align location icon below mail icon for mobile view */
+@media (max-width: 768px) {
+    .footer-contact .contact-item {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align all items */
+    }
+
+    .footer-contact .contact-item:last-child {
+        margin-top: 10px; /* Add spacing above the location item */
     }
 }
 
