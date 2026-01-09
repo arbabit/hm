@@ -345,6 +345,18 @@ header.scrolled .design-asset,
     margin-bottom: 30px;
 }
 
+/* Adjust font size for banner headings */
+.hero-sub h1 {
+    font-size: 3.5rem; /* Slightly larger size for banner headings */
+    font-weight: bold;
+    text-align: center; /* Ensure proper alignment */
+    line-height: 1.4; /* Maintain spacing */
+}
+
+.hero-sub .gold-text {
+    color: #e89c2d; /* Highlighted text remains prominent */
+}
+
 /* 4. BUTTONS & GLOW */
 .btn-connect, 
 .btn-main {
@@ -380,6 +392,30 @@ header.scrolled .design-asset,
     color: var(--blue) !important;
 }
 
+/* Adjust button font size and width for homepage */
+.homepage-buttons {
+    font-size: 1rem; /* Smaller font size for buttons */
+    text-align: center;
+}
+
+.homepage-buttons .btn {
+    width: 80%; /* Adjust button width for mobile view */
+    max-width: 300px; /* Limit maximum width */
+    margin: 10px auto; /* Center buttons with spacing */
+    padding: 10px 20px; /* Adjust padding for better appearance */
+}
+
+/* Further reduce button size for mobile view on homepage */
+@media (max-width: 768px) {
+    .homepage-buttons .btn {
+        width: auto; /* Fit buttons to content */
+        padding: 6px 12px; /* Further reduce padding */
+        font-size: 0.8rem; /* Smaller font size */
+        display: inline-block; /* Ensure buttons appear in one line */
+        margin: 4px; /* Add minimal spacing between buttons */
+    }
+}
+
 /* 5. CONTENT GRID & CARDS */
 .section {
     padding: 80px 0;
@@ -399,12 +435,19 @@ header.scrolled .design-asset,
 /* Update in Section 5 */
 .impact-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr) !important; /* Perfect 3-way split */
+    grid-template-columns: repeat(4, 1fr); /* 4x1 layout for desktop */
     text-align: center;
     gap: 40px;
     padding: 60px 0;
     max-width: 1100px;
     margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .impact-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 layout for mobile */
+        gap: 20px; /* Reduce gap for smaller screens */
+    }
 }
 
 .impact-item {
@@ -1406,6 +1449,51 @@ table.impact-table {
 
     .footer-contact .contact-item:last-child {
         margin-top: 10px; /* Add spacing above the location item */
+    }
+}
+
+/* Adjust font sizes for content between header and footer */
+section {
+    font-size: 1.2rem; /* Slightly larger for section content */
+    line-height: 1.8; /* Improve readability */
+}
+
+.section-title {
+    font-size: 2.2rem; /* Slightly larger for section titles */
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1.3rem; /* Slightly larger for subtitles */
+    color: #555; /* Ensure good contrast */
+}
+
+.impact-table th, .impact-table td {
+    font-size: 1.125rem; /* Adjust table content size */
+    padding: 10px; /* Add spacing for better readability */
+}
+
+/* Adjust font sizes for impact items on desktop and mobile */
+.impact-item .impact-number {
+    font-size: 3rem; /* Larger size for desktop */
+    font-weight: bold;
+    color: var(--blue);
+}
+
+.impact-item .impact-label {
+    font-size: 1.2rem; /* Larger size for desktop */
+    font-weight: 600;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .impact-item .impact-number {
+        font-size: 2.5rem; /* Adjust size for mobile */
+    }
+
+    .impact-item .impact-label {
+        font-size: 1rem; /* Adjust size for mobile */
     }
 }
 
