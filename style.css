@@ -1052,7 +1052,7 @@ table.impact-table {
 
     .impact-label,
     .stat-label {
-        font-size: 11px !important;
+        font-size: 1.2rem !important; /* Impact bar content size 4 */
     }
 
     .process-grid {
