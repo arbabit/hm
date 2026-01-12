@@ -1192,6 +1192,14 @@ table.impact-table {
     line-height: 1.7;
 }
 
+/* About section: unify paragraph and list item color/weight */
+.about-section .about-description,
+.about-section .about-list li {
+    color: #333;
+    font-weight: 400; /* ensure no bold */
+    line-height: 1.7;
+}
+
 @media (max-width: 768px) {
     .vision-content .sub-heading { font-size: 1.05rem; }
     .vision-content .section-title { font-size: 1.35rem; }

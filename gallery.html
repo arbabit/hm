@@ -10,9 +10,9 @@
     .food-slideshow-container {
         position: relative;
         max-width: 920px;
-        margin: 28px auto;
+        margin: 12px auto; /* reduced top/bottom space */
         background: #fff;
-        padding: 12px;
+        padding: 8px; /* tighter padding to reduce white space */
         border-radius: 10px;
         box-shadow: 0 6px 30px rgba(0,0,0,0.06);
         text-align: center;
@@ -22,9 +22,9 @@
     .food-slide.active {display:block;}
     .food-slide img {
         width: 100%;
-        height: 300px; /* slightly reduced height to preserve faces */
-        object-fit: cover;
-        /* shift crop upwards so faces (upper area) are more likely visible */
+        height: auto;
+        max-height: 420px; /* limit visual height while preserving aspect ratio */
+        object-fit: contain;
         object-position: center 30%;
         border-radius: 8px;
         display: block;
@@ -54,10 +54,15 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: 18px;
-        margin-top: 26px;
+        margin-top: 12px; /* tighten spacing above grid */
     }
     .gallery-card {background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,0.04)}
-    .gallery-card img {width:100%;height:180px;object-fit:cover;display:block}
+    /* Mid grid thumbnails: force uniform boxes for a unified look */
+    .gallery-card img {width:100%;height:250px;object-fit:cover;display:block;transition:transform .28s ease,box-shadow .28s ease}
+    .gallery-card:hover img{transform:scale(1.03);box-shadow:0 12px 30px rgba(12,97,142,0.08)}
+    .gallery-card{overflow:hidden}
+    /* Ensure mid grid uses consistent columns and no gaps */
+    #midGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:18px}
     .gallery-card .gallery-caption {padding:10px}
 
     /* Modal */
@@ -66,6 +71,42 @@
     .modal-close{position:absolute;right:18px;top:18px;color:#fff;font-size:34px;cursor:pointer}
     @media (max-width:900px){.food-slide img{height:260px;object-position:center 30%}}
     @media (max-width:600px){.food-slide img{height:200px;object-position:center 20%}.gallery-card img{height:140px}}
+    /* Alternate (bottom) slideshow style */
+    .alt-slideshow-container {text-align:center; background:#fff; padding:14px; border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,0.04);}
+    .alt-main {max-width:520px;margin:0 auto 12px auto;border-radius:6px;overflow:hidden}
+    .alt-main img{width:100%;height:auto;max-height:420px;object-fit:contain;display:block}
+    .alt-thumbs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .alt-thumbs img{width:90px;height:64px;object-fit:cover;border-radius:6px;cursor:pointer;opacity:.85;border:2px solid transparent}
+    .alt-thumbs img.active-thumb{border-color:#1976a5;opacity:1}
+    /* Crown-style featured area */
+    .crown-slideshow{position:relative;padding:26px 12px 18px;border-radius:12px}
+    .crown-container{background:var(--white);padding:18px;border-radius:12px;border:1px solid rgba(15,20,25,0.04)}
+    .crown-thumbs{display:flex;gap:12px;justify-content:center;position:relative;z-index:3;margin-bottom:8px}
+    .crown-thumbs img{width:96px;height:64px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:.9;transform:translateY(0);transition:all .25s}
+    .crown-thumbs img.small{width:72px;height:52px;opacity:.7}
+    .crown-thumbs img.active-thumb{box-shadow:0 6px 18px rgba(0,0,0,0.08);transform:translateY(-8px);opacity:1;border:3px solid var(--white)}
+    .crown-main{display:flex;justify-content:center;align-items:center}
+    .crown-main img{width:56%;max-width:560px;height:auto;border-radius:12px;box-shadow:0 10px 30px rgba(12,97,142,0.06);object-fit:cover}
+    /* opening/closing headings */
+    .gallery-opening{margin:24px 0 6px;text-align:center}
+    .gallery-opening .opening-title{font-size:1.5rem;color:var(--blue);margin:0;font-weight:600;font-style:normal}
+    .gallery-closing{margin:22px 0 46px;text-align:center}
+    .gallery-closing .closing-title{font-size:1rem;color:var(--dark-charcoal);margin:0}
+
+    /* Sign-off card to match site typography */
+    .signoff-card{max-width:760px;margin:18px auto 24px auto;padding:18px 22px;border-radius:10px;text-align:center;background:var(--white);box-shadow:0 10px 36px rgba(12,97,142,0.05)}
+    .signoff-card h3{font-size:1.6rem;margin-bottom:8px;font-weight:700;color:var(--blue);letter-spacing:0.2px}
+    .signoff-card p{margin:0;font-size:1.12rem;color:var(--dark-charcoal);line-height:1.6}
+
+    @media (max-width:900px){
+        .crown-main img{width:80%;max-width:420px}
+        .crown-thumbs img{width:72px;height:50px}
+    }
+    @media (max-width:600px){
+        .crown-main img{width:92%;max-width:360px}
+        .crown-thumbs{gap:8px}
+        .crown-thumbs img{width:56px;height:40px}
+    }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -81,60 +122,40 @@
             </div>
         </section>
 
+        <!-- (opening heading removed per request) -->
+
         <section class="section">
             <div class="container">
                 <!-- filters removed: showing all images by default -->
 
                 <div class="gallery-grid" id="galleryGrid">
-                    <!-- Featured slideshow (top of grid) -->
+                    <!-- Top slideshow (images/1) -->
                     <div style="grid-column: 1 / -1;">
                         <div class="food-slideshow-container" id="featuredSlideshow">
-                            <div class="food-slide">
-                                <img src="images/food/food1.jpg" alt="Ration distribution to local families" loading="lazy" data-caption="Food Distribution – Haripur">
-                                <div class="gallery-caption"><p>Food Distribution – Haripur</p></div>
-                            </div>
-                            <div class="food-slide">
-                                <img src="images/food/food2.jpg" alt="Food distribution event" loading="lazy" data-caption="Food Distribution – Event 1">
-                                <div class="gallery-caption"><p>Food Distribution – Event 1</p></div>
-                            </div>
-                            <div class="food-slide">
-                                <img src="images/food/food3.jpg" alt="Food distribution event" loading="lazy" data-caption="Food Distribution – Event 2">
-                                <div class="gallery-caption"><p>Food Distribution – Event 2</p></div>
-                            </div>
+                            <!-- slides inserted dynamically -->
                             <a class="prev" onclick="plusFoodSlides(-1)">&#10094;</a>
                             <a class="next" onclick="plusFoodSlides(1)">&#10095;</a>
                         </div>
                     </div>
 
-                    <!-- Example gallery items (click opens modal) -->
-                    <div class="gallery-item" data-category="education">
-                        <div class="gallery-card">
-                            <img src="images/gallery/edu-1.jpg" alt="Children receiving school supplies" loading="lazy" data-caption="Support for Rural Schools">
-                            <div class="gallery-caption"><p>Support for Rural Schools</p></div>
+                    <!-- Middle grid (images/2) -->
+                    <div style="grid-column: 1 / -1;">
+                        <div id="midGrid" class="gallery-grid"></div>
+                    </div>
+
+                    <!-- Bottom alternate slideshow (images/3) -->
+                    <div style="grid-column: 1 / -1;">
+                        <div class="alt-slideshow-container" id="altSlideshow">
+                            <div class="alt-main" id="altMain"></div>
+                            <div class="alt-thumbs" id="altThumbs"></div>
                         </div>
                     </div>
 
-                    <div class="gallery-item" data-category="healthcare">
-                        <div class="gallery-card">
-                            <img src="images/gallery/health-1.jpg" alt="Medical camp" loading="lazy" data-caption="Medical Camp – Outreach">
-                            <div class="gallery-caption"><p>Medical Camp – Outreach</p></div>
-                        </div>
-                    </div>
-
-                    <div class="gallery-item" data-category="food">
-                        <div class="gallery-card">
-                            <img src="images/food/food4.jpg" alt="Food distribution" loading="lazy" data-caption="Community Food Drive">
-                            <div class="gallery-caption"><p>Community Food Drive</p></div>
-                        </div>
-                    </div>
-
-                    <div class="gallery-item" data-category="food">
-                        <div class="gallery-card">
-                            <img src="images/food/food2.jpg" alt="Volunteers serving" loading="lazy" data-caption="Volunteers Serving" />
-                            <div class="gallery-caption"><p>Volunteers Serving</p></div>
-                        </div>
-                    </div>
-
+                </div>
+                <!-- Sign-off / organization statement -->
+                <div class="signoff-card">
+                    <h3>Haroon Mahmood Welfare Trust</h3>
+                    <p>Serving Humanity with Compassion, Integrity, and Transparency.</p>
                 </div>
             </div>
         </section>
@@ -153,31 +174,101 @@
     <!-- Scripts should be at the end of body -->
     <script src="main.js"></script>
     <script>
-    // Slideshow (auto-advance) + modal for image preview (no filters)
+    /* Image lists (populated from workspace) */
+    const imgs1 = [
+        "images/1/3005944258.jpg","images/1/3028937343.jpg","images/1/3937220898.jpg","images/1/428825512.jpg","images/1/4195852686.jpg","images/1/4183791268.jpg","images/1/3578212725.jpg","images/1/3511566283.jpg","images/1/736598867.jpg","images/1/3361553760.jpg","images/1/2588238156.jpg","images/1/2389908033.jpg","images/1/2380709797.jpg","images/1/1681937538.jpg","images/1/1380115859.jpg","images/1/1347931389.jpg"
+    ];
+
+    const imgs2 = [
+        "images/2/396535870.jpg","images/2/3851579705.jpg","images/2/3769604081.jpg","images/2/869476969.jpg","images/2/36601320.jpg","images/2/3751421102.jpg","images/2/3189969113.jpg","images/2/3616504354.jpg","images/2/2762244018.jpg","images/2/3134267900.jpg","images/2/174107711.jpg","images/2/1797025948.jpg","images/2/1556381711.jpg","images/2/1530172260.jpg","images/2/1499214648.jpg","images/2/1475217753.jpg","images/2/1414026331.jpg","images/2/1372638105.jpg"
+    ];
+
+    const imgs3 = [
+        "images/3/487702632.jpg","images/3/2999518530.jpg","images/3/1-73.jpg","images/3/1-40.jpg","images/3/1-39.jpg"
+    ];
+
+    // Top slideshow (reuses existing .food-slide styles)
     let foodSlideIndex = 0;
     let foodSlideTimer;
 
-    function showFoodSlides(index) {
-        const slides = document.getElementsByClassName('food-slide');
-        if (!slides.length) return;
-        if (index >= slides.length) foodSlideIndex = 0;
-        if (index < 0) foodSlideIndex = slides.length - 1;
-        for (let i = 0; i < slides.length; i++) slides[i].classList.remove('active');
-        slides[foodSlideIndex].classList.add('active');
-    }
-    function plusFoodSlides(step){
-        const slides = document.getElementsByClassName('food-slide');
-        if (!slides.length) return;
-        foodSlideIndex += step;
-        if (foodSlideIndex >= slides.length) foodSlideIndex = 0;
-        if (foodSlideIndex < 0) foodSlideIndex = slides.length - 1;
-        showFoodSlides(foodSlideIndex);
-        resetFoodTimer();
-    }
-    function resetFoodTimer(){
+    function buildFeatured(images){
+        const container = document.getElementById('featuredSlideshow');
+        if(!container) return;
+        // build crown structure (thumbs above, big main centered)
+        container.innerHTML = '';
+        const crownOuter = document.createElement('div'); crownOuter.className = 'crown-container';
+        const crown = document.createElement('div'); crown.className = 'crown-slideshow';
+        crown.innerHTML = `<div class="crown-thumbs" id="crownThumbs"></div><div class="crown-main" id="crownMain"></div>`;
+        crownOuter.appendChild(crown);
+        // prev/next controls
+        const prev = document.createElement('a'); prev.className = 'prev'; prev.innerHTML = '&#10094;'; prev.onclick = ()=> plusFoodSlides(-1);
+        const next = document.createElement('a'); next.className = 'next'; next.innerHTML = '&#10095;'; next.onclick = ()=> plusFoodSlides(1);
+        container.appendChild(prev); container.appendChild(crownOuter); container.appendChild(next);
+
+        const thumbs = crown.querySelector('#crownThumbs');
+        const main = crown.querySelector('#crownMain');
+        // fill thumbs
+        images.forEach((src,i)=>{
+            const t = document.createElement('img'); t.src = src; t.loading = 'lazy';
+            t.addEventListener('click', ()=> { setCrown(i); });
+            if(i>4) t.classList.add('small');
+            thumbs.appendChild(t);
+        });
+        // main image
+        const mimg = document.createElement('img'); mimg.src = images[0]; mimg.loading = 'lazy'; mimg.style.cursor = 'zoom-in'; mimg.addEventListener('click', ()=> openModal(mimg));
+        main.appendChild(mimg);
+
+        // start auto-advance
         clearInterval(foodSlideTimer);
-        foodSlideTimer = setInterval(()=> plusFoodSlides(1), 4500);
+        foodSlideTimer = setInterval(()=> plusFoodSlides(1),4500);
     }
+
+    function showFoodSlides(){
+        const thumbs = document.querySelectorAll('#crownThumbs img');
+        const mainImg = document.querySelector('#crownMain img');
+        if(!thumbs.length || !mainImg) return;
+        if(foodSlideIndex >= thumbs.length) foodSlideIndex = 0;
+        if(foodSlideIndex < 0) foodSlideIndex = thumbs.length -1;
+        mainImg.src = thumbs[foodSlideIndex].src;
+        thumbs.forEach(t=>t.classList.remove('active-thumb'));
+        thumbs[foodSlideIndex].classList.add('active-thumb');
+    }
+    function plusFoodSlides(step){ foodSlideIndex += step; showFoodSlides(); resetFoodTimer(); }
+    function resetFoodTimer(){ clearInterval(foodSlideTimer); foodSlideTimer = setInterval(()=> plusFoodSlides(1),4500); }
+    function setCrown(i){ foodSlideIndex = i; showFoodSlides(); resetFoodTimer(); }
+
+    // Middle grid
+    function buildMidGrid(images){
+        const mid = document.getElementById('midGrid'); if(!mid) return;
+        images.forEach(src => {
+            const card = document.createElement('div'); card.className = 'gallery-card';
+            const img = document.createElement('img'); img.src = src; img.loading = 'lazy'; img.dataset.caption = '';
+            img.style.cursor = 'zoom-in'; img.addEventListener('click', ()=> openModal(img));
+            // don't append name captions — show images only
+            card.appendChild(img); mid.appendChild(card);
+        });
+    }
+
+    // Bottom alternate slideshow (thumbnails + main image)
+    let altIndex = 0, altTimer;
+    function buildAlt(images){
+        const main = document.getElementById('altMain'); const thumbs = document.getElementById('altThumbs');
+        if(!main || !thumbs) return;
+        main.innerHTML = '';
+        thumbs.innerHTML = '';
+        if(!images.length) return;
+        const mimg = document.createElement('img'); mimg.src = images[0]; mimg.loading = 'lazy'; mimg.addEventListener('click', ()=> openModal(mimg));
+        main.appendChild(mimg);
+        images.forEach((src,i)=>{
+            const t = document.createElement('img'); t.src = src; t.loading = 'lazy';
+            t.addEventListener('click', ()=> setAlt(i));
+            if(i===0) t.classList.add('active-thumb');
+            thumbs.appendChild(t);
+        });
+        clearInterval(altTimer);
+        altTimer = setInterval(()=>{ altIndex = (altIndex+1) % images.length; setAlt(altIndex); }, 5200);
+    }
+    function setAlt(i){ const thumbs = document.querySelectorAll('#altThumbs img'); const mainImg = document.querySelector('#altMain img'); if(!mainImg) return; mainImg.src = thumbs[i].src; thumbs.forEach(t=>t.classList.remove('active-thumb')); thumbs[i].classList.add('active-thumb'); altIndex = i; }
 
     // Modal preview
     function openModal(img){
@@ -188,22 +279,18 @@
         modalImg.src = img.src;
         modalCaption.textContent = img.dataset.caption || img.alt || '';
     }
-    function closeModal(){
-        const modal = document.getElementById('galleryModal');
-        const modalImg = document.getElementById('modalImg');
-        modal.style.display = 'none';
-        modalImg.src = '';
-    }
+    function closeModal(){ const modal = document.getElementById('galleryModal'); const modalImg = document.getElementById('modalImg'); modal.style.display = 'none'; modalImg.src = ''; }
 
     document.addEventListener('DOMContentLoaded', function(){
-        showFoodSlides(foodSlideIndex);
+        // build sections
+        buildFeatured(imgs1);
+        showFoodSlides();
         resetFoodTimer();
 
-        document.querySelectorAll('.gallery-grid img, .food-slide img').forEach(img => {
-            img.style.cursor = 'zoom-in';
-            img.addEventListener('click', ()=> openModal(img));
-        });
+        buildMidGrid(imgs2);
+        buildAlt(imgs3);
 
+        // attach modal handlers
         document.querySelector('.modal-close').addEventListener('click', closeModal);
         document.getElementById('galleryModal').addEventListener('click', function(e){ if (e.target === this) closeModal(); });
         document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
