@@ -290,7 +290,7 @@ header.scrolled .design-asset,
 
 .nav-list {
     display: flex;
-    gap: 35px;
+    gap: 40px; /* slightly wider spacing for larger labels */
     list-style: none;
 }
 
@@ -298,6 +298,8 @@ header.scrolled .design-asset,
     text-decoration: none;
     color: var(--blue);
     font-weight: 600;
+    font-size: 1.12rem; /* make nav items a bit bigger on desktop */
+    padding: 6px 2px;
     transition: 0.3s;
 }
 
@@ -1262,16 +1264,23 @@ table.impact-table {
 }
 
 @media (max-width: 600px) {
+    /* Footer section headings: Sitemap, Contact Information */
+    .footer-links h4,
+    .footer-contact h4 {
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
     /* Convert Regional Impact table to stacked cards on mobile */
-    .impact-table {
+        font-size: 1.3rem;
         width: 100% !important;
         max-width: none !important;
         border: 0;
         box-shadow: none;
-        margin: 12px 0 !important;
-    }
-    .impact-table thead { display: none; }
-    .impact-table tbody, 
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.12rem;
+        line-height: 1.5;
+        margin: 0;
     .impact-table tr, 
     .impact-table td { display: block; width: 100%; }
     .impact-table tr {
@@ -1947,18 +1956,31 @@ section {
 .footer-links div {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
     align-items: flex-start;
+}
+
+/* Make footer links a bit larger like header nav */
+.footer-links div a {
+    font-size: 1.12rem;
+    font-weight: 600;
 }
 
 @media (max-width: 768px) {
     .footer-links div {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         align-items: center;
         text-align: center;
     }
+    .footer-links div a { font-size: 1rem; font-weight: 600; }
+    /* Smaller footer headings and contact text on mobile */
+    .footer-links h4,
+    .footer-contact h4 { font-size: 1.1rem; }
+    .contact-item a,
+    .contact-item p { font-size: 1rem; line-height: 1.45; }
+    .contact-item .icon { font-size: 1.2rem; }
 }
 
 /* CTA mobile override: ensure small inline button on mobile */
