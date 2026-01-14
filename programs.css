@@ -1,0 +1,38 @@
+/* Enhanced heading for Programs section */
+.programs-heading {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.2;
+  text-align: center;
+  /* Refined multi-stop gradient for richer contrast */
+  background: linear-gradient(90deg,
+    #0b3a54 0%,
+    #0f5f87 22%,
+    #1f6fa5 45%,
+    #2a9d8f 68%,
+    #d4af37 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.4px;
+  margin: 0 auto 24px;
+  position: relative;
+  animation: programsFadeUp 400ms ease-out both;
+}
+
+.programs-heading::after {
+  content: "";
+  display: block;
+  width: 180px;
+  height: 16px;
+  margin: 10px auto 0;
+  background: url("images/brush-underline.svg") center/contain no-repeat;
+}
+
+@keyframes programsFadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
