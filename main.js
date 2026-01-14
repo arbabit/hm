@@ -1,4 +1,3 @@
-
 // LOAD HEADER & FOOTER
 document.addEventListener("DOMContentLoaded", () => {
   // Dynamically load header.html into #mainHeader
@@ -19,6 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
         footerDiv.outerHTML = data;
       });
   }
+
+  // Initialize interactive flip cards
+  initFlipCards();
+  // Initialize about card interactions
+  initAboutCards();
+  // Animate counters on scroll
+  initCounterAnimation();
 });
 
 // Highlight the active nav link based on current page
@@ -39,6 +45,150 @@ function setActiveNavLink() {
     } else if ((href === "index.html" && (page === "index.html" || path === "/")) || href === page) {
       link.classList.add("active");
     }
+  });
+}
+
+// Flip card interactions (hover handled via CSS; tap/click/keyboard here)
+function initFlipCards() {
+  const cards = document.querySelectorAll('.process-card');
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    // Accessibility attributes
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-expanded', 'false');
+
+    const toggle = () => {
+      const flipped = card.classList.toggle('is-flipped');
+      card.setAttribute('aria-expanded', flipped ? 'true' : 'false');
+    };
+
+    // Click/tap
+    card.addEventListener('click', (e) => {
+      // Avoid triggering when clicking interactive elements inside (if any)
+      // but current cards are text-only; keep simple
+      toggle();
+    });
+    card.addEventListener('touchstart', () => {
+      toggle();
+    }, { passive: true });
+
+    // Keyboard accessibility
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+}
+
+// About cards micro-interactions: ripple on tap/click and keyboard
+function initAboutCards() {
+  const cards = document.querySelectorAll('.about-item');
+  if (!cards.length) return;
+
+  const triggerRipple = (card, x, y) => {
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    card.appendChild(ripple);
+    setTimeout(() => {
+      ripple.remove();
+    }, 650);
+  };
+
+  cards.forEach(card => {
+    // Ensure accessibility focusability
+    if (!card.hasAttribute('tabindex')) card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+
+    card.addEventListener('click', (e) => {
+      const rect = card.getBoundingClientRect();
+      triggerRipple(card, e.clientX - rect.left, e.clientY - rect.top);
+      card.classList.add('gradient-active');
+      card.classList.add('wm-active');
+      setTimeout(() => card.classList.remove('gradient-active'), 700);
+      setTimeout(() => card.classList.remove('wm-active'), 700);
+    });
+
+    card.addEventListener('touchstart', (e) => {
+      const rect = card.getBoundingClientRect();
+      const touch = e.touches[0];
+      triggerRipple(card, touch.clientX - rect.left, touch.clientY - rect.top);
+      card.classList.add('gradient-active');
+      card.classList.add('wm-active');
+    }, { passive: true });
+
+    card.addEventListener('touchend', () => {
+      card.classList.remove('gradient-active');
+      card.classList.remove('wm-active');
+    });
+    card.addEventListener('mouseleave', () => {
+      card.classList.remove('gradient-active');
+      card.classList.remove('wm-active');
+    });
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const rect = card.getBoundingClientRect();
+        triggerRipple(card, rect.width / 2, rect.height / 2);
+        card.classList.add('gradient-active');
+        card.classList.add('wm-active');
+        setTimeout(() => card.classList.remove('gradient-active'), 700);
+        setTimeout(() => card.classList.remove('wm-active'), 700);
+      }
+    });
+  });
+}
+
+// ANIMATED COUNTERS
+function initCounterAnimation() {
+  const counters = document.querySelectorAll('.impact-number');
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const targetValue = counter.textContent;
+        
+        // Parse the target value (e.g., "200+", "15k+")
+        const hasPlus = targetValue.includes('+');
+        const hasK = targetValue.toLowerCase().includes('k');
+        let number = parseFloat(targetValue.replace(/[^0-9.]/g, ''));
+        if (hasK) {
+          number *= 1000;
+        }
+
+        let current = 0;
+        const duration = 2000; // 2 seconds
+        const stepTime = 50; // update every 50ms
+        const steps = duration / stepTime;
+        const increment = number / steps;
+
+        const updateCount = () => {
+          current += increment;
+          if (current >= number) {
+            // Restore original format
+            counter.textContent = targetValue;
+          } else {
+            counter.textContent = Math.floor(current).toLocaleString();
+            requestAnimationFrame(updateCount);
+          }
+        };
+        
+        updateCount();
+        observer.unobserve(counter); // Animate only once
+      }
+    });
+  }, { threshold: 0.5 }); // Trigger when 50% of the element is visible
+
+  counters.forEach(counter => {
+    observer.observe(counter);
   });
 }
 

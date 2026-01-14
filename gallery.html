@@ -9,7 +9,7 @@
     /* Slideshow: fixed height with object-fit so all slides look consistent */
     .food-slideshow-container {
         position: relative;
-        max-width: 920px;
+        max-width: 760px;
         margin: 12px auto; /* reduced top/bottom space */
         background: #fff;
         padding: 8px; /* tighter padding to reduce white space */
@@ -23,9 +23,9 @@
     .food-slide img {
         width: 100%;
         height: auto;
-        max-height: 420px; /* limit visual height while preserving aspect ratio */
-        object-fit: contain;
-        object-position: center 30%;
+        max-height: 52vh; /* smaller to avoid perceived upscaling */
+        object-fit: contain; /* do not crop */
+        object-position: center center;
         border-radius: 8px;
         display: block;
         margin: 0 auto;
@@ -69,8 +69,8 @@
     .modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;overflow:auto;background:rgba(0,0,0,0.75)}
     .modal-content{margin:6% auto;display:block;max-width:920px;width:90%;height:auto;border-radius:8px;max-height:80vh;object-fit:contain}
     .modal-close{position:absolute;right:18px;top:18px;color:#fff;font-size:34px;cursor:pointer}
-    @media (max-width:900px){.food-slide img{height:260px;object-position:center 30%}}
-    @media (max-width:600px){.food-slide img{height:200px;object-position:center 20%}.gallery-card img{height:140px}}
+    @media (max-width:900px){.food-slide img{max-height:46vh;height:auto;object-position:center center}}
+    @media (max-width:600px){.food-slide img{max-height:40vh;height:auto;object-position:center center}.gallery-card img{height:140px}}
     /* Alternate (bottom) slideshow style */
     .alt-slideshow-container {text-align:center; background:#fff; padding:14px; border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,0.04);}
     .alt-main {max-width:520px;margin:0 auto 12px auto;border-radius:6px;overflow:hidden}
@@ -86,7 +86,7 @@
     .crown-thumbs img.small{width:72px;height:52px;opacity:.7}
     .crown-thumbs img.active-thumb{box-shadow:0 6px 18px rgba(0,0,0,0.08);transform:translateY(-8px);opacity:1;border:3px solid var(--white)}
     .crown-main{display:flex;justify-content:center;align-items:center}
-    .crown-main img{width:56%;max-width:560px;height:auto;border-radius:12px;box-shadow:0 10px 30px rgba(12,97,142,0.06);object-fit:cover}
+    .crown-main img{width:min(72%, 640px);height:auto;border-radius:12px;box-shadow:0 10px 30px rgba(12,97,142,0.06);object-fit:contain}
     /* opening/closing headings */
     .gallery-opening{margin:24px 0 6px;text-align:center}
     .gallery-opening .opening-title{font-size:1.5rem;color:var(--blue);margin:0;font-weight:600;font-style:normal}
@@ -99,11 +99,11 @@
     .signoff-card p{margin:0;font-size:1.12rem;color:var(--dark-charcoal);line-height:1.6}
 
     @media (max-width:900px){
-        .crown-main img{width:80%;max-width:420px}
+        .crown-main img{width:min(70%, 380px)}
         .crown-thumbs img{width:72px;height:50px}
     }
     @media (max-width:600px){
-        .crown-main img{width:92%;max-width:360px}
+        .crown-main img{width:min(86%, 320px)}
         .crown-thumbs{gap:8px}
         .crown-thumbs img{width:56px;height:40px}
     }
@@ -129,7 +129,7 @@
                 <!-- filters removed: showing all images by default -->
 
                 <div class="gallery-grid" id="galleryGrid">
-                    <!-- Top slideshow (images/1) -->
+                    <!-- Unified slideshow (all images in images/1) -->
                     <div style="grid-column: 1 / -1;">
                         <div class="food-slideshow-container" id="featuredSlideshow">
                             <!-- slides inserted dynamically -->
@@ -137,20 +137,6 @@
                             <a class="next" onclick="plusFoodSlides(1)">&#10095;</a>
                         </div>
                     </div>
-
-                    <!-- Middle grid (images/2) -->
-                    <div style="grid-column: 1 / -1;">
-                        <div id="midGrid" class="gallery-grid"></div>
-                    </div>
-
-                    <!-- Bottom alternate slideshow (images/3) -->
-                    <div style="grid-column: 1 / -1;">
-                        <div class="alt-slideshow-container" id="altSlideshow">
-                            <div class="alt-main" id="altMain"></div>
-                            <div class="alt-thumbs" id="altThumbs"></div>
-                        </div>
-                    </div>
-
                 </div>
                 <!-- Sign-off / organization statement -->
                 <div class="signoff-card">
@@ -174,26 +160,20 @@
     <!-- Scripts should be at the end of body -->
     <script src="main.js"></script>
     <script>
-    /* Image lists (populated from workspace) */
-    const imgs1 = [
-        "images/1/1347931389.jpg","images/1/1380115859.jpg","images/1/1681937538.jpg","images/1/2380709797.jpg","images/1/2389908033.jpg","images/1/2588238156.jpg","images/1/3005944258.jpg","images/1/3028937343.jpg","images/1/3361553760.jpg","images/1/3511566283.jpg","images/1/3578212725.jpg","images/1/3937220898.jpg","images/1/4183791268.jpg","images/1/4195852686.jpg","images/1/428825512.jpg","images/1/736598867.jpg"
-    ];
-
-    const imgs2 = [
-        // newest photos first (WhatsApp captures from 2026-01-13)
-        "images/2/WhatsApp Image 2026-01-13 at 12.32.25 PM.jpeg",
-        "images/2/WhatsApp Image 2026-01-13 at 12.32.23 PM.jpeg",
-        "images/2/WhatsApp Image 2026-01-13 at 12.32.23 PM (1).jpeg",
-        "images/2/WhatsApp Image 2026-01-13 at 12.32.22 PM.jpeg",
-        "images/2/WhatsApp Image 2026-01-13 at 12.10.43 PM.jpeg",
-        "images/2/WhatsApp Image 2026-01-13 at 12.10.43 PM (1).jpeg",
-        "images/2/WhatsApp Image 2026-01-13 at 12.10.41 PM.jpeg",
-        // older numeric images follow
-        "images/2/3851579705.jpg","images/2/3751421102.jpg","images/2/3189969113.jpg","images/2/3134267900.jpg","images/2/1797025948.jpg","images/2/1556381711.jpg","images/2/1414026331.jpg"
-    ];
-
-    const imgs3 = [
-        "images/3/1-39.jpg","images/3/1-40.jpg","images/3/1-73.jpg","images/3/2999518530.jpg","images/3/487702632.jpg"
+    /* Unified image list (all files now in images/1) */
+    const allImgs = [
+        "images/1/1347931389.jpg","images/1/1380115859.jpg","images/1/1681937538.jpg","images/1/2380709797.jpg","images/1/2389908033.jpg","images/1/2588238156.jpg","images/1/3005944258.jpg","images/1/3028937343.jpg","images/1/3361553760.jpg","images/1/3511566283.jpg","images/1/3578212725.jpg","images/1/3937220898.jpg","images/1/4183791268.jpg","images/1/4195852686.jpg","images/1/428825512.jpg","images/1/736598867.jpg",
+        // moved from folder 2
+        "images/1/WhatsApp Image 2026-01-13 at 12.32.25 PM.jpeg",
+        "images/1/WhatsApp Image 2026-01-13 at 12.32.23 PM.jpeg",
+        "images/1/WhatsApp Image 2026-01-13 at 12.32.23 PM (1).jpeg",
+        "images/1/WhatsApp Image 2026-01-13 at 12.32.22 PM.jpeg",
+        "images/1/WhatsApp Image 2026-01-13 at 12.10.43 PM.jpeg",
+        "images/1/WhatsApp Image 2026-01-13 at 12.10.43 PM (1).jpeg",
+        "images/1/WhatsApp Image 2026-01-13 at 12.10.41 PM.jpeg",
+        "images/1/3851579705.jpg","images/1/3751421102.jpg","images/1/3189969113.jpg","images/1/3134267900.jpg","images/1/1797025948.jpg","images/1/1556381711.jpg","images/1/1414026331.jpg",
+        // moved from folder 3
+        "images/1/1-39.jpg","images/1/1-40.jpg","images/1/1-73.jpg","images/1/2999518530.jpg","images/1/487702632.jpg"
     ];
 
     // Top slideshow (reuses existing .food-slide styles)
@@ -224,7 +204,7 @@
             thumbs.appendChild(t);
         });
         // main image
-        const mimg = document.createElement('img'); mimg.src = images[0]; mimg.loading = 'lazy'; mimg.style.cursor = 'zoom-in'; mimg.addEventListener('click', ()=> openModal(mimg));
+        const mimg = document.createElement('img'); mimg.src = images[0]; mimg.loading = 'lazy';
         main.appendChild(mimg);
 
         // start auto-advance
@@ -291,13 +271,10 @@
     function closeModal(){ const modal = document.getElementById('galleryModal'); const modalImg = document.getElementById('modalImg'); modal.style.display = 'none'; modalImg.src = ''; }
 
     document.addEventListener('DOMContentLoaded', function(){
-        // build sections
-        buildFeatured(imgs1);
+        // build unified slideshow
+        buildFeatured(allImgs);
         showFoodSlides();
         resetFoodTimer();
-
-        buildMidGrid(imgs2);
-        buildAlt(imgs3);
 
         // attach modal handlers
         document.querySelector('.modal-close').addEventListener('click', closeModal);
