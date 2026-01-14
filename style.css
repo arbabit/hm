@@ -168,7 +168,7 @@ html, body {
     height: 100%;
 }
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: "Times New Roman", Times, serif;
     /*padding-top: var(--header-h);*/ /* Space for fixed header */
     color: #333;
     line-height: 1.6;
@@ -622,6 +622,10 @@ header.scrolled .design-asset,
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+}
+.process-card .card-face h3 {
+    text-align: center;
+    width: 100%;
 }
 .process-card .card-back {
     transform: rotateY(180deg);
