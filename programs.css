@@ -5,18 +5,7 @@
   font-size: clamp(30px, 5vw, 48px);
   line-height: 1.2;
   text-align: center;
-  /* Refined multi-stop gradient for richer contrast */
-  background: linear-gradient(90deg,
-    #0b3a54 0%,
-    #0f5f87 22%,
-    #1f6fa5 45%,
-    #2a9d8f 68%,
-    #d4af37 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: var(--blue);
   letter-spacing: 0.4px;
   margin: 0 auto 24px;
   position: relative;
