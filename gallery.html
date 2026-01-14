@@ -93,10 +93,41 @@
     .gallery-closing{margin:22px 0 46px;text-align:center}
     .gallery-closing .closing-title{font-size:1rem;color:var(--dark-charcoal);margin:0}
 
-    /* Sign-off card to match site typography */
-    .signoff-card{max-width:760px;margin:18px auto 24px auto;padding:18px 22px;border-radius:10px;text-align:center;background:var(--white);box-shadow:0 10px 36px rgba(12,97,142,0.05)}
-    .signoff-card h3{font-size:1.6rem;margin-bottom:8px;font-weight:700;color:var(--blue);letter-spacing:0.2px}
-    .signoff-card p{margin:0;font-size:1.12rem;color:var(--dark-charcoal);line-height:1.6}
+    /* Sign-off card: larger typography + tasteful accent */
+    .signoff-card{
+        max-width:820px;
+        margin:22px auto 30px auto;
+        padding:24px 28px;
+        border-radius:14px;
+        text-align:center;
+        background: linear-gradient(#fff,#fff) padding-box,
+                    linear-gradient(90deg,#111,#0c618e 35%,#00b3b3 65%,#f7a623) border-box;
+        border:2px solid transparent;
+        box-shadow:0 18px 48px rgba(12,97,142,0.08);
+    }
+    .signoff-card h3{
+        font-size:clamp(1.8rem, 1.2rem + 1.8vw, 2.4rem);
+        margin:0 0 14px 0;
+        font-weight:800;
+        color:var(--blue);
+        letter-spacing:0.3px;
+        position:relative;
+    }
+    .signoff-card h3::after{
+        content:"";
+        display:block;
+        width:220px;
+        height:14px;
+        margin:10px auto 0;
+        background:url('images/brush-underline.svg') center/contain no-repeat;
+        opacity:0.9;
+    }
+    .signoff-card p{
+        margin:10px 0 0 0;
+        font-size:clamp(1.05rem, 0.95rem + 0.6vw, 1.35rem);
+        color:var(--dark-charcoal);
+        line-height:1.7;
+    }
 
     @media (max-width:900px){
         .crown-main img{width:min(70%, 380px)}
