@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initAboutCards();
   // Animate counters on scroll
   initCounterAnimation();
+  // Contact status (open/closed)
+  initContactBox();
 });
 
 // Highlight the active nav link based on current page
@@ -190,6 +192,28 @@ function initCounterAnimation() {
   counters.forEach(counter => {
     observer.observe(counter);
   });
+}
+
+// CONTACT BOX: show open/closed status based on office timings
+function initContactBox() {
+  const statusEl = document.getElementById('openStatus');
+  if (!statusEl) return;
+
+  const now = new Date();
+  const day = now.getDay(); // 0=Sun, 6=Sat
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  const minutesSinceMidnight = hour * 60 + minute;
+  const open = minutesSinceMidnight >= 9 * 60 && minutesSinceMidnight < 17 * 60; // 9:00–17:00
+  const isWorkingDay = day >= 1 && day <= 6; // Mon–Sat
+
+  if (isWorkingDay && open) {
+    statusEl.textContent = 'Open now (Mon–Sat, 9:00 AM – 5:00 PM)';
+    statusEl.classList.add('open');
+  } else {
+    statusEl.textContent = 'Our team is available to assist you during standard office hours.';
+    statusEl.classList.remove('open');
+  }
 }
 
 // MOBILE MENU FUNCTION

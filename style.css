@@ -1,3 +1,10 @@
+/* Fix alignment for Send a Message and Official Channels */
+.form-side {
+    margin-top: 0 !important;
+}
+.form-side h2 {
+    margin-top: 0 !important;
+}
 /* Hamburger menu styles */
 .hamburger-menu {
     display: none;
@@ -87,7 +94,7 @@
     align-items: flex-start;
 }
 .mission-title {
-    color: var(--gold);
+    color: #e89c2d;
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 10px;
@@ -120,7 +127,7 @@
 }
 .mission-list li:before {
     content: '\2022';
-    color: var(--gold);
+    color: #e89c2d;
     font-size: 1.5em;
     position: absolute;
     left: 10px;
@@ -132,6 +139,21 @@
     color: var(--gold);
     font-weight: bold;
     transition: color 0.2s;
+}
+
+/* Increase header navigation size for better visibility */
+header .nav-link,
+#mainHeader .nav-link {
+    font-size: 1.05rem; /* slightly larger */
+    padding: 14px 18px; /* larger hit area */
+}
+
+@media (max-width: 768px) {
+    header .nav-link,
+    #mainHeader .nav-link {
+        font-size: 1.02rem; /* slightly smaller on mobile */
+        padding: 12px 14px;
+    }
 }
 
 /* MASTER STYLESHEET: Haroon Mahmood Welfare Trust */
@@ -168,7 +190,7 @@ html, body {
     height: 100%;
 }
 body {
-    font-family: "Times New Roman", Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     /*padding-top: var(--header-h);*/ /* Space for fixed header */
     color: #333;
     line-height: 1.6;
@@ -290,7 +312,7 @@ header.scrolled .design-asset,
 
 .nav-list {
     display: flex;
-    gap: 40px; /* slightly wider spacing for larger labels */
+    gap: 35px;
     list-style: none;
 }
 
@@ -298,8 +320,6 @@ header.scrolled .design-asset,
     text-decoration: none;
     color: var(--blue);
     font-weight: 600;
-    font-size: 1.12rem; /* make nav items a bit bigger on desktop */
-    padding: 6px 2px;
     transition: 0.3s;
 }
 
@@ -308,9 +328,9 @@ header.scrolled .design-asset,
 }
 
 .nav-link.active {
-    color: var(--gold) !important;
+    color: #f7a623 !important;
     font-weight: bold;
-    border-bottom: 2.5px solid var(--gold);
+    border-bottom: 2.5px solid #f7a623;
     background: none;
     transition: color 0.2s, border-bottom 0.2s;
     border-radius: 0;
@@ -342,7 +362,7 @@ header.scrolled .design-asset,
     text-align: center;
     color: var(--blue);
     /* Match banner/hero heading scale */
-    font-size: clamp(30px, 5vw, 48px);
+    font-size: 2.2rem;
     font-weight: 700;
 }
 .section-label h1::after {
@@ -354,10 +374,10 @@ header.scrolled .design-asset,
     background: url("images/brush-underline.svg") center/contain no-repeat;
 }
 @media (min-width: 992px) {
-    .section-label h1 { font-size: clamp(30px, 5vw, 48px); }
+    .section-label h1 { font-size: 2.8rem; }
 }
 @media (max-width: 768px) {
-    .section-label h1 { font-size: clamp(30px, 5vw, 48px); }
+    .section-label h1 { font-size: 1.6rem; }
 }
 .gold-text {
     color: var(--gold);
@@ -379,8 +399,15 @@ header.scrolled .design-asset,
     line-height: 1.4; /* Maintain spacing */
 }
 
+/* Center the small status line on contact page */
+.open-status {
+    text-align: center;
+    font-weight: 600;
+    margin: 10px 0 8px;
+}
+
 .hero-sub .gold-text {
-    color: var(--gold);
+    color: #e89c2d; /* Highlighted text remains prominent */
 }
 
 /* 4. BUTTONS & GLOW */
@@ -590,6 +617,13 @@ header.scrolled .design-asset,
     height: 100%;
 }
 
+/* Center headings inside program/process cards */
+.process-card h3 {
+    text-align: center;
+    width: 100%;
+    margin: 0 0 12px 0;
+}
+
 .process-card:hover {
     transform: translate(-5px, -5px);
     box-shadow: 18px 18px 0px var(--gold);
@@ -625,9 +659,38 @@ header.scrolled .design-asset,
     flex-direction: column;
     justify-content: flex-start;
 }
-.process-card .card-face h3 {
-    text-align: center;
+
+/* Make the mini-map span the same horizontal area as the card text
+   so the map lines up with the "Open now..." text and looks rectangular. */
+.process-card .card-face .mini-map {
+    margin-left: -28px;
+    margin-right: -28px;
+    padding: 0;
+}
+.process-card .card-face .mini-map iframe {
     width: 100%;
+    height: 200px; /* rectangular shape; increase if you want taller */
+    border-radius: 8px;
+    display: block;
+}
+@media (max-width: 768px) {
+    .process-card .card-face .mini-map {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+    .process-card .card-face .mini-map iframe {
+        height: 180px;
+    }
+}
+
+/* Reduce extra vertical gap above the open-status line */
+.process-card hr {
+    margin: 10px 0; /* tighten the horizontal rule spacing inside cards */
+}
+.process-card .open-status {
+    margin: 0; /* remove any extra top/bottom space */
+    text-align: center;
+    font-weight: 600;
 }
 .process-card .card-back {
     transform: rotateY(180deg);
@@ -643,6 +706,15 @@ header.scrolled .design-asset,
 @media (max-width: 768px) {
     .process-card { min-height: 340px; }
     .process-card .card-face { padding: 25px 20px; }
+}
+
+/* Mobile: remove extra space under the map and hide redundant CTA */
+@media (max-width: 768px) {
+    .process-card .card-face { padding-bottom: 12px; }
+    .process-card .card-face .mini-map { margin-bottom: 0; }
+    .map-cta { display: none; }
+    /* Ensure the card itself doesn't add extra bottom gap */
+    .process-card { margin-bottom: 6px; }
 }
 
 @media (max-width: 1100px) {
@@ -843,7 +915,7 @@ table.impact-table {
     color: #ffffff;
     padding: 40px 0 10px 0;
     margin-top: 20px;
-    border-top: 4px solid var(--gold);
+    border-top: 4px solid #D4AF37;
     clear: both;
     width: 100vw;
     position: relative;
@@ -1263,8 +1335,8 @@ table.impact-table {
     }
 }
 
-@media (max-width: 768px) {
-    /* Convert Regional Impact table to stacked cards on mobile/tablet */
+@media (max-width: 600px) {
+    /* Convert Regional Impact table to stacked cards on mobile */
     .impact-table {
         width: 100% !important;
         max-width: none !important;
@@ -1273,8 +1345,8 @@ table.impact-table {
         margin: 12px 0 !important;
     }
     .impact-table thead { display: none; }
-    .impact-table tbody,
-    .impact-table tr,
+    .impact-table tbody, 
+    .impact-table tr, 
     .impact-table td { display: block; width: 100%; }
     .impact-table tr {
         margin: 12px 0;
@@ -1285,9 +1357,9 @@ table.impact-table {
         overflow: hidden;
     }
     .impact-table td {
-        padding: 12px 16px !important;
+        padding: 10px 16px !important;
         border-bottom: 1px solid #eee !important;
-        font-size: 1rem !important;
+        font-size: 0.95rem !important;
         white-space: normal !important; /* allow wrapping inside cards */
         text-align: left !important;
     }
@@ -1339,8 +1411,8 @@ table.impact-table {
 .nav-link.active { color: var(--gold); }
 .hero h1,
 .hero-sub h1 {
-    /* unified hero/banner heading scale: match Programs size */
-    font-size: clamp(30px, 5vw, 48px);
+    /* unified hero/banner heading scale */
+    font-size: 2.2rem;
     line-height: 1.08;
     font-weight: 700;
     margin: 0 0 16px;
@@ -1351,14 +1423,14 @@ table.impact-table {
 @media (min-width: 992px) {
     .hero h1,
     .hero-sub h1 {
-        font-size: clamp(30px, 5vw, 48px);
+        font-size: 2.8rem;
     }
 }
 
 @media (max-width: 768px) {
     .hero h1,
     .hero-sub h1 {
-        font-size: clamp(30px, 5vw, 48px) !important;
+        font-size: 1.6rem !important;
     }
 }
 
@@ -1803,6 +1875,70 @@ table.impact-table {
         margin: 0; /* Remove extra margin */
         word-wrap: break-word; /* Ensure long text wraps properly */
     }
+
+    /* Larger footer sitemap and contact text for readability */
+    .footer-links, .footer-links a {
+        font-size: 1rem; /* increase sitemap link size */
+    }
+    .footer-contact, .footer-contact p, .footer-contact .contact-item {
+        font-size: 1.08rem; /* increase contact info size slightly more */
+        line-height: 1.7;
+    }
+    .footer-contact .contact-item .icon {
+        font-size: 1.25rem; /* larger icons to match text */
+    }
+
+    @media (max-width: 768px) {
+        .footer-links, .footer-links a, .footer-contact, .footer-contact p {
+            font-size: 1rem; /* keep readable on small screens */
+        }
+    }
+
+    /* Make the footer content visually larger without increasing footer bar height */
+    .main-footer {
+        font-size: 1.02rem; /* base increase for footer area */
+    }
+    .footer-content {
+        padding: 28px 20px; /* more breathing room for content */
+    }
+    .footer-bottom {
+        padding: 14px 20px; /* enlarge bottom bar spacing */
+        font-size: 0.98rem;
+    }
+    .footer-links a {
+        font-weight: 600; /* slightly bolder links for clarity */
+    }
+
+    /* Larger footer visuals for sitemap and contact columns */
+    .footer-links h4, .footer-contact h4, .footer-brand h4 {
+        font-size: 1.36rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+    .footer-links a, .footer-links li {
+        font-size: 1.14rem;
+        margin: 6px 0;
+    }
+    .footer-contact, .footer-contact p, .footer-contact .contact-item {
+        font-size: 1.14rem;
+        line-height: 1.7;
+    }
+    .footer-contact .contact-item {
+        gap: 12px;
+    }
+    .footer-contact .contact-item .icon {
+        font-size: 1.6rem; /* larger icons */
+        min-width: 32px;
+    }
+
+    @media (max-width: 768px) {
+        .footer-links h4, .footer-contact h4, .footer-brand h4 {
+            font-size: 1.05rem;
+        }
+        .footer-links a, .footer-contact p {
+            font-size: 1rem;
+        }
+    }
 }
 
 /* Fine-tune alignment of location icon in footer contact */
@@ -1949,31 +2085,69 @@ section {
 .footer-links div {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
     align-items: flex-start;
-}
-
-/* Make footer links a bit larger like header nav */
-.footer-links div a {
-    font-size: 1.12rem;
-    font-weight: 600;
 }
 
 @media (max-width: 768px) {
     .footer-links div {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
         align-items: center;
         text-align: center;
     }
-    .footer-links div a { font-size: 1rem; font-weight: 600; }
-    /* Smaller footer headings and contact text on mobile */
-    .footer-links h4,
-    .footer-contact h4 { font-size: 1.1rem; }
-    .contact-item a,
-    .contact-item p { font-size: 1rem; line-height: 1.45; }
-    .contact-item .icon { font-size: 1.2rem; }
+}
+
+/* Desktop: make footer into three even columns and ensure sitemap items are one-per-line */
+@media (min-width: 769px) {
+    .footer-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr; /* Brand | Sitemap | Contact */
+        gap: 24px;
+        align-items: start;
+        text-align: left;
+    }
+
+    .footer-links {
+        /* ensure heading and links align to left and look tidy */
+    }
+
+    .footer-links h4 {
+        margin-bottom: 8px;
+    }
+
+    .footer-links div {
+        align-items: flex-start; /* left align the stacked links */
+    }
+
+    .footer-links div a {
+        display: block; /* force one link per line */
+        margin: 6px 0;
+        padding: 0;
+    }
+}
+
+/* Center sitemap column on desktop for improved visual balance */
+@media (min-width: 769px) {
+    .footer-links {
+        text-align: center; /* center heading + links */
+    }
+
+    .footer-links h4 {
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    .footer-links div {
+        align-items: center; /* center stacked links horizontally */
+        justify-content: center;
+    }
+
+    .footer-links div a {
+        display: block;
+        margin: 6px 0;
+    }
 }
 
 /* CTA mobile override: ensure small inline button on mobile */
@@ -2003,11 +2177,57 @@ section {
     .impact-item .impact-label { font-size: 0.95rem !important; line-height: 1.25; letter-spacing: 0.6px; }
 }
 
+/* Center the form heading on contact page */
+.form-side h2 {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
 @media (max-width: 480px) {
     .impact-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
     .impact-item { padding: 14px; }
     .impact-item .impact-number { font-size: 1.7rem !important; }
     .impact-item .impact-label { font-size: 0.9rem !important; }
+}
+
+/* Contact page: center mini-map and button, even spacing */
+.process-card .mini-map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding-top: 8px;
+}
+.process-card .mini-map .embedded-map {
+    width: 100%;
+    max-width: 460px; /* broadened to cover more blank space */
+    height: 340px; /* increased height to fill area */
+    border: 0;
+}
+
+/* Center the Official Channels heading inside the process card */
+.process-card > h3.gold-text {
+    text-align: center;
+    margin-top: 4px;
+}
+.process-card .mini-map .action-btn {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 0;
+}
+
+/* Nudge the Get Directions button up slightly for better visual spacing */
+.process-card .mini-map { gap: 8px; }
+.process-card .mini-map .action-btn { margin-top: 4px; }
+
+/* Reduce vertical gap between map and button further */
+.process-card .mini-map { gap: 4px; padding-top: 4px; }
+.process-card .mini-map .action-btn { margin-top: 0; }
+.map-cta { text-align: center; margin-top: 2px; }
+
+@media (max-width: 768px) {
+    .process-card .mini-map .embedded-map { max-width: 100%; height: 220px; }
 }
 
 
