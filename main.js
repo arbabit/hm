@@ -66,15 +66,28 @@ function initFlipCards() {
       card.setAttribute('aria-expanded', flipped ? 'true' : 'false');
     };
 
-    // Click/tap
+    // Use timestamp to ignore synthetic clicks generated after touch events
+    let lastTouchTs = 0;
+
+    // Pointerdown handles touch immediately and prevents the following synthetic click
+    card.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'touch') {
+        e.preventDefault();
+        lastTouchTs = Date.now();
+        toggle();
+      }
+    });
+
+    // Click handler for mouse/keyboard; ignore clicks that follow recent touch
     card.addEventListener('click', (e) => {
-      // Avoid triggering when clicking interactive elements inside (if any)
-      // but current cards are text-only; keep simple
+      const now = Date.now();
+      if (lastTouchTs && (now - lastTouchTs) < 500) {
+        // synthetic click after touch — ignore
+        lastTouchTs = 0;
+        return;
+      }
       toggle();
     });
-    card.addEventListener('touchstart', () => {
-      toggle();
-    }, { passive: true });
 
     // Keyboard accessibility
     card.addEventListener('keydown', (e) => {

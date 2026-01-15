@@ -696,8 +696,7 @@ header.scrolled .design-asset,
     transform: rotateY(180deg);
 }
 
-/* Hover flip for desktop; class flip for mobile */
-.process-card:hover .card-inner,
+/* Flip controlled only by the `.is-flipped` class; remove hover-triggered flip */
 .process-card.is-flipped .card-inner {
     transform: rotateY(180deg);
 }
