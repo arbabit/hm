@@ -598,7 +598,7 @@ header.scrolled .design-asset,
 /* THE CARD STYLE: Updated with your existing code + alignment fixes */
 .process-card {
     background: #fff;
-    padding: 0; /* reduce excess top space; faces handle padding */
+    padding:3%; /* reduce excess top space; faces handle padding */
     border-radius: 0;
     position: relative;
     box-shadow: 12px 12px 0px rgba(0, 51, 102, 0.05);
@@ -712,7 +712,7 @@ header.scrolled .design-asset,
 @media (max-width: 768px) {
     .process-card .card-face { padding-bottom: 12px; }
     .process-card .card-face .mini-map { margin-bottom: 0; }
-    .map-cta { display: none; }
+    .map-cta { display: block; text-align: center; margin-top: 10px; }
     /* Ensure the card itself doesn't add extra bottom gap */
     .process-card { margin-bottom: 6px; }
 }
@@ -2194,7 +2194,7 @@ section {
 .process-card .mini-map {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 12px;
     padding-top: 8px;
@@ -2228,6 +2228,72 @@ section {
 
 @media (max-width: 768px) {
     .process-card .mini-map .embedded-map { max-width: 100%; height: 220px; }
+}
+
+/* Mobile: keep the status on one line and adjust size to prevent wrapping */
+@media (max-width: 480px) {
+    .open-status {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; /* defensive: if it's too long */
+        font-size: 15px; /* slightly smaller to fit */
+    }
+}
+
+/* Get Directions button styling: new color and disable visual change on press */
+.map-cta .action-btn,
+.process-card .mini-map .action-btn {
+    background: #0c618e; /* deep blue */
+    color: #ffffff;
+    border: 2px solid #0c618e;
+    box-shadow: none;
+    transition: none; /* disable hover/press transitions */
+}
+.map-cta .action-btn:hover,
+.map-cta .action-btn:focus,
+.map-cta .action-btn:active,
+.process-card .mini-map .action-btn:hover,
+.process-card .mini-map .action-btn:focus,
+.process-card .mini-map .action-btn:active {
+    background: #0c618e;
+    color: #ffffff;
+    border-color: #0c618e;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Make the mobile CTA easier to tap (full-width on very small screens) */
+@media (max-width: 480px) {
+    .map-cta .action-btn,
+    .process-card .mini-map .action-btn {
+        display: inline-block;
+        width: 90%;
+        max-width: 320px;
+        padding: 12px 16px;
+        border-radius: 8px;
+    }
+}
+
+/* Plain text link variant for Get Directions (no button) */
+.map-cta .map-link {
+    color: var(--blue);
+    text-decoration: underline;
+    font-weight: 700;
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: inline-block;
+}
+.map-cta .map-link:hover,
+.map-cta .map-link:focus,
+.map-cta .map-link:active {
+    color: var(--blue);
+    text-decoration: underline;
+    background: transparent;
+    outline: none;
+}
+@media (max-width: 480px) {
+    .map-cta .map-link { font-size: 15px; }
 }
 
 
