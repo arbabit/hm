@@ -271,9 +271,14 @@ main, .main-content {
 .mobile-nav-list {
     list-style: none;
     margin: 0;
-    padding: 24px 0 32px;
-    flex: 1;
-    /* Allow scrolling when content exceeds available height */
+    /* Use flex column so we can space items and still allow scrolling */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* align items to top */
+    align-items: stretch;
+    gap: 18px; /* larger gap between nav items */
+    padding: 28px 8px 12px; /* more top padding so items start below header */
+    flex: 1 1 auto;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -285,12 +290,12 @@ main, .main-content {
 .mobile-nav-list .nav-link {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 18px 28px; /* larger hit area on mobile */
+    justify-content: flex-start; /* left-align links */
+    padding: 18px 20px; /* maintain large hit area with slightly less horizontal padding */
     text-decoration: none;
     color: #ffffff;
     font-weight: 700; /* slightly stronger weight for legibility */
-    font-size: 1.25rem; /* increased size for readability on phones */
+    font-size: 1.4rem; /* increased size for readability on phones */
     line-height: 1.2;
 }
 
@@ -300,7 +305,7 @@ main, .main-content {
 }
 
 .mobile-nav-footer {
-    padding: 16px 110px 20px 16px; /* extra right padding to clear the design, slight left shift */
+    padding: 10px 12px; /* compact footer so nav list gets more vertical room */
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     background: #ffffff;
     display: flex;
@@ -314,7 +319,7 @@ main, .main-content {
 
 .mobile-nav-tagline {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 1rem; /* slightly larger tagline text */
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--blue);
