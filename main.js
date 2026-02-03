@@ -232,25 +232,57 @@ function initContactBox() {
 // MOBILE MENU FUNCTION
 function initMobileMenu() {
   const hamburger = document.querySelector('.hamburger-menu');
-  const navList = document.querySelector('.nav-list');
-  if (!hamburger || !navList) return;
+  const drawer = document.querySelector('.mobile-nav-panel');
+  const overlay = document.querySelector('.mobile-nav-overlay');
+  const closeBtn = document.querySelector('.mobile-nav-close');
+  const drawerLinks = document.querySelectorAll('.mobile-nav-list .nav-link');
 
-  hamburger.addEventListener('click', function(e) {
+  if (!hamburger || !drawer || !overlay) return;
+
+  const openDrawer = () => {
+    drawer.classList.add('is-open');
+    overlay.classList.add('is-visible');
+    document.body.classList.add('mobile-nav-open');
+    hamburger.classList.add('active');
+    hamburger.setAttribute('aria-expanded', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+  };
+
+  const closeDrawer = () => {
+    drawer.classList.remove('is-open');
+    overlay.classList.remove('is-visible');
+    document.body.classList.remove('mobile-nav-open');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+  };
+
+  hamburger.addEventListener('click', (e) => {
     e.stopPropagation();
-    const isOpen = navList.classList.toggle('mobile-active');
-    hamburger.classList.toggle('active', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if (drawer.classList.contains('is-open')) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
   });
 
-  // Close menu when clicking outside
-  document.addEventListener('click', function(e) {
-    if (!navList.contains(e.target) && !hamburger.contains(e.target)) {
-      if (navList.classList.contains('mobile-active')) {
-        navList.classList.remove('mobile-active');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-      }
-    }
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeDrawer();
+    });
+  }
+
+  overlay.addEventListener('click', () => {
+    closeDrawer();
+  });
+
+  drawerLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeDrawer();
+    });
   });
 }
 
