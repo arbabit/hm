@@ -286,11 +286,12 @@ main, .main-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 24px;
+    padding: 18px 28px; /* larger hit area on mobile */
     text-decoration: none;
     color: #ffffff;
-    font-weight: 600;
-    font-size: 1.05rem;
+    font-weight: 700; /* slightly stronger weight for legibility */
+    font-size: 1.25rem; /* increased size for readability on phones */
+    line-height: 1.2;
 }
 
 .mobile-nav-list .nav-link.active {
