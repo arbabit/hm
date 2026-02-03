@@ -141,6 +141,9 @@ header .nav-link,
         font-size: 1.02rem; /* slightly smaller on mobile */
         padding: 12px 14px;
     }
+
+    /* Slightly increase main header logo on small screens without breaking layout */
+    .logo-img { height: 64px; }
 }
 
 /* MASTER STYLESHEET: Haroon Mahmood Welfare Trust */
@@ -255,7 +258,7 @@ main, .main-content {
 }
 
 .mobile-nav-logo img {
-    height: 46px;
+    height: 72px; /* larger for better visibility on mobile */
     width: auto;
 }
 
@@ -266,6 +269,12 @@ main, .main-content {
     line-height: 1;
     cursor: pointer;
     color: #0c618e;
+}
+
+/* Hide the small blue close icon in the mobile nav (use the large decorative close instead) */
+.mobile-nav-close {
+    display: none !important;
+    pointer-events: none !important;
 }
 
 .mobile-nav-list {
@@ -305,7 +314,7 @@ main, .main-content {
 }
 
 .mobile-nav-footer {
-    padding: 10px 12px; /* compact footer so nav list gets more vertical room */
+    padding: 10px 96px 10px 12px; /* reserve space on the right for design so tagline doesn't overlap */
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     background: #ffffff;
     display: flex;
@@ -313,13 +322,14 @@ main, .main-content {
     justify-content: flex-start;
     background-image: url('design.png');
     background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 42px auto; /* smaller so it is fully visible */
+    background-position: right 18px center;
+    background-size: 56px auto; /* larger design but kept to the right */
 }
 
 .mobile-nav-tagline {
     margin: 0;
     font-size: 1rem; /* slightly larger tagline text */
+    max-width: calc(100% - 110px); /* keep tagline left of the right-side design */
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--blue);
@@ -1151,7 +1161,7 @@ table.impact-table {
         padding: 6px 8px;
     }
 
-    .logo-img { height: 52px; }
+    .logo-img { height: 72px; }
 
     /* hide decorative design on small screens to save space */
     .nav-right .design-asset { display: none; }
