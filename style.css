@@ -226,7 +226,8 @@ main, .main-content {
     top: 0;
     right: 0;
     left: auto;
-    height: 100vh;
+    /* Use anchored bottom instead of 100vh to avoid mobile-browser UI clipping */
+    bottom: 0;
     width: 78vw;
     max-width: 360px;
     background: #0c618e; /* brand blue */
@@ -236,6 +237,9 @@ main, .main-content {
     z-index: 1500;
     display: flex;
     flex-direction: column;
+    /* safe-area padding for devices with home indicator / notches */
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom, 16px);
 }
 
 .mobile-nav-panel.is-open {
@@ -269,6 +273,9 @@ main, .main-content {
     margin: 0;
     padding: 24px 0 32px;
     flex: 1;
+    /* Allow scrolling when content exceeds available height */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .mobile-nav-list li {
