@@ -2295,5 +2295,53 @@ section {
     .map-cta .map-link { font-size: 15px; }
 }
 
+/* CONTACT PAGE: stack details + map vertically on mobile */
+@media (max-width: 768px) {
+    /* Stack two-column contact layout */
+    .container.grid-2,
+    .grid-2 {
+        display: block !important;
+    }
+
+    .form-side,
+    .info-side {
+        width: 100% !important;
+    }
+
+    /* Ensure card and form use full width without overflow */
+    .hmwt-form,
+    .process-card {
+        width: 100% !important;
+        box-sizing: border-box;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    /* Map container: full-width, no restrictive side padding */
+    .mini-map {
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin: 16px 0 0;
+    }
+
+    /* Google Maps iframe: responsive full-width */
+    .mini-map iframe,
+    .mini-map .embedded-map {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 260px;
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .hmwt-form,
+    .process-card {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
 
 
