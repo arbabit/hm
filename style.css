@@ -1191,8 +1191,8 @@ table.impact-table {
 
 /* Enforce smaller logos on mobile to avoid overlap with the X */
 @media (max-width: 768px) {
-    #mainHeader .logo-img { height: 36px !important; width: auto; }
-    .mobile-nav-logo img { height: 56px !important; width: auto; }
+    #mainHeader .logo-img { height: 52px !important; width: auto; }
+    .mobile-nav-logo img { height: 60px !important; width: auto; }
 }
 
 .key-achievements-list li,
@@ -1380,7 +1380,7 @@ table.impact-table {
     }
 
     .logo-img {
-        height: 50px !important;
+        height: 48px !important; /* slightly larger for visibility */
         width: auto;
         margin-bottom: 10px;
     }
@@ -1770,7 +1770,7 @@ table.impact-table {
 
     /* Centers the logo and makes it smaller */
     .logo-img {
-        height: 40px !important;
+        height: 48px !important; /* unify mobile logo size */
         margin-bottom: 5px;
     }
 
