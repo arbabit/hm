@@ -17,6 +17,7 @@
         box-shadow: 0 6px 30px rgba(0,0,0,0.06);
         text-align: center;
         overflow: hidden;
+        -webkit-tap-highlight-color: transparent; /* suppress highlight within container */
     }
     .food-slide {display: none; width:100%;}
     .food-slide.active {display:block;}
@@ -45,6 +46,16 @@
         border-radius: 6px;
         box-shadow: 0 4px 14px rgba(0,0,0,0.08);
         user-select: none;
+        -webkit-tap-highlight-color: transparent; /* remove blue tap highlight on mobile */
+        outline: none;
+        border: none;
+        appearance: none;
+        touch-action: manipulation;
+    }
+    .prev:active, .next:active,
+    .prev:focus, .next:focus {
+        background: #fff; /* keep white background when pressed */
+        box-shadow: 0 4px 14px rgba(0,0,0,0.08);
     }
     .next {right: 12px}
     .prev {left: 12px}
@@ -164,8 +175,8 @@
                     <div style="grid-column: 1 / -1;">
                         <div class="food-slideshow-container" id="featuredSlideshow">
                             <!-- slides inserted dynamically -->
-                            <a class="prev" onclick="plusFoodSlides(-1)">&#10094;</a>
-                            <a class="next" onclick="plusFoodSlides(1)">&#10095;</a>
+                            <button class="prev" type="button" onclick="plusFoodSlides(-1)">&#10094;</button>
+                            <button class="next" type="button" onclick="plusFoodSlides(1)">&#10095;</button>
                         </div>
                     </div>
                 </div>
@@ -221,8 +232,8 @@
         crown.innerHTML = `<div class="crown-thumbs" id="crownThumbs"></div><div class="crown-main" id="crownMain"></div>`;
         crownOuter.appendChild(crown);
         // prev/next controls
-        const prev = document.createElement('a'); prev.className = 'prev'; prev.innerHTML = '&#10094;'; prev.onclick = ()=> plusFoodSlides(-1);
-        const next = document.createElement('a'); next.className = 'next'; next.innerHTML = '&#10095;'; next.onclick = ()=> plusFoodSlides(1);
+        const prev = document.createElement('button'); prev.type = 'button'; prev.className = 'prev'; prev.innerHTML = '&#10094;'; prev.onclick = ()=> plusFoodSlides(-1);
+        const next = document.createElement('button'); next.type = 'button'; next.className = 'next'; next.innerHTML = '&#10095;'; next.onclick = ()=> plusFoodSlides(1);
         container.appendChild(prev); container.appendChild(crownOuter); container.appendChild(next);
 
         const thumbs = crown.querySelector('#crownThumbs');

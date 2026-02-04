@@ -703,9 +703,9 @@ header.scrolled .design-asset,
 .prog-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 cards on first row */
-    gap: 24px;
+    gap: 16px;
     align-items: stretch;
-    padding: 20px 0;
+    padding: 12px 0;
 }
 
 /* Medium screens: show 2 cards per row */
@@ -769,9 +769,9 @@ header.scrolled .design-asset,
     display: flex;
     flex-wrap: wrap;
     justify-content: center; /* center last row automatically */
-    gap: 24px;
+    gap: 16px;
     align-items: stretch;
-    padding: 20px 0;
+    padding: 12px 0;
 }
 
 /* Flip card internals */
@@ -788,13 +788,13 @@ header.scrolled .design-asset,
     inset: 0;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    padding: 16px 22px; /* smaller top padding so heading moves into visible area */
+    padding: 12px 16px; /* compact inner padding to fit content */
     height: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* distribute content top-to-bottom to use blank space */
-    gap: 10px;
+    gap: 6px;
 }
 
 /* Make the mini-map span the same horizontal area as the card text
@@ -832,8 +832,7 @@ header.scrolled .design-asset,
     transform: rotateY(180deg);
 }
 
-/* Flip controlled by hover and the `.is-flipped` class (hover for desktop, class for clicks/taps) */
-.process-card:hover .card-inner,
+/* Flip controlled only by the `.is-flipped` class (click/tap/keyboard) */
 .process-card.is-flipped .card-inner {
     transform: rotateY(180deg);
 }
@@ -841,7 +840,7 @@ header.scrolled .design-asset,
 /* Reduce padding on mobile to prevent squish */
 @media (max-width: 768px) {
     .process-card { min-height: 340px; }
-    .process-card .card-face { padding: 25px 20px; }
+    .process-card .card-face { padding: 16px 12px; }
 }
 
 /* Mobile: remove extra space under the map and hide redundant CTA */
@@ -955,15 +954,15 @@ header.scrolled .design-asset,
     line-height: 1.45;
     color: #444;
     font-size: 0.95rem;
-    margin-bottom: 8px; /* tighter list spacing so lists don't push content down */
+    margin-bottom: 6px; /* tighter list spacing so lists don't push content down */
 }
 
 /* Ensure paragraphs and headings inside cards use available space without overflow */
 .process-card p {
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0; /* tighter paragraph spacing */
 }
 .process-card .ben-badge {
-    margin-top: 12px; /* keep badge visually separated near card bottom */
+    margin-top: 8px; /* tighter spacing above badge */
 }
 
 /* 6. TABLES & FORMS */
@@ -1829,7 +1828,7 @@ table.impact-table {
     .prog-cards {
         display: grid !important;
         grid-template-columns: 1fr !important; /* One column on mobile */
-        gap: 16px !important;
+        gap: 12px !important;
         padding: 0 15px !important;
         width: 100% !important;
     }
@@ -1841,7 +1840,7 @@ table.impact-table {
         max-width: 100% !important;
         margin-bottom: 20px !important;
         /* Reduce high padding that squishes text */
-        padding: 25px 20px !important; 
+        padding: 16px 12px !important; 
         box-sizing: border-box !important;
     }
 
