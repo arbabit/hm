@@ -294,17 +294,26 @@ main, .main-content {
     display: flex;
     align-items: center;
     justify-content: flex-start; /* left-align links */
-    padding: 18px 20px; /* maintain large hit area with slightly less horizontal padding */
+    padding: 16px 24px; /* larger tap target */
+    min-height: 48px; /* recommended touch size */
+    margin: 2px 8px; /* small breathing space between items */
+    border-radius: 10px; /* button-like appearance */
     text-decoration: none;
     color: #ffffff;
-    font-weight: 700; /* slightly stronger weight for legibility */
-    font-size: 1.4rem; /* increased size for readability on phones */
-    line-height: 1.2;
+    font-weight: 700; /* strong weight for legibility */
+    font-size: 1.4rem; /* bump size for easier reading */
+    line-height: 1.3;
 }
 
 .mobile-nav-list .nav-link.active {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
     border-left: 4px solid var(--gold);
+}
+
+.mobile-nav-list .nav-link:hover,
+.mobile-nav-list .nav-link:focus {
+    background: rgba(255, 255, 255, 0.10);
+    outline: none;
 }
 
 .mobile-nav-footer {
@@ -329,6 +338,8 @@ main, .main-content {
     text-transform: uppercase;
     color: var(--blue);
 }
+.mobile-nav-tagline .tagline-primary { display: block; white-space: nowrap; }
+.mobile-nav-tagline .tagline-secondary { display: block; }
 
 .mobile-nav-subtext {
     margin: 0;
@@ -1176,6 +1187,12 @@ table.impact-table {
     .hamburger-menu.active span:nth-child(3) {
         transform: translateY(-12px) rotate(-45deg);
     }
+}
+
+/* Enforce smaller logos on mobile to avoid overlap with the X */
+@media (max-width: 768px) {
+    #mainHeader .logo-img { height: 36px !important; width: auto; }
+    .mobile-nav-logo img { height: 56px !important; width: auto; }
 }
 
 .key-achievements-list li,
