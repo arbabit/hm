@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <style>
     /* Slideshow: fixed height with object-fit so all slides look consistent */
+    /* Broader suppression of mobile tap highlight within the gallery */
+    html, body, #featuredSlideshow, .crown-slideshow, .crown-container,
+    .crown-main, .crown-thumbs img, .crown-main img, .gallery-grid,
+    .prev, .next, button {
+        -webkit-tap-highlight-color: transparent;
+    }
     .food-slideshow-container {
         position: relative;
         max-width: 760px;
@@ -239,6 +245,10 @@
         // prev/next controls
         const prev = document.createElement('button'); prev.type = 'button'; prev.className = 'prev'; prev.innerHTML = '&#10094;'; prev.onclick = ()=> plusFoodSlides(-1);
         const next = document.createElement('button'); next.type = 'button'; next.className = 'next'; next.innerHTML = '&#10095;'; next.onclick = ()=> plusFoodSlides(1);
+        [prev, next].forEach(el => {
+            el.addEventListener('click', ()=> el.blur());
+            el.addEventListener('touchend', ()=> el.blur(), {passive:true});
+        });
         container.appendChild(prev); container.appendChild(crownOuter); container.appendChild(next);
 
         const thumbs = crown.querySelector('#crownThumbs');
