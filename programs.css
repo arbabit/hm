@@ -18,7 +18,7 @@
   width: 180px;
   height: 16px;
   margin: 10px auto 0;
-  background: url("images/brush-underline.svg") center/contain no-repeat;
+  background: url("assets/shared/brush-underline.svg") center/contain no-repeat;
 }
 
 @keyframes programsFadeUp {

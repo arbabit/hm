@@ -73,6 +73,15 @@
     flex-direction: column;
     align-items: flex-start;
 }
+
+/* Mobile: make mission section fit viewport without forcing min-width */
+@media (max-width: 480px) {
+    .mission-section {
+        width: 100%;
+        min-width: 0;
+        margin: 0 0 40px 0;
+    }
+}
 .mission-title {
     color: #e89c2d;
     font-size: 2rem;
@@ -169,6 +178,12 @@ header .nav-link,
     padding: 0;
     box-sizing: border-box;
 }
+
+/* Prevent horizontal overflow across the entire document */
+html { overflow-x: hidden; }
+
+/* Ensure media scales within the viewport */
+img, svg, video { max-width: 100%; height: auto; }
 
 html, body {
     height: 100%;
@@ -323,7 +338,7 @@ main, .main-content {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    background-image: url('design.png');
+    background-image: url('assets/shared/design.png');
     background-repeat: no-repeat;
     background-position: right 18px center;
     background-size: 56px auto; /* larger design but kept to the right */
@@ -483,7 +498,7 @@ header.scrolled .design-asset,
 
 .hero, 
 .hero-sub {
-    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url('design2.png');
+    background: linear-gradient(rgba(12, 97, 142, 0.9), rgba(12, 97, 142, 0.9)), url('assets/shared/design2.png');
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -512,7 +527,7 @@ header.scrolled .design-asset,
     width: 180px;
     height: 16px;
     margin: 12px auto 0;
-    background: url("images/brush-underline.svg") center/contain no-repeat;
+    background: url("assets/shared/brush-underline.svg") center/contain no-repeat;
 }
 @media (min-width: 992px) {
     .section-label h1 { font-size: 2.8rem; }
@@ -1275,11 +1290,11 @@ table.impact-table {
     .watermark-design {
         position: absolute;
         top: 0;
-        right: -50px; /* Adjusted alignment */
+        right: 0; /* Avoid overflow on small screens */
         width: 100%;
         height: 100%;
         z-index: -1;
-        background: url('design.png') no-repeat center center;
+        background: url('assets/shared/design.png') no-repeat center center;
         background-size: cover;
     }
 
@@ -1446,7 +1461,7 @@ table.impact-table {
 
     .watermark-design {
         width: 250px;
-        right: -50px;
+        right: 0; /* Keep within viewport */
         opacity: 0.08;
     }
 
@@ -1723,7 +1738,7 @@ table.impact-table {
     transform: translate(-50%, -50%);
     width: 60%;
     height: 60%;
-    background: url('design.png') no-repeat center / contain;
+    background: url('assets/shared/design.png') no-repeat center / contain;
     opacity: 0;
     transition: opacity .25s ease;
     pointer-events: none;
@@ -2356,13 +2371,14 @@ section {
     .process-card .mini-map .embedded-map { max-width: 100%; height: 220px; }
 }
 
-/* Mobile: keep the status on one line and adjust size to prevent wrapping */
+/* Mobile: allow status text to wrap so it's fully visible */
 @media (max-width: 480px) {
     .open-status {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis; /* defensive: if it's too long */
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
         font-size: 15px; /* slightly smaller to fit */
+        line-height: 1.35;
     }
 }
 
@@ -2468,6 +2484,54 @@ section {
         padding-left: 12px;
         padding-right: 12px;
     }
+}
+
+
+
+/* Tablet layout: center the last (Values) card with same column size */
+@media (min-width: 600px) and (max-width: 1200px) {
+    /* Use grid on the about section container for tablet view */
+    .about-section > .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        align-items: stretch;
+    }
+
+    /* Center the 3rd card (Our Values) in the middle with single-column width */
+    .about-section > .container .about-item:nth-of-type(3) {
+        grid-column: 1 / span 2;              /* occupy the row */
+        justify-self: center;                  /* center horizontally */
+        width: 100%;                           /* take available width */
+        max-width: calc((100% - 24px) / 2);    /* same as one grid column (gap=24px) */
+        margin: 0 auto;                        /* fallback center */
+    }
+}
+
+/* Tablet view: keep headings centered, body content left-aligned */
+@media (min-width: 600px) and (max-width: 1200px) {
+    .process-card h3 { text-align: center; }
+    .process-card .card-face,
+    .process-card .card-back { text-align: left; }
+    .process-card p,
+    .process-card .ben-badge,
+    .process-card .metric-tag { margin-left: 0; margin-right: 0; }
+    .prog-card-list { display: block; text-align: left; margin-left: 0; margin-right: 0; }
+}
+
+/* Tablet header: center menu exactly between logo and design */
+@media (min-width: 769px) and (max-width: 1200px) {
+    #mainHeader .nav-container {
+        display: grid;
+        grid-template-columns: auto 1fr auto; /* logo | centered menu | design */
+        align-items: center;
+        gap: 20px;
+        padding: 0 16px; /* pull content closer to edges to free middle space */
+    }
+    #mainHeader .nav-left { justify-self: start; justify-content: flex-start; }
+    #mainHeader .nav-center { justify-self: center; width: 100%; display: flex; justify-content: center; }
+    #mainHeader .nav-right { justify-self: end; }
+    #mainHeader .nav-list { justify-content: center; gap: 28px; }
 }
 
 

@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery | Haroon Mahmood Welfare Trust</title>
+    <link rel="icon" href="assets/shared/design.png?v=1" type="image/png" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/shared/favicon-32x32.png?v=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/shared/favicon-16x16.png?v=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/shared/apple-touch-icon.png?v=1">
     <link rel="stylesheet" href="style.css">
     <style>
     /* Slideshow: fixed height with object-fit so all slides look consistent */
@@ -214,20 +218,8 @@
     <script src="main.js"></script>
     <script>
     /* Unified image list (all files now in images/1) */
-    const allImgs = [
-        "images/1/1347931389.jpg","images/1/1380115859.jpg","images/1/1681937538.jpg","images/1/2380709797.jpg","images/1/2389908033.jpg","images/1/2588238156.jpg","images/1/3005944258.jpg","images/1/3028937343.jpg","images/1/3361553760.jpg","images/1/3511566283.jpg","images/1/3578212725.jpg","images/1/3937220898.jpg","images/1/4183791268.jpg","images/1/4195852686.jpg","images/1/428825512.jpg","images/1/736598867.jpg",
-        // moved from folder 2
-        "images/1/WhatsApp Image 2026-01-13 at 12.32.25 PM.jpeg",
-        "images/1/WhatsApp Image 2026-01-13 at 12.32.23 PM.jpeg",
-        "images/1/WhatsApp Image 2026-01-13 at 12.32.23 PM (1).jpeg",
-        "images/1/WhatsApp Image 2026-01-13 at 12.32.22 PM.jpeg",
-        "images/1/WhatsApp Image 2026-01-13 at 12.10.43 PM.jpeg",
-        "images/1/WhatsApp Image 2026-01-13 at 12.10.43 PM (1).jpeg",
-        "images/1/WhatsApp Image 2026-01-13 at 12.10.41 PM.jpeg",
-        "images/1/3851579705.jpg","images/1/3751421102.jpg","images/1/3189969113.jpg","images/1/3134267900.jpg","images/1/1797025948.jpg","images/1/1556381711.jpg","images/1/1414026331.jpg",
-        // moved from folder 3
-        "images/1/1-39.jpg","images/1/1-40.jpg","images/1/1-73.jpg","images/1/2999518530.jpg","images/1/487702632.jpg"
-    ];
+    const totalImgs = 30;
+    const allImgs = Array.from({ length: totalImgs }, (_, i) => `assets/gallery/${i + 1}.jpg`);
 
     // Top slideshow (reuses existing .food-slide styles)
     let foodSlideIndex = 0;

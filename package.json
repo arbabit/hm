@@ -1,0 +1,13 @@
+{
+  "name": "hmwelfare-favicons",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Utility to generate crisp favicon set from design.png",
+  "scripts": {
+    "favicons": "node scripts/generate-favicons.js"
+  },
+  "dependencies": {
+    "jimp": "^0.22.12",
+    "png-to-ico": "^2.1.8"
+  }
+}
