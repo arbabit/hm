@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initCounterAnimation();
   // Contact status (open/closed)
   initContactBox();
+  // Initialize contact form
+  initContactForm();
 });
 
 // Highlight the active nav link based on current page
@@ -283,6 +285,49 @@ function initMobileMenu() {
     link.addEventListener('click', () => {
       closeDrawer();
     });
+  });
+}
+
+// CONTACT FORM HANDLER - Send messages via EmailJS
+function initContactForm() {
+  const form = document.querySelector('.hmwt-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Get form data
+    const formData = {
+      from_name: form.querySelector('input[name="name"]').value,
+      from_email: form.querySelector('input[name="email"]').value,
+      phone: form.querySelector('input[name="phone"]').value,
+      subject: form.querySelector('input[name="subject"]').value,
+      message: form.querySelector('textarea[name="message"]').value,
+      to_email: 'info@hmwelfaretrust.com'
+    };
+
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    // Send email via EmailJS
+    emailjs.send('service_hmwt_contact', 'template_hmwt_contact', formData)
+      .then(function(response) {
+        // Success
+        console.log('Email sent successfully');
+        alert('Thank you! Your message has been sent. We will get back to you soon.');
+        form.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }, function(error) {
+        // Error
+        console.error('Failed to send email:', error);
+        alert('Sorry, there was an error sending your message. Please try again or contact us directly at info@hmwelfaretrust.com');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      });
   });
 }
 
