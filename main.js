@@ -312,22 +312,32 @@ function initContactForm() {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
 
-    // Send email via EmailJS
-    emailjs.send('service_hmwt_contact', 'template_hmwt_contact', formData)
-      .then(function(response) {
-        // Success
-        console.log('Email sent successfully');
+    // Send form data to server-side PHP handler
+    fetch('send_mail.php', {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
+    })
+    .then(data => {
+      if (data.status && data.status === 'ok') {
         alert('Thank you! Your message has been sent. We will get back to you soon.');
         form.reset();
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      }, function(error) {
-        // Error
-        console.error('Failed to send email:', error);
+      } else {
+        console.error('Server error response:', data);
         alert('Sorry, there was an error sending your message. Please try again or contact us directly at info@hmwelfaretrust.com');
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      });
+      }
+    })
+    .catch(error => {
+      console.error('Failed to send via server:', error);
+      alert('Sorry, there was an error sending your message. Please try again or contact us directly at info@hmwelfaretrust.com');
+    })
+    .finally(() => {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    });
   });
 }
 
